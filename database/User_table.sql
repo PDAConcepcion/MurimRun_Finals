@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS public."User_table" (
     userid uuid NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
+    username varchar(254) NOT NULL,
     password varchar(254) NOT NULL,
     first_name varchar(254) NOT NULL,
     last_name varchar(254) NOT NULL,
