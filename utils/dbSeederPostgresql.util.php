@@ -1,17 +1,14 @@
-
-
 <?php
-// 1) Composer bootstrap (defines BASE_PATH and other paths)
+declare(strict_types=1);
+
+// 1) Composer autoload
+require_once __DIR__ . '/../vendor/autoload.php';
+
+// 2) Composer bootstrap
 require_once __DIR__ . '/../bootstrap.php';
 
-// 2) Composer autoload
-require_once BASE_PATH . '/vendor/autoload.php';
-
 // 3) envSetter
-require_once UTILS_PATH . '/envSetter.util.php';
-
-// Path constants from bootstrap.php for future use:
-// BASE_PATH, HANDLERS_PATH, UTILS_PATH, DATABASE_PATH, DUMMIES_PATH, TEMPLATES_PATH, STATICDATAS_PATH, LAYOUTS_PATH, ERRORS_PATH, UPLOAD_PATH
+require_once __DIR__ . '/envSetter.util.php';
 
 $host = $databases['pgHost'];
 $port = $databases['pgPort'];
@@ -25,19 +22,14 @@ $pdo = new PDO($dsn, $username, $password, [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 ]);
 
-
 $sqlFiles = [
-    ['table' => 'User_table', 'file' => 'database/User_table.sql'],
-    ['table' => 'SectCouriers_table', 'file' => 'database/SectCouriers.sql'],
-    ['table' => 'Deliveries_table', 'file' => 'database/Deliveries.sql'],
-    ['table' => 'courier_deliveries', 'file' => 'database/courier_deliveries.sql'],
+    'database/User_table.sql',
+    'database/SectCouriers.sql',
+    'database/Deliveries.sql',
+    'database/courier_deliveries.sql',
 ];
 
-foreach ($sqlFiles as $entry) {
-    $table = $entry['table'];
-    $file = $entry['file'];
-    echo "Dropping table $table if exists…\n";
-    $pdo->exec("DROP TABLE IF EXISTS public.\"$table\" CASCADE;");
+foreach ($sqlFiles as $file) {
     echo "Applying schema from $file…\n";
     $sql = file_get_contents($file);
     if ($sql === false) {
@@ -47,6 +39,8 @@ foreach ($sqlFiles as $entry) {
     }
     $pdo->exec($sql);
 }
+
+echo "✅ PostgreSQL reset complete!\n";
 
 // Truncate tables
 echo "Truncating tables…\n";
@@ -60,82 +54,85 @@ foreach ($tables as $table) {
     $pdo->exec("TRUNCATE TABLE \"$table\" RESTART IDENTITY CASCADE;");
 }
 
-// Seeder logic for users
+// --- Seeder Logic for All Tables ---
+echo "\n--- Seeding Dummy Data for All Tables ---\n";
+
+// Seed User_table
 echo "Seeding users…\n";
-$users = require_once DUMMIES_PATH . '/users.staticData.php';
-$userStmt = $pdo->prepare(
-    'INSERT INTO public."User_table" (username, password, first_name, last_name, "role") VALUES (:username, :pw, :fn, :ln, :role)'
-);
-foreach ($users as $u) {
-    $userStmt->execute([
-        ':username' => $u['username'],
-        ':pw' => password_hash($u['password'], PASSWORD_DEFAULT),
-        ':fn' => $u['first_name'],
-        ':ln' => $u['last_name'],
-        ':role' => $u['role'],
-    ]);
-}
-
-// Seeder logic for SectCouriers_table
-echo "Seeding sect couriers…\n";
-$sectCouriers = require_once DUMMIES_PATH . '/sectcouriers.staticData.php';
-$sectCourierStmt = $pdo->prepare(
-    'INSERT INTO public."SectCouriers_table" (name, sectname, rank, speedrating, status) VALUES (:name, :sectname, :rank, :speedrating, :status)'
-);
-foreach ($sectCouriers as $sc) {
-    $sectCourierStmt->execute([
-        ':name' => $sc['name'],
-        ':sectname' => $sc['sectname'],
-        ':rank' => $sc['rank'],
-        ':speedrating' => $sc['speedrating'],
-        ':status' => $sc['status'],
-    ]);
-}
-
-// Seeder logic for Deliveries_table
-echo "Seeding deliveries…\n";
-// Get foreign keys for dummy data
-$userid = $pdo->query('SELECT userid FROM public."User_table" LIMIT 1')->fetchColumn();
-$courierid = $pdo->query('SELECT courierid FROM public."SectCouriers_table" LIMIT 1')->fetchColumn();
-$deliveries = require_once DUMMIES_PATH . '/deliveries.static.Data.php';
-$deliveryStmt = $pdo->prepare(
-    'INSERT INTO public."Deliveries_table" (userid, courierid, origin, destination, packagedescription, status, deliverytimeestimate) VALUES (:userid, :courierid, :origin, :destination, :packagedescription, :status, :deliverytimeestimate)'
-);
-foreach ($deliveries as $d) {
-    $deliveryStmt->execute([
-        ':userid' => $userid,
-        ':courierid' => $courierid,
-        ':origin' => $d['origin'],
-        ':destination' => $d['destination'],
-        ':packagedescription' => $d['packagedescription'],
-        ':status' => $d['status'],
-        ':deliverytimeestimate' => $d['deliverytimeestimate'],
-    ]);
-}
-
-// Seeder logic for courier_deliveries
-echo "Seeding courier deliveries…\n";
-$courierDeliveries = [
-    [
-        'courierid' => null, // will be set below
-        'deliveryid' => null, // will be set below
-    ],
-];
-// Get ids for foreign keys
-$courierid = $pdo->query('SELECT courierid FROM public."SectCouriers_table" LIMIT 1')->fetchColumn();
-$deliveryid = $pdo->query('SELECT deliveryid FROM public."Deliveries_table" LIMIT 1')->fetchColumn();
-if ($courierid && $deliveryid) {
-    $courierDeliveries[0]['courierid'] = $courierid;
-    $courierDeliveries[0]['deliveryid'] = $deliveryid;
-    $courierDeliveryStmt = $pdo->prepare(
-        'INSERT INTO public."courier_deliveries" (courierid, deliveryid) VALUES (:courierid, :deliveryid)'
-    );
-    foreach ($courierDeliveries as $cd) {
-        $courierDeliveryStmt->execute([
-            ':courierid' => $cd['courierid'],
-            ':deliveryid' => $cd['deliveryid'],
+$users = @include DUMMIES_PATH . '/users.staticData.php';
+if (is_array($users) && count($users)) {
+    $stmt = $pdo->prepare('INSERT INTO public."User_table" (username, first_name, last_name, password, role) VALUES (:username, :first_name, :last_name, :password, :role)');
+    foreach ($users as $u) {
+        $stmt->execute([
+            ':username' => $u['username'],
+            ':first_name' => $u['first_name'],
+            ':last_name' => $u['last_name'],
+            ':password' => password_hash($u['password'], PASSWORD_DEFAULT),
+            ':role' => $u['role'],
         ]);
     }
+    echo "Inserted " . count($users) . " users into User_table.\n";
+} else {
+    echo "No user dummy data found.\n";
 }
 
-echo "✅ PostgreSQL reset complete!\n";
+// Seed SectCouriers_table
+echo "Seeding sect couriers…\n";
+$sectCouriers = @include DUMMIES_PATH . '/sectcouriers.staticData.php';
+if (is_array($sectCouriers) && count($sectCouriers)) {
+    $stmt = $pdo->prepare('INSERT INTO public."SectCouriers_table" (name, sectname, rank, speedrating, status) VALUES (:name, :sectname, :rank, :speedrating, :status)');
+    foreach ($sectCouriers as $sc) {
+        $stmt->execute([
+            ':name' => $sc['name'],
+            ':sectname' => $sc['sectname'],
+            ':rank' => $sc['rank'],
+            ':speedrating' => $sc['speedrating'],
+            ':status' => $sc['status'],
+        ]);
+    }
+    echo "Inserted " . count($sectCouriers) . " sect couriers into SectCouriers_table.\n";
+} else {
+    echo "No sect couriers dummy data found.\n";
+}
+
+// Seed Deliveries_table
+echo "Seeding deliveries…\n";
+$deliveries = @include DUMMIES_PATH . '/deliveries.staticData.php';
+$userid = $pdo->query('SELECT userid FROM public."User_table" LIMIT 1')->fetchColumn();
+$courierid = $pdo->query('SELECT courierid FROM public."SectCouriers_table" LIMIT 1')->fetchColumn();
+if (is_array($deliveries) && count($deliveries)) {
+    $stmt = $pdo->prepare('INSERT INTO public."Deliveries_table" (userid, courierid, origin, destination, packagedescription, status, deliverytimeestimate) VALUES (:userid, :courierid, :origin, :destination, :packagedescription, :status, :deliverytimeestimate)');
+    foreach ($deliveries as $d) {
+        $stmt->execute([
+            ':userid' => $userid,
+            ':courierid' => $courierid,
+            ':origin' => $d['origin'],
+            ':destination' => $d['destination'],
+            ':packagedescription' => $d['packagedescription'],
+            ':status' => $d['status'],
+            ':deliverytimeestimate' => $d['deliverytimeestimate'],
+        ]);
+    }
+    echo "Inserted " . count($deliveries) . " deliveries into Deliveries_table.\n";
+} else {
+    echo "No deliveries dummy data found.\n";
+}
+
+// Seed courier_deliveries
+echo "Seeding courier deliveries…\n";
+$deliveryids = $pdo->query('SELECT deliveryid FROM public."Deliveries_table"')->fetchAll(PDO::FETCH_COLUMN);
+$courierid = $pdo->query('SELECT courierid FROM public."SectCouriers_table" LIMIT 1')->fetchColumn();
+$count = 0;
+foreach ($deliveryids as $deliveryid) {
+    if ($courierid && $deliveryid) {
+        $stmt = $pdo->prepare('INSERT INTO public."courier_deliveries" (courierid, deliveryid) VALUES (:courierid, :deliveryid)');
+        $stmt->execute([
+            ':courierid' => $courierid,
+            ':deliveryid' => $deliveryid,
+        ]);
+        $count++;
+    }
+}
+echo "Inserted $count courier deliveries into courier_deliveries.\n";
+
+echo "✅ PostgreSQL seeding complete!\n";
