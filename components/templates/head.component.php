@@ -16,6 +16,4 @@
     <?php foreach ($cssFiles as $cssFile): ?>
         <link rel="stylesheet" href="<?php echo $cssFile; ?>">
     <?php endforeach; ?>
-
 </head>
-<body>
