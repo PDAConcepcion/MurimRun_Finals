@@ -1,0 +1,31 @@
+{
+    "name": "patrickconcepcion/murim-run_finals",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Patrickconcepcion\\MurimRunFinals\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "PDAConcepcion",
+            "email": "202311772@fit.edu.ph"
+        },
+        {
+            "name": "examplename",
+            "email": "exampleemail@example.com"
+        },
+        {
+            "name": "examplename",
+            "email": "exampleemail@example.com"
+        },
+        {
+            "name": "examplename",
+            "email": "exampleemail@example.com"
+        }
+    ],
+    "scripts": {
+        "start": "php -S localhost:8000 router.php"
+    },
+    "require": {}
+}
