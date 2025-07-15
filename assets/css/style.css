@@ -11,10 +11,10 @@ body {
 }
 
 .content {
-  width: 70%;
+  width: 60%;
+  height: 100%;
   margin: 00 auto;
   padding-top: 70px;
-  background-color: aqua;
   justify-content: center;
   align-items: center;
 }
