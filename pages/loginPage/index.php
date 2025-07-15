@@ -14,7 +14,7 @@ require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
 
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/footer.css">
-    <link rel="stylesheet" href="/assets/css/login.css">
+    <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
