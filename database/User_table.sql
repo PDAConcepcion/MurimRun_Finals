@@ -1,4 +1,3 @@
-Changes Preview
 CREATE TABLE IF NOT EXISTS public."User_table" (
     userid uuid NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
     password varchar(254) NOT NULL,
