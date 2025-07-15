@@ -13,8 +13,10 @@ include TEMPLATES_PATH . '/head.component.php';
 <h1 class="">
     MurimRun
 </h1>
-
 </main>
+
+<!-- footer -->
+<?php include TEMPLATES_PATH . '/footer.component.php'; ?>
 
 </body>
 
