@@ -1,7 +1,8 @@
 <?php
 
 require_once BASE_PATH . '/bootstrap.php';
-
+require_once HANDLERS_PATH . '/postgreChecker.handler.php';
+require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,6 +45,11 @@ require_once BASE_PATH . '/bootstrap.php';
 
         </div>
     </main>
+
+
+    <?php
+    include TEMPLATES_PATH . '/footer.component.php';
+    ?>
 
 </body>
 
