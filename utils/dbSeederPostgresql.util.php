@@ -1,14 +1,13 @@
+
 <?php
-declare(strict_types=1);
-
-// 1) Composer autoload
-require_once __DIR__ . '/../vendor/autoload.php';
-
-// 2) Composer bootstrap
+// 1) Composer bootstrap (defines BASE_PATH)
 require_once __DIR__ . '/../bootstrap.php';
 
+// 2) Composer autoload
+require_once BASE_PATH . '/vendor/autoload.php';
+
 // 3) envSetter
-require_once __DIR__ . '/envSetter.util.php';
+require_once BASE_PATH . '/utils/envSetter.util.php';
 
 $host = $databases['pgHost'];
 $port = $databases['pgPort'];
@@ -59,7 +58,7 @@ foreach ($tables as $table) {
 
 // Seeder logic for users
 echo "Seeding users…\n";
-$users = require_once __DIR__ . '/../staticDatas/dummies/users.staticData.php';
+$users = require_once BASE_PATH . '/staticDatas/dummies/users.staticData.php';
 $userStmt = $pdo->prepare(
     'INSERT INTO public."User_table" (username, password, first_name, last_name, "role") VALUES (:username, :pw, :fn, :ln, :role)'
 );
@@ -75,7 +74,7 @@ foreach ($users as $u) {
 
 // Seeder logic for SectCouriers_yable
 echo "Seeding sect couriers…\n";
-$sectCouriers = require_once __DIR__ . '/../staticDatas/dummies/sectcouriers.staticData.php';
+$sectCouriers = require_once BASE_PATH . '/staticDatas/dummies/sectcouriers.staticData.php';
 $sectCourierStmt = $pdo->prepare(
     'INSERT INTO public."SectCouriers_yable" (name, sectname, rank, speedrating, status) VALUES (:name, :sectname, :rank, :speedrating, :status)'
 );
@@ -94,7 +93,7 @@ echo "Seeding deliveries…\n";
 // Get foreign keys for dummy data
 $userid = $pdo->query('SELECT userid FROM public."User_table" LIMIT 1')->fetchColumn();
 $courierid = $pdo->query('SELECT courierid FROM public."SectCouriers_yable" LIMIT 1')->fetchColumn();
-$deliveries = require_once __DIR__ . '/../staticDatas/dummies/deliveries.static.Data.php';
+$deliveries = require_once BASE_PATH . '/staticDatas/dummies/deliveries.static.Data.php';
 $deliveryStmt = $pdo->prepare(
     'INSERT INTO public."Deliveries_table" (userid, courierid, origin, destination, packagedescription, status, deliverytimeestimate) VALUES (:userid, :courierid, :origin, :destination, :packagedescription, :status, :deliverytimeestimate)'
 );
