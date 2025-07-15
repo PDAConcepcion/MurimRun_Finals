@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
+
+    <link rel="stylesheet" href="./assets/css/login.css">
 </head>
 
 <body>
@@ -16,17 +18,17 @@
             <div class="login-field">
                 <form action="" method="post">
                     <label for="username">Username</label>
-                    <input type="text" name="username" id="username">
+                    <input type="text" name="username" id="username" placeholder="Enter Username" required>
                     <label for="username">Password</label>
-                    <input type="text" name="password" id="password">
+                    <input type="text" name="password" id="password" placeholder="Enter Password" required>
 
-                    <button type="submit">Submit</button>
+                    <div>
+                        <button class="btn" type="submit">Submit</button>
+                    </div>
                 </form>
             </div>
 
-            <div>
 
-            </div>
 
         </div>
     </main>
