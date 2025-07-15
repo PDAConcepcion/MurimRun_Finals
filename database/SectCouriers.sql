@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS public."SectCouriers_yable" (
+CREATE TABLE IF NOT EXISTS public."SectCouriers_table" (
     courierid uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     name text NOT NULL,
     sectname text NOT NULL,

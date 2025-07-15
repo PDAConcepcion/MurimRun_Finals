@@ -1,13 +1,17 @@
 
+
 <?php
-// 1) Composer bootstrap (defines BASE_PATH)
+// 1) Composer bootstrap (defines BASE_PATH and other paths)
 require_once __DIR__ . '/../bootstrap.php';
 
 // 2) Composer autoload
 require_once BASE_PATH . '/vendor/autoload.php';
 
 // 3) envSetter
-require_once BASE_PATH . '/utils/envSetter.util.php';
+require_once UTILS_PATH . '/envSetter.util.php';
+
+// Path constants from bootstrap.php for future use:
+// BASE_PATH, HANDLERS_PATH, UTILS_PATH, DATABASE_PATH, DUMMIES_PATH, TEMPLATES_PATH, STATICDATAS_PATH, LAYOUTS_PATH, ERRORS_PATH, UPLOAD_PATH
 
 $host = $databases['pgHost'];
 $port = $databases['pgPort'];
@@ -24,7 +28,7 @@ $pdo = new PDO($dsn, $username, $password, [
 
 $sqlFiles = [
     ['table' => 'User_table', 'file' => 'database/User_table.sql'],
-    ['table' => 'SectCouriers_yable', 'file' => 'database/SectCouriers.sql'],
+    ['table' => 'SectCouriers_table', 'file' => 'database/SectCouriers.sql'],
     ['table' => 'Deliveries_table', 'file' => 'database/Deliveries.sql'],
     ['table' => 'courier_deliveries', 'file' => 'database/courier_deliveries.sql'],
 ];
@@ -49,7 +53,7 @@ echo "Truncating tables…\n";
 $tables = [
     'courier_deliveries',
     'Deliveries_table',
-    'SectCouriers_yable',
+    'SectCouriers_table',
     'User_table',
 ];
 foreach ($tables as $table) {
@@ -58,7 +62,7 @@ foreach ($tables as $table) {
 
 // Seeder logic for users
 echo "Seeding users…\n";
-$users = require_once BASE_PATH . '/staticDatas/dummies/users.staticData.php';
+$users = require_once DUMMIES_PATH . '/users.staticData.php';
 $userStmt = $pdo->prepare(
     'INSERT INTO public."User_table" (username, password, first_name, last_name, "role") VALUES (:username, :pw, :fn, :ln, :role)'
 );
@@ -72,11 +76,11 @@ foreach ($users as $u) {
     ]);
 }
 
-// Seeder logic for SectCouriers_yable
+// Seeder logic for SectCouriers_table
 echo "Seeding sect couriers…\n";
-$sectCouriers = require_once BASE_PATH . '/staticDatas/dummies/sectcouriers.staticData.php';
+$sectCouriers = require_once DUMMIES_PATH . '/sectcouriers.staticData.php';
 $sectCourierStmt = $pdo->prepare(
-    'INSERT INTO public."SectCouriers_yable" (name, sectname, rank, speedrating, status) VALUES (:name, :sectname, :rank, :speedrating, :status)'
+    'INSERT INTO public."SectCouriers_table" (name, sectname, rank, speedrating, status) VALUES (:name, :sectname, :rank, :speedrating, :status)'
 );
 foreach ($sectCouriers as $sc) {
     $sectCourierStmt->execute([
@@ -92,8 +96,8 @@ foreach ($sectCouriers as $sc) {
 echo "Seeding deliveries…\n";
 // Get foreign keys for dummy data
 $userid = $pdo->query('SELECT userid FROM public."User_table" LIMIT 1')->fetchColumn();
-$courierid = $pdo->query('SELECT courierid FROM public."SectCouriers_yable" LIMIT 1')->fetchColumn();
-$deliveries = require_once BASE_PATH . '/staticDatas/dummies/deliveries.static.Data.php';
+$courierid = $pdo->query('SELECT courierid FROM public."SectCouriers_table" LIMIT 1')->fetchColumn();
+$deliveries = require_once DUMMIES_PATH . '/deliveries.static.Data.php';
 $deliveryStmt = $pdo->prepare(
     'INSERT INTO public."Deliveries_table" (userid, courierid, origin, destination, packagedescription, status, deliverytimeestimate) VALUES (:userid, :courierid, :origin, :destination, :packagedescription, :status, :deliverytimeestimate)'
 );
@@ -118,7 +122,7 @@ $courierDeliveries = [
     ],
 ];
 // Get ids for foreign keys
-$courierid = $pdo->query('SELECT courierid FROM public."SectCouriers_yable" LIMIT 1')->fetchColumn();
+$courierid = $pdo->query('SELECT courierid FROM public."SectCouriers_table" LIMIT 1')->fetchColumn();
 $deliveryid = $pdo->query('SELECT deliveryid FROM public."Deliveries_table" LIMIT 1')->fetchColumn();
 if ($courierid && $deliveryid) {
     $courierDeliveries[0]['courierid'] = $courierid;

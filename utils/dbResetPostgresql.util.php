@@ -23,13 +23,13 @@ $pdo = new PDO($dsn, $username, $password, [
 ]);
 
 $sqlFiles = [
-    'database/User_table.sql',
-    'database/SectCouriers.sql',
-    'database/Deliveries.sql',
-    'database/courier_deliveries.sql',
+    'User_table' => 'database/User_table.sql',
+    'SectCouriers_table' => 'database/SectCouriers.sql',
+    'Deliveries_table' => 'database/Deliveries.sql',
+    'courier_deliveries' => 'database/courier_deliveries.sql',
 ];
 
-foreach ($sqlFiles as $file) {
+foreach ($sqlFiles as $table => $file) {
     echo "Applying schema from $file…\n";
     $sql = file_get_contents($file);
     if ($sql === false) {
@@ -45,7 +45,7 @@ echo "Truncating tables…\n";
 $tables = [
     'courier_deliveries',
     'Deliveries_table',
-    'SectCouriers_yable',
+    'SectCouriers_table',
     'User_table',
 ];
 foreach ($tables as $table) {
