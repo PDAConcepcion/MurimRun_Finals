@@ -1,19 +1,29 @@
 <?php
-require_once __DIR__ . '/../../components/templates/header.component.php'; 
+
+require_once BASE_PATH . '/bootstrap.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - MurimRun</title>
 
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+
 
     <link rel="stylesheet" href="assets/css/signup.css">
 </head>
+
 <body>
+
+    <?php
+    include TEMPLATES_PATH . '/header.component.php';
+    ?>
 
     <main class="signup-page">
         <div class="signup-container">
@@ -39,7 +49,8 @@ require_once __DIR__ . '/../../components/templates/header.component.php';
 
                 <div class="form-group">
                     <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password" required>
+                    <input type="password" id="confirmPassword" name="confirmPassword"
+                        placeholder="Re-enter your password" required>
                     <span id="password-match-message" class="password-message"></span>
                 </div>
 
@@ -60,4 +71,5 @@ require_once __DIR__ . '/../../components/templates/header.component.php';
     <script src="assets/js/signup.js"></script>
 
 </body>
+
 </html>
