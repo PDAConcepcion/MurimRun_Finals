@@ -18,6 +18,10 @@
         {
             "name": "examplename",
             "email": "exampleemail@example.com"
+        },
+        {
+            "name": "examplename",
+            "email": "exampleemail@example.com"
         }
     ],
     "scripts": {
