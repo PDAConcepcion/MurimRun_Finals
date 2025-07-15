@@ -1,10 +1,23 @@
 {
-    "name": "your-username-here/project-name-here",
+    "name": "patrickconcepcion/murim-run_finals",
     "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Patrickconcepcion\\MurimRunFinals\\": "src/"
+        }
+    },
     "authors": [
         {
-            "name": "your-username-here",
-            "email": "your-email-here@gmail.com"
+            "name": "PDAConcepcion",
+            "email": "202311772@fit.edu.ph"
+        },
+        {
+            "name": "_________",
+            "email": "________"
+        },
+        {
+            "name": "_________",
+            "email": "________"
         }
     ],
     "scripts": {
