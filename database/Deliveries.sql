@@ -10,5 +10,5 @@ CREATE TABLE IF NOT EXISTS public."Deliveries_table" (
     createdat timestamp DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (userid) REFERENCES "User_table"(userid),
-    FOREIGN KEY (courierid) REFERENCES "SectCouriers_yable"(courierid)
+    FOREIGN KEY (courierid) REFERENCES "SectCouriers_table"(courierid)
 );

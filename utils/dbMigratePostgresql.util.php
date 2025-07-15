@@ -22,24 +22,18 @@ $pdo = new PDO($dsn, $username, $password, [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 ]);
 
-// Drop all actual tables for a true reset
-$tables = [
-    'courier_deliveries',
-    'Deliveries_table',
-    'SectCouriers_table',
-    'User_table',
-];
-echo "Dropping tables…\n";
-foreach ($tables as $table) {
-    try {
-        $pdo->exec("DROP TABLE IF EXISTS \"$table\" CASCADE;");
-        echo "Dropped $table\n";
-    } catch (Exception $e) {
-        echo "Warning: Could not drop $table ({$e->getMessage()})\n";
-    }
+// Drop all actual tables
+echo "Dropping old tables…\n";
+foreach ([
+  'courier_deliveries',
+  'Deliveries_table',
+  'SectCouriers_table',
+  'User_table',
+] as $table) {
+  $pdo->exec("DROP TABLE IF EXISTS \"$table\" CASCADE;");
 }
 
-// Recreate tables from SQL files
+// Recreate tables from existing SQL files
 $sqlFiles = [
     'database/User_table.sql',
     'database/SectCouriers.sql',
@@ -57,4 +51,5 @@ foreach ($sqlFiles as $file) {
     $pdo->exec($sql);
 }
 
-echo "✅ PostgreSQL reset complete!\n";
+echo "✅ PostgreSQL migration complete!\n";
+
