@@ -17,23 +17,31 @@ require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
     <link rel="stylesheet" href="/assets/css/style.css">
 
     <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+
 
 
 </head>
 
 <body>
 
+    <!-- header -->
+    <?php
+    include TEMPLATES_PATH . '/header.component.php';
+    ?>
+
     <main>
 
-        <!-- header -->
-        <?php
-        include TEMPLATES_PATH . '/header.component.php';
-        ?>
 
         <h1 class="">
             MurimRum
         </h1>
     </main>
+
+    <!-- footer -->
+    <?php
+    include TEMPLATES_PATH . '/footer.component.php';
+    ?>
 
 </body>
 
