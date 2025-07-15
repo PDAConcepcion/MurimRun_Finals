@@ -30,9 +30,12 @@ require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
         include TEMPLATES_PATH . '/header.component.php';
         ?>
 
-        <h1 class="">
-            MurimRum
-        </h1>
+        <div class="content">
+            <h1 class="">
+                MurimRum
+            </h1>
+
+        </div>
     </main>
 
 </body>

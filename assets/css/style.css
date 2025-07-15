@@ -1,3 +1,20 @@
 main {
   width: 100%;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+body {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
+}
+
+.content {
+  width: 70%;
+  margin: 00 auto;
+  padding-top: 70px;
+  background-color: aqua;
+  justify-content: center;
+  align-items: center;
 }
