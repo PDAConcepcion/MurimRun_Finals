@@ -17,7 +17,7 @@
 
     <!-- button 1 -->
     <div>
-        <button><a href="">Login</a></button>
+        <button><a href="/pages/loginPage/index.php">Login</a></button>
     </div>
 
 </header>
