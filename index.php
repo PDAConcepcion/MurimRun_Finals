@@ -1,27 +1,13 @@
 <?php
-
 require_once BASE_PATH . '/bootstrap.php';
 require_once HANDLERS_PATH . '/postgreChecker.handler.php';
 require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing</title>
-
-    <link rel="stylesheet" href="/assets/css/style.css">
-
-    <link rel="stylesheet" href="/assets/css/header.css">
+<?php  include TEMPLATES_PATH . '/head.component.php'; ?>
 
 
-</head>
-
-<body>
 
     <main>
 
@@ -31,7 +17,7 @@ require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
         ?>
 
         <h1 class="">
-            MurimRum
+            MurimRun
         </h1>
     </main>
 
