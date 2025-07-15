@@ -1,6 +1,6 @@
 <header class="user">
     <div class="logo">
-        <h1><a href="index.php">MurimRun</a></h1>
+        <h1><a href="/index.php">MurimRun</a></h1>
     </div>
     <div>
         <nav id="nav-menu" class="nav-bar">
