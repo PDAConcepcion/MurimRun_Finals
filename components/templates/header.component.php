@@ -1,8 +1,10 @@
-<header class="user">
-    <div>
+<header class="header-container">
+
+
+    <div class="left-section">
         <h1>MurimRun</h1>
     </div>
-    <div>
+    <div class="middle-section">
         <nav id="nav-menu" class="nav-bar">
             <ul>
                 <li><a href="">Orders</a></li>
@@ -15,7 +17,7 @@
     </div>
 
     <!-- button 1 -->
-    <div>
+    <div class="right-section">
         <button><a href="">Login</a></button>
     </div>
 
