@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS public."User_table" (
     first_name varchar(254) NOT NULL,
     last_name varchar(254) NOT NULL,
     "role" varchar(254) NOT NULL,
+    email varchar(254) NOT NULL,
     createdat date DEFAULT CURRENT_TIMESTAMP NOT NULL
 );

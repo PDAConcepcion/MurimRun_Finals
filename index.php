@@ -5,19 +5,47 @@ require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
 
 // Include the head component
 include TEMPLATES_PATH . '/head.component.php';
+
+require_once STATICDATAS_PATH . '/services.staticData.php';
 ?>
 
-<main>
-<?php include TEMPLATES_PATH . '/header.component.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<h1 class="">
-    MurimRun
-</h1>
-</main>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MurimRun - Swift as the Blade!</title>
 
-<!-- footer -->
-<?php include TEMPLATES_PATH . '/footer.component.php'; ?>
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+
+<body>
+
+    <main>
+
+
+        <section class="cards">
+            <?php foreach ($services as $info): ?>
+                <div class="card-container">
+                    <div class="image-container">
+                        <img src="" alt="">
+                    </div>
+                    <div class="description-container">
+                        <h1><?php echo $info['service'] ?></h1>
+                        <p><?php echo $info['description'] ?></p>
+                    </div>
+                </div>
+            <?php endforeach ?>
+        </section>
+
+    </main>
+
 
 </body>
+
 
 </html>
