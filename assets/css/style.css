@@ -19,3 +19,14 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.btn {
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: rgb(219, 118, 50);
+  border-style: none;
+  border-radius: 10px;
+}

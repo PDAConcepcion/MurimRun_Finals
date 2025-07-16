@@ -33,7 +33,19 @@ include TEMPLATES_PATH . '/head.component.php';
             himenaeos.
         </p>
 
-        <div class="btn-signup"></div>
+        <div class="btn-actions">
+            <a href="/pages/signupPage/index.php">
+                <button class="btn">
+                    Create Account
+                </button>
+            </a>
+            <a href="/pages/loginPage/index.php">
+                <button class="btn">
+                    Log In
+                </button>
+            </a>
+        </div>
+
 
     </div>
 
