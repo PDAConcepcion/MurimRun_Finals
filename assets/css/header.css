@@ -1,18 +1,28 @@
-.user {
+.header-container {
   position: fixed;
-  width: 100%;
-  background-color: burlywood;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
-  text-align: center;
   top: 0px;
   left: 0px;
   right: 0px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  z-index: 100;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 0 40px;
 }
 
-.nav-bar {
-  justify-self: center;
+.left-section,
+.middle-section,
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.middle-section {
+  flex: 1;
+  justify-content: center;
 }
 
 .nav-bar ul {
@@ -24,4 +34,15 @@
   gap: 20px;
   justify-content: center;
   align-items: center;
+}
+
+.nav-bar a {
+  text-decoration: none;
+  color: white;
+}
+
+.logo a {
+  text-decoration: none;
+  color: white;
+  padding: 0;
 }
