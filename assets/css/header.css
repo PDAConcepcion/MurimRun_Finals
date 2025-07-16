@@ -1,16 +1,21 @@
-.header-container {
+header {
   position: fixed;
+  justify-content: center;
+  align-items: center;
   top: 0px;
   left: 0px;
   right: 0px;
   height: 60px;
+}
+
+.header-container {
+  padding-left: 100px;
+  padding-right: 100px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: white;
-  z-index: 100;
+  justify-content: space-evenly;
+  background-color: rgb(163, 51, 61);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 0 40px;
 }
 
 .left-section,
@@ -18,31 +23,27 @@
 .right-section {
   display: flex;
   align-items: center;
-}
-
-.middle-section {
-  flex: 1;
   justify-content: center;
 }
 
 .nav-bar ul {
   list-style: none;
   display: flex;
-  flex-direction: row;
   padding: 0;
   margin: 0;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
+  gap: 40px;
 }
 
 .nav-bar a {
   text-decoration: none;
-  color: white;
+  color: rgb(255, 255, 255);
+  font-size: 17px;
 }
 
-.logo a {
-  text-decoration: none;
+.left-section h1 {
+  padding: 10px;
+  margin: 0px;
+  font-family: "Marvel", sans-serif;
   color: white;
-  padding: 0;
+  font-size: 32px;
 }
