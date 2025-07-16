@@ -8,10 +8,11 @@ body {
   height: 100vh;
   padding: 0px;
   margin: 0px;
+  display: flex;
 }
 
 .content {
-  width: 60%;
+  width: 70%;
   height: 100%;
   margin: 00 auto;
   padding-top: 70px;
