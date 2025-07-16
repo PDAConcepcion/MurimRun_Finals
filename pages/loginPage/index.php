@@ -65,7 +65,6 @@ $error = $_GET['error'] ?? '';
     <?php
     include TEMPLATES_PATH . '/footer.component.php';
     ?>
-
 </body>
 
 </html>
