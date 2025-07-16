@@ -8,11 +8,13 @@ include TEMPLATES_PATH . '/head.component.php';
 ?>
 
 <main>
+
     <?php include TEMPLATES_PATH . '/header.component.php'; ?>
 
     <h1 class="">
         MurimRun
     </h1>
+
 </main>
 
 <!-- footer -->
