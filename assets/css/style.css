@@ -12,6 +12,14 @@ body {
   flex-direction: column;
 }
 
+h1 {
+  color: rgb(87, 76, 74);
+}
+
+a {
+  text-decoration: none;
+}
+
 .content {
   width: 60%;
   height: 100%;

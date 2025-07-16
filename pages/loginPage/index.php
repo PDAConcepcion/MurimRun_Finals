@@ -24,25 +24,28 @@ require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
     ?>
 
     <main>
-        <div class="form-container">
-            <div class="logo">
-                <h2>LOGO HERE</h2>
+        <div class="content">
+
+            <div class="form-container">
+                <div class="logo">
+                    <h2>LOGO HERE</h2>
+                </div>
+                <div class="login-field">
+                    <form action="/pages/dashboard/index.php" method="post">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" placeholder="Enter Username" required>
+                        <label for="username">Password</label>
+                        <input type="text" name="password" id="password" placeholder="Enter Password" required>
+
+                        <div>
+                            <button class="btn" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+
+
             </div>
-            <div class="login-field">
-                <form action="/pages/dashboard/index.php" method="post">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username" placeholder="Enter Username" required>
-                    <label for="username">Password</label>
-                    <input type="text" name="password" id="password" placeholder="Enter Password" required>
-
-                    <div>
-                        <button class="btn" type="submit">Submit</button>
-                    </div>
-                </form>
-            </div>
-
-
-
         </div>
     </main>
 

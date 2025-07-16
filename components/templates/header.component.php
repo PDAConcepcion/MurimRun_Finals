@@ -1,6 +1,9 @@
 <header class="user">
     <div>
-        <h1>MurimRun</h1>
+        <a href="">
+            <h1>MurimRun</h1>
+
+        </a>
     </div>
     <div>
         <nav id="nav-menu" class="nav-bar">
@@ -14,9 +17,5 @@
 
     </div>
 
-    <!-- button 1 -->
-    <div>
-        <button><a href="">Login</a></button>
-    </div>
 
 </header>
