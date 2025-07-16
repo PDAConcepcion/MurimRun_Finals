@@ -19,19 +19,18 @@ section {
 
 .cards {
   justify-content: center;
-  align-items: center;
+  align-items: top;
   display: flex;
   gap: 25px;
 }
 
 .card-container {
   display: flex;
-  justify-content: center;
+  justify-content: top;
   align-items: center;
   flex-direction: column;
   background-color: rgb(231, 231, 231);
   width: 270px;
-  height: 320px;
   padding: 12px;
   border-radius: 10px;
 }
@@ -47,5 +46,12 @@ section {
 .description-container {
   align-self: stretch;
   text-align: left;
-  padding-left: ;
+}
+
+.description-container h1 {
+  color: rgb(37, 37, 37);
+}
+
+.description-container p {
+  color: rgb(124, 124, 124);
 }

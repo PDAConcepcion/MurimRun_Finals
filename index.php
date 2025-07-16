@@ -6,12 +6,8 @@ require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
 // Include the head component
 include TEMPLATES_PATH . '/head.component.php';
 
-$services = [
-    "Courier Services",
-    "Realtime Tracking",
-    "24/7 Customer Support",
-]
-    ?>
+require_once STATICDATAS_PATH . '/services.staticData.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,37 +29,17 @@ $services = [
 
 
         <section class="cards">
-            <div class="card-container">
-                <div class="image-container">
-                    <img src="" alt="">
+            <?php foreach ($services as $info): ?>
+                <div class="card-container">
+                    <div class="image-container">
+                        <img src="" alt="">
+                    </div>
+                    <div class="description-container">
+                        <h1><?php echo $info['service'] ?></h1>
+                        <p><?php echo $info['description'] ?></p>
+                    </div>
                 </div>
-                <div class="description-container">
-
-                    <h1>
-
-                    </h1>
-                    <p>Description</p>
-                </div>
-            </div>
-            <div class="card-container">
-                <div class="image-container">
-                    <img src="" alt="">
-                </div>
-                <div class="description-container">
-                    <h1>Title</h1>
-                    <p>Description</p>
-                </div>
-            </div>
-            <div class="card-container">
-                <div class="image-container">
-                    <img src="" alt="">
-                </div>
-                <div class="description-container">
-                    <h1>Title</h1>
-                    <p>Description</p>
-                </div>
-            </div>
-
+            <?php endforeach ?>
         </section>
 
     </main>
