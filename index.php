@@ -66,12 +66,6 @@ include TEMPLATES_PATH . '/head.component.php';
                 </a>
             </div>
 
-            <?php
-            include ERRORS_PATH . '/403.error.php';
-            include ERRORS_PATH . '/404.error.php';
-
-            ?>
-
 
         </div>
 
