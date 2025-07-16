@@ -5,7 +5,13 @@ require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
 
 // Include the head component
 include TEMPLATES_PATH . '/head.component.php';
-?>
+
+$services = [
+    "Courier Services",
+    "Realtime Tracking",
+    "24/7 Customer Support",
+]
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +31,40 @@ include TEMPLATES_PATH . '/head.component.php';
 
     <main>
 
+
+        <section class="cards">
+            <div class="card-container">
+                <div class="image-container">
+                    <img src="" alt="">
+                </div>
+                <div class="description-container">
+
+                    <h1>
+
+                    </h1>
+                    <p>Description</p>
+                </div>
+            </div>
+            <div class="card-container">
+                <div class="image-container">
+                    <img src="" alt="">
+                </div>
+                <div class="description-container">
+                    <h1>Title</h1>
+                    <p>Description</p>
+                </div>
+            </div>
+            <div class="card-container">
+                <div class="image-container">
+                    <img src="" alt="">
+                </div>
+                <div class="description-container">
+                    <h1>Title</h1>
+                    <p>Description</p>
+                </div>
+            </div>
+
+        </section>
 
     </main>
 
