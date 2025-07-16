@@ -14,20 +14,12 @@ services:
           action: rebuild
         - path: ./composer.lock
           action: rebuild
-    depends_on:
-      - mongodb
-
-  mongodb:
-    image: mongo:latest
-    container_name: murin-run-php-mongodb
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: rootPassword
-      MONGO_INITDB_DATABASE: mongomurim_db
-    ports:
-      - "27111:27017"
     volumes:
-      - murin-run-php-mongodb:/data/db/mongodb
+      - .:/var/www/html
+    depends_on:
+      - postgresql
+      - mongodb
+    command: php -S 0.0.0.0:8000 router.php
 
   postgresql:
     image: postgres:15
@@ -40,10 +32,22 @@ services:
     ports:
       - "5113:5432"
     volumes:
-      - murin-run-php-postgresql:/data/db/postgresql
+      - murin-run-php-postgresql:/var/lib/postgresql/data
+
+  mongodb:
+    image: mongo:latest
+    container_name: murin-run-php-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootPassword
+      MONGO_INITDB_DATABASE: mongomurim_db
+    ports:
+      - "27111:27017"
+    volumes:
+      - murin-run-php-mongodb:/data/db
 
 volumes:
-  murin-run-php-mongodb:
-    driver: local
   murin-run-php-postgresql:
+    driver: local
+  murin-run-php-mongodb:
     driver: local
