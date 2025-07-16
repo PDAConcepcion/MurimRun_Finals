@@ -1,8 +1,10 @@
-<header class="user">
-    <div class="logo">
-        <h1><a href="/index.php">MurimRun</a></h1>
+<header class="header-container">
+
+
+    <div class="left-section">
+        <h1>MurimRun</h1>
     </div>
-    <div>
+    <div class="middle-section">
         <nav id="nav-menu" class="nav-bar">
             <ul>
                 <li><a href="">Orders</a></li>
@@ -16,8 +18,8 @@
     </div>
 
     <!-- button 1 -->
-    <div>
-        <button><a href="/pages/loginPage/index.php">Login</a></button>
+    <div class="right-section">
+        <button><a href="">Login</a></button>
     </div>
 
 </header>
