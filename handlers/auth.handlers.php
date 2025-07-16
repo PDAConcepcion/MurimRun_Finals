@@ -54,24 +54,3 @@ $action = $_REQUEST['action'] ?? null;
     //will lead to logout page
     exit;
     }
-    
-    //SIGNUP
-    elseif ($action === 'signup' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-        $firstName = $_POST['first_name'] ?? '';
-        $lastName = $_POST['last_name'] ?? '';
-        
-        $username = $_POST['username'] ?? '';
-        $email = $_POST['email'] ?? '';
-        $password = $_POST['password'] ?? '';
-
-        if (Auth::signup($pdo, $firstName, $lastName, $username, $email, $password)) {
-            // Redirect to login page or success page
-            header('Location: /pages/loginPage/index.php');
-            exit;
-        } else {
-            // Handle signup error
-            // Redirect to error page or show error message
-            exit;
-        }
-    }
-   

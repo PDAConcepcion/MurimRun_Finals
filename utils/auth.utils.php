@@ -56,7 +56,7 @@ class Auth
             return false;
         } else {
             error_log('[Auth::login] Retrieved user: ' . var_export([
-                'id' => $user['id'],
+                'id' => $user['userid'],
                 'username' => $user['username'],
                 'role' => $user['role'],
             ], true));
@@ -64,78 +64,23 @@ class Auth
 
         // 2) Verify password
         if (!password_verify($password, $user['password'])) {
-            error_log("[Auth::login] Password mismatch for user_id={$user['id']}");
+            error_log("[Auth::login] Password mismatch for user_id={$user['userid']}");
             return false;
         }
 
         // 3) Success: regenerate session & store user + role
         session_regenerate_id(true);
         $_SESSION['user'] = [
-            'id' => $user['id'],
+            'id' => $user['userid'],
             'first_name' => $user['first_name'],
             'last_name' => $user['last_name'],
             'username' => $user['username'],
             'email' => $user['email'],
             'role' => $user['role'],
         ];
-        error_log("[Auth::login] Login successful for user_id={$user['id']}");
+        error_log("[Auth::login] Login successful for user_id={$user['userid']}");
 
         return true;
-    }
-    /**
-     * Attempt signup; returns true if successful
-     * 
-     * @param PDO       $pdo        Used to insert new user
-     * @param string    $firstName  User's first name
-     * @param string    $lastName   User's last name
-     * @param string    $username   Desired username
-     * @param string    $email      User's email address
-     * @param string    $password   User's password
-     * @return bool                 True if signup successful, false otherwise
-     */
-
-    public static function signup(PDO $pdo, string $firstName, string $lastName, string $username, string $email, string $password): bool
-    {
-        try {
-            // 1) Check if username or email already exists
-            $stmt = $pdo->prepare("
-                SELECT userid FROM public.\"User_table\" 
-                WHERE username = :username OR email = :email
-            ");
-            $stmt->execute([
-                ':username' => $username,
-                ':email' => $email
-            ]);
-            $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if ($existingUser) {
-                error_log("[Auth::signup] Username or email already exists");
-                return false;
-            }
-
-            // 2) Hash the password
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-            // 3) Insert new user
-            $stmt = $pdo->prepare("
-                INSERT INTO public.\"User_table\" (first_name, last_name, username, email, password, role) 
-                VALUES (:first_name, :last_name, :username, :email, :password, 'user')
-            ");
-            $stmt->execute([
-                ':first_name' => $firstName,
-                ':last_name' => $lastName,
-                ':username' => $username,
-                ':email' => $email,
-                ':password' => $hashedPassword
-            ]);
-
-            error_log("[Auth::signup] User created successfully: {$username}");
-            return true;
-
-        } catch (\PDOException $e) {
-            error_log('[Auth::signup] PDOException: ' . $e->getMessage());
-            return false;
-        }
     }
 
     /**
