@@ -6,6 +6,7 @@ return [
         'first_name' => 'li',
         'last_name'  => 'hua',
         'password'   => 'ILOVECULTIVATION',
+        'email'      => 'CHinese111@gmail.com',
         'role'       => 'warrior',
     ],
     [
@@ -13,6 +14,7 @@ return [
         'first_name' => 'fu',
         'last_name'  => 'xuan',
         'password'   => 'Divination6574',
+        'email'      => 'CHinese121@gmail.com',
         'role'       => 'sectelder',
     ],
     [
@@ -20,6 +22,7 @@ return [
         'first_name' => 'kim',
         'last_name'  => 'dokja',
         'password'   => 'kungfuMaster!',
+        'email'      => 'CHinese32@gmail.com',
         'role'       => 'leader',
     ],
     [
@@ -27,6 +30,7 @@ return [
         'first_name' => 'Kim',
         'last_name'  => 'Park',
         'password'   => 'murimRun2025',
+        'email'      => 'CHinese12@gmail.com',
         'role'       => 'admin',
     ],
 ];
