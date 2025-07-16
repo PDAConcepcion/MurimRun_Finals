@@ -12,7 +12,6 @@ Auth::init();
 $host = 'host.docker.internal';
 $port = $databases['pgPort'];
 $username = $databases['pgUser'];
-$email = $databases['pgEmail'];
 $password = $databases['pgPassword'];
 $dbname = $databases['pgDB'];
 

@@ -5,7 +5,13 @@ require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
 
 // Include the head component
 include TEMPLATES_PATH . '/head.component.php';
-?>
+
+$services = [
+    "Courier Services",
+    "Realtime Tracking",
+    "24/7 Customer Support",
+]
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,61 +31,43 @@ include TEMPLATES_PATH . '/head.component.php';
 
     <main>
 
-        <?php include TEMPLATES_PATH . '/header.component.php'; ?>
 
-        <div class="content">
-            <h1 class="">
-                MurimRun
-            </h1>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque
-                sem
-                placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
-                Pulvinar
-                vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc
-                posuere.
-                Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
-                himenaeos.
-            </p>
-            <p>
+        <section class="cards">
+            <div class="card-container">
+                <div class="image-container">
+                    <img src="" alt="">
+                </div>
+                <div class="description-container">
 
-                Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque
-                sem
-                placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
-                Pulvinar
-                vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc
-                posuere.
-                Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
-                himenaeos.
-            </p>
+                    <h1>
 
-            <div class="btn-actions">
-                <a href="/pages/signupPage/index.php">
-                    <button class="btn">
-                        Create Account
-                    </button>
-                </a>
-                <a href="/pages/loginPage/index.php">
-                    <button class="btn">
-                        Log In
-                    </button>
-                </a>
+                    </h1>
+                    <p>Description</p>
+                </div>
+            </div>
+            <div class="card-container">
+                <div class="image-container">
+                    <img src="" alt="">
+                </div>
+                <div class="description-container">
+                    <h1>Title</h1>
+                    <p>Description</p>
+                </div>
+            </div>
+            <div class="card-container">
+                <div class="image-container">
+                    <img src="" alt="">
+                </div>
+                <div class="description-container">
+                    <h1>Title</h1>
+                    <p>Description</p>
+                </div>
             </div>
 
-            <?php
-            include ERRORS_PATH . '/403.error.php';
-            include ERRORS_PATH . '/404.error.php';
-
-            ?>
-
-
-        </div>
-
+        </section>
 
     </main>
 
-    <!-- footer -->
-    <?php include TEMPLATES_PATH . '/footer.component.php'; ?>
 
 </body>
 
