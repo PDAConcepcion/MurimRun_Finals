@@ -29,7 +29,7 @@ require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
                 <h2>LOGO HERE</h2>
             </div>
             <div class="login-field">
-                <form action="" method="post">
+                <form action="/pages/dashboard/index.php" method="post">
                     <label for="username">Username</label>
                     <input type="text" name="username" id="username" placeholder="Enter Username" required>
                     <label for="username">Password</label>
