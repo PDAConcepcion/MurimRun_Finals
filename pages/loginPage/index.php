@@ -5,6 +5,8 @@ require_once BASE_PATH . '/bootstrap.php';
 require_once BASE_PATH . '/vendor/autoload.php';
 require_once UTILS_PATH . '/auth.utils.php';
 
+require_once LAYOUTS_PATH . '/main.layout.php';
+
 $pageCss = [
         '/assets/css/header.css',
         '/assets/css/footer.css',
@@ -16,13 +18,12 @@ Auth::init();
 
 if(Auth::check()) {
     header('Location: /index.php');
-    // echo '<script>alert("User is already logged in, redirecting to index.php");</script>';
+    echo '<script>alert("User is already logged in, redirecting to index.php");</script>';
     exit;
 }
 
 $error = $_GET['error'] ?? '';
 renderMainLayout(function () use ($error) { ?>
-
 <div class="form-container">
         <div class="logo">
             <h2>LOGO HERE</h2>
