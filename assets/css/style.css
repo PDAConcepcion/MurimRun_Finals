@@ -31,3 +31,19 @@ body {
   border-style: none;
   border-radius: 10px;
 }
+
+.error-message {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.error-message h1 {
+  font-weight: 900;
+  font-size: 45px;
+}
+
+.error-message p {
+}

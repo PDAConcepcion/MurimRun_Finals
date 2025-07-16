@@ -2,8 +2,8 @@
 
     <body>
         <div class="content">
-            <p>404</p>
-            <p>Not found!</p>
+            <p>408</p>
+            <p>Request Timeout/p>
 
         </div>
 
