@@ -9,5 +9,7 @@ define('STATICDATAS_PATH', realpath(BASE_PATH . '/staticDatas'));
 define('LAYOUTS_PATH', realpath(BASE_PATH . '/layouts'));
 define('ERRORS_PATH', realpath(BASE_PATH . '/errors'));
 define('UPLOAD_PATH', realpath(BASE_PATH . '/uploads'));
+define('ASSETS_PATH', realpath(BASE_PATH . '/assets'));
+
 
 chdir(BASE_PATH);
