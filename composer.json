@@ -25,11 +25,13 @@
         }
     ],
     "scripts": {
-        "start": "php -S localhost:8000 router.php",
+    "start": "php -S localhost:8000 router.php",
     "postgresql:reset": "php utils/dbResetPostgresql.util.php",
-    "postgresql:seed": "php utils/dbSeederPostgresql.util.php"
-    ,
-    "postgresql:migrate": "php utils/dbMigratePostgresql.util.php"
+    "postgresql:reset-docker": "docker compose exec murin-run-php php utils/dbResetPostgresql.util.php",
+    "postgresql:seed": "php utils/dbSeederPostgresql.util.php",
+    "postgresql:seed-docker": "docker compose exec murin-run-php php utils/dbSeederPostgresql.util.php",
+    "postgresql:migrate": "php utils/dbMigratePostgresql.util.php",
+    "postgresql:migrate-docker": "docker compose exec murin-run-php php utils/dbMigratePostgresql.util.php"
     },
     "require": {
         "vlucas/phpdotenv": "^5.6"
