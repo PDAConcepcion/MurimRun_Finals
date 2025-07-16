@@ -1,4 +1,6 @@
 <?php
+require_once UTILS_PATH . '/auth.utils.php';
+
 // Define navigation menu items
 $navItems = [
     ['label' => 'Orders', 'link' => 'pages/orders/index.php'],
@@ -16,9 +18,11 @@ $rightButton = [
     'logoutLink' => '/handlers/logout.handler.php'
 ];
 
-$isSignedIn = isset($_SESSION['user']); // Assuming 'user' is set in the session when logged in
 
-?>
+$isSignedIn = Auth::check(); // Assuming 'user' is set in the session when logged in
+if ($isSignedIn && isset($_SESSION['user'])) {
+    echo "<script>alert('User session: " . addslashes(json_encode($_SESSION['user'])) . "');</script>";
+}?>
 
 <header class="header-container">
     <div class="left-section">
@@ -38,16 +42,16 @@ $isSignedIn = isset($_SESSION['user']); // Assuming 'user' is set in the session
     </div>
 
     <div class="right-section">
-        <?php if ($isSignedIn): ?>
-            <!-- Show Logout button if signed in -->
-            <button class="login-btn">
+        <?php //if ($isSignedIn): ?>
+            <!-- Show only Logout button if signed in -->
+            <button class="logout-btn">
                 <a href="<?php echo htmlspecialchars($rightButton['logoutLink']); ?>">
                     <?php echo htmlspecialchars($rightButton['logout']); ?>
                 </a>
             </button>
-        <?php else: ?>
+        <?php //else: ?>
             <!-- Show Login and SignUp buttons if not signed in -->
-            <button>
+            <button class="login-btn">
                 <a href="<?php echo htmlspecialchars($rightButton['loginLink']); ?>">
                     <?php echo htmlspecialchars($rightButton['login']); ?>
                 </a>
@@ -57,7 +61,7 @@ $isSignedIn = isset($_SESSION['user']); // Assuming 'user' is set in the session
                     <?php echo htmlspecialchars($rightButton['signup']); ?>
                 </a>
             </button>
-        <?php endif; ?>
+        <?php //endif; ?>
     </div>
     
 
