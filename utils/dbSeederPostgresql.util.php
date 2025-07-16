@@ -61,7 +61,7 @@ echo "\n--- Seeding Dummy Data for All Tables ---\n";
 echo "Seeding users…\n";
 $users = @include DUMMIES_PATH . '/users.staticData.php';
 if (is_array($users) && count($users)) {
-    $stmt = $pdo->prepare('INSERT INTO public."User_table" (username, first_name, last_name, password, role) VALUES (:username, :first_name, :last_name, :password, :role)');
+    $stmt = $pdo->prepare('INSERT INTO public."User_table" (username, first_name, last_name, password, role, email) VALUES (:username, :first_name, :last_name, :password, :role, :email)');
     foreach ($users as $u) {
         $stmt->execute([
             ':username' => $u['username'],
@@ -69,6 +69,7 @@ if (is_array($users) && count($users)) {
             ':last_name' => $u['last_name'],
             ':password' => password_hash($u['password'], PASSWORD_DEFAULT),
             ':role' => $u['role'],
+            ':email' => $u['email'],
         ]);
     }
     echo "Inserted " . count($users) . " users into User_table.\n";
