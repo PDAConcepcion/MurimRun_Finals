@@ -25,6 +25,7 @@ include TEMPLATES_PATH . '/head.component.php';
 
     <main>
 
+
     </main>
 
 
