@@ -20,7 +20,7 @@ $user = Auth::user();
 
 function renderMainLayout(callable $content, string $title, array $customJsCss = []): void
 {
-    global $headNavList, $user; // external variables
+    global $user; // external variables
     head($title, $customJsCss['css'] ?? []);
     navHeader($user);
     $content();
