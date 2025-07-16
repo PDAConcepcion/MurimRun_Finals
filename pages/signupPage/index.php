@@ -65,7 +65,7 @@ require_once BASE_PATH . '/bootstrap.php';
     </main>
 
     <?php
-    require_once __DIR__ . '/../../components/templates/footer.component.php';
+    require_once TEMPLATES_PATH . '/footer.component.php';
     ?>
 
     <script src="assets/js/signup.js"></script>
