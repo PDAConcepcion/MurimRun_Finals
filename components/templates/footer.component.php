@@ -1,14 +1,27 @@
-<?php 
-function footer(): void { ?>
+<?php
+function footer(): void
+{ ?>
     </main>
-        <footer>
-            <div class="container">
-                <a href="">Privacy Policy</a>
-                <a href="">Terms of Service</a>
-                <a href="">Careers</a>
-                <a href="">Support</a>
+    <footer>
+        <div class="footer-container">
+            <div class="group-name">
+
+                <h1>MurimRun</h1>
             </div>
-        </footer>
+
+            <div class="members-container">
+                <a href="">Rey Vincent Putian</a>
+                <a href="">Patrick Concepcion</a>
+                <a href="">William Andres</a>
+                <a href="">Gabriel Camino</a>
+            </div>
+
+            <div class="copyright">
+                <p>© 2022 MurimRun, All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
     </body>
-</html>
+
+    </html>
 <?php } ?>
