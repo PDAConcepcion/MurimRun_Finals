@@ -8,8 +8,8 @@ require_once UTILS_PATH . '/auth.utils.php';
 Auth::init();
 
 if(Auth::check()) {
-    echo '<script>alert("User is already logged in, redirecting to index.php");</script>';
     header('Location: /index.php');
+    // echo '<script>alert("User is already logged in, redirecting to index.php");</script>';
     exit;
 }
 
