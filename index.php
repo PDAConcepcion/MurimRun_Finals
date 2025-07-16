@@ -7,42 +7,75 @@ require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
 include TEMPLATES_PATH . '/head.component.php';
 ?>
 
-<main>
+<!DOCTYPE html>
+<html lang="en">
 
-    <?php include TEMPLATES_PATH . '/header.component.php'; ?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MurimRun - Swift as the Blade!</title>
 
-    <div class="content">
-        <h1 class="">
-            MurimRun
-        </h1>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem
-            placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
-            vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc
-            posuere.
-            Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
-            himenaeos.
-        </p>
-        <p>
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
-            Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem
-            placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
-            vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc
-            posuere.
-            Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
-            himenaeos.
-        </p>
+</head>
 
-        <div class="btn-signup"></div>
+<body>
 
-    </div>
+    <main>
+
+        <?php include TEMPLATES_PATH . '/header.component.php'; ?>
+
+        <div class="content">
+            <h1 class="">
+                MurimRun
+            </h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque
+                sem
+                placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+                Pulvinar
+                vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc
+                posuere.
+                Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+                himenaeos.
+            </p>
+            <p>
+
+                Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque
+                sem
+                placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+                Pulvinar
+                vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc
+                posuere.
+                Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+                himenaeos.
+            </p>
+
+            <div class="btn-actions">
+                <a href="/pages/signupPage/index.php">
+                    <button class="btn">
+                        Create Account
+                    </button>
+                </a>
+                <a href="/pages/loginPage/index.php">
+                    <button class="btn">
+                        Log In
+                    </button>
+                </a>
+            </div>
 
 
-</main>
+        </div>
 
-<!-- footer -->
-<?php include TEMPLATES_PATH . '/footer.component.php'; ?>
+
+    </main>
+
+    <!-- footer -->
+    <?php include TEMPLATES_PATH . '/footer.component.php'; ?>
 
 </body>
+
 
 </html>

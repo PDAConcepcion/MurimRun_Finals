@@ -1,21 +1,33 @@
 main {
   width: 100%;
+  height: 100vh;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
 body {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
-  height: 100vh;
   padding: 0px;
   margin: 0px;
   display: flex;
+  flex-direction: column;
 }
 
 .content {
-  width: 70%;
+  width: 60%;
   height: 100%;
   margin: 00 auto;
   padding-top: 70px;
   justify-content: center;
   align-items: center;
+}
+
+.btn {
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: rgb(219, 118, 50);
+  border-style: none;
+  border-radius: 10px;
 }
