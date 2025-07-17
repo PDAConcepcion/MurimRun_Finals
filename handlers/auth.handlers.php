@@ -36,7 +36,7 @@ $action = $_REQUEST['action'] ?? null;
             if ($user['role'] == 'admin') {
                 header('Location: /pages/dashboard/index.php'); // Admin dashboard
             } else {
-                header('Location: /pages/user/index.php'); // User dashboard
+                header('Location: /pages/dashboard/index.php'); // User dashboard
             }
             exit;
         }
