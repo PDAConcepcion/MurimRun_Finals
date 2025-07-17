@@ -4,13 +4,13 @@ require_once LAYOUTS_PATH . '/main.layout.php';
 
 $pageCss = [
     '../../assets/css/style.css',
-    '/assets/css/header.css',
-    '/assets/css/footer.css',
+    '../../assets/css/footer.css',
+    '../../assets/css/header.css',
     'assets/css/signup.css'
 ];
 
 $pageJs = [
-    '/assets/js/signup.js'
+    'assets/css/signup.js'
 ];
 
 $errors = $_SESSION['signup_errors'] ?? [];
@@ -32,7 +32,7 @@ renderMainLayout(function () use ($errors, $old) { ?>
             </div>
         <?php endif; ?>
 
-<form action="../../handlers/signup.handler.php" method="POST" class="signup-form">
+        <form action="../../handlers/signup.handler.php" method="POST" class="signup-form">
             <div class="form-group">
                 <label for="fullName">Full Name</label>
                 <input type="text" id="fullName" name="fullName" placeholder="e.g., Juan dela Cruz" required
