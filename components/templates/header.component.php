@@ -37,8 +37,14 @@ function navHeader(array $user = null): void
         </div>
 
         <div class="right-section">
-            <?php if (Auth::check()): ?>
+            <?php if (Auth::check() && $user): ?>
                 <!-- Show only Logout button if signed in -->
+                <!-- put the style in the css file -->
+                 <div class="user-info" style="margin-right: 16px; text-align: right;">
+                    <span><strong><?php echo htmlspecialchars($user['username']); ?></strong></span><br>
+                    <span><?php echo htmlspecialchars($user['email']); ?></span><br>
+                    <span style="font-size: 0.9em; color: #888;"><?php echo htmlspecialchars($user['role']); ?></span>
+                </div>
                 <button class="logout-btn">
                     <a href="<?php echo htmlspecialchars($rightButton['logoutLink']); ?>">
                         <?php echo htmlspecialchars($rightButton['logout']); ?>
