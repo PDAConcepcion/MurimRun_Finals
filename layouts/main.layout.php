@@ -4,6 +4,7 @@
 require_once BASE_PATH . '/bootstrap.php';
 require_once BASE_PATH . '/vendor/autoload.php';
 require_once UTILS_PATH . '/auth.utils.php';
+
 Auth::init();
 
 // 2. Load templates
@@ -24,5 +25,5 @@ function renderMainLayout(callable $content, string $title, array $customJsCss =
     head($title, $customJsCss['css'] ?? []);
     navHeader($user);
     $content();
-    footer();
+    footer( $customJsCss['js'] ?? []);
 }

@@ -1,13 +1,17 @@
 <?php
-function footer(): void
-{ ?>
+function footer(array $customJs = []): void  { ?>
     </main>
     <footer>
         <div class="footer-container">
             <div class="group-name">
-
                 <h1>MurimRun</h1>
             </div>
+
+            <?php if (!empty($customJs)) {
+                foreach ($customJs as $jsFile) {
+                    echo "<script src=\"{$jsFile}\"></script>\n";
+                }
+            } ?>
 
             <div class="members-container">
                 <a href="">Rey Vincent Putian</a>
@@ -21,7 +25,7 @@ function footer(): void
             </div>
         </div>
     </footer>
-    </body>
+</body>
 
-    </html>
+</html>
 <?php } ?>
