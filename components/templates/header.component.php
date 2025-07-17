@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
+
 require_once UTILS_PATH . '/auth.utils.php';
 
-declare(strict_types=1);
 
     function navHeader(array $user = null): void
     {
