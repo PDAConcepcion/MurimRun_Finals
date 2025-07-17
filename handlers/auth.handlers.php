@@ -12,7 +12,6 @@ Auth::init();
 $host = 'host.docker.internal';
 $port = $databases['pgPort'];
 $username = $databases['pgUser'];
-$email = $databases['pgEmail'];
 $password = $databases['pgPassword'];
 $dbname = $databases['pgDB'];
 
@@ -35,15 +34,15 @@ $action = $_REQUEST['action'] ?? null;
             
 
             if ($user['role'] == 'admin') {
-                //empty for now will redirect to admin dashboard later
+                header('Location: /pages/dashboard/index.php'); // Admin dashboard
             } else {
-                //default user dashboard
+                header('Location: /pages/user/index.php'); // User dashboard
             }
             exit;
         }
         else
         {
-            //will lead to error page invalid credentials
+            header('Location: /pages/loginPage/index.php?error=invalid_credential');
             exit;
         }
     }

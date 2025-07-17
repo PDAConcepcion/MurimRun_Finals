@@ -1,31 +1,29 @@
 <?php
+
 require_once BASE_PATH . '/bootstrap.php';
-require_once HANDLERS_PATH . '/postgreChecker.handler.php';
-require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
-
-
-
-require_once STATICDATAS_PATH . '/services.staticData.php';
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MurimRun - Swift as the Blade!</title>
+    <title>MurimRun - Welcome!</title>
 
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
     <link rel="stylesheet" href="/assets/css/style.css">
-
+    <link rel="stylesheet" href="assets/css/landing.css">
 </head>
 
 <body>
-
     <main>
 
-
+        <!-- header -->
+        <?php
+        include TEMPLATES_PATH . '/header.component.php';
+        ?>
 
         <div class="content">
             <div class="intro-background">
@@ -54,26 +52,42 @@ require_once STATICDATAS_PATH . '/services.staticData.php';
                 </div>
             </div>
 
-            <section class="cards">
-                <?php foreach ($services as $info): ?>
-                    <div class="card-container">
-                        <div class="image-container">
-                            <img src="" alt="">
-                        </div>
-                        <div class="description-container">
-                            <h1><?php echo $info['service'] ?></h1>
-                            <p><?php echo $info['description'] ?></p>
-                        </div>
+
+            <!-- card section -->
+            <section class="services-section">
+                <h2>Our Services</h2>
+                <div class="services-container">
+                    <div class="service-card">
+                        <h3>🚚 Fast Deliveries</h3>
+                        <p>
+                            We ensure your items reach their destination quickly and safely,
+                            every time.
+                        </p>
                     </div>
-                <?php endforeach ?>
+
+                    <div class="service-card">
+                        <h3>📞 Customer Support</h3>
+                        <p>
+                            Our support team is ready to assist you 24/7 with any inquiries
+                            or issues.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>📦 Real-Time Tracking</h3>
+                        <p>
+                            Track your deliveries in real-time so you know exactly where
+                            your package is.
+                        </p>
+                    </div>
+                </div>
             </section>
         </div>
 
+        <?php
+        include TEMPLATES_PATH . '/footer.component.php';
+        ?>
     </main>
-
-
-
 </body>
-
 
 </html>

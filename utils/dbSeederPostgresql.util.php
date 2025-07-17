@@ -102,7 +102,7 @@ $deliveries = @include DUMMIES_PATH . '/deliveries.staticData.php';
 $userid = $pdo->query('SELECT userid FROM public."User_table" LIMIT 1')->fetchColumn();
 $courierid = $pdo->query('SELECT courierid FROM public."SectCouriers_table" LIMIT 1')->fetchColumn();
 if (is_array($deliveries) && count($deliveries)) {
-    $stmt = $pdo->prepare('INSERT INTO public."Deliveries_table" (userid, courierid, origin, destination, packagedescription, status, deliverytimeestimate) VALUES (:userid, :courierid, :origin, :destination, :packagedescription, :status, :deliverytimeestimate)');
+    $stmt = $pdo->prepare('INSERT INTO public."Deliveries_table" (userid, courierid, origin, destination, packagedescription, status, weight_kg, deliverytimeestimate) VALUES (:userid, :courierid, :origin, :destination, :packagedescription, :status, :weight_kg, :deliverytimeestimate)');
     foreach ($deliveries as $d) {
         $stmt->execute([
             ':userid' => $userid,
@@ -111,6 +111,7 @@ if (is_array($deliveries) && count($deliveries)) {
             ':destination' => $d['destination'],
             ':packagedescription' => $d['packagedescription'],
             ':status' => $d['status'],
+            ':weight_kg' => $d['weight_kg'],
             ':deliverytimeestimate' => $d['deliverytimeestimate'],
         ]);
     }
