@@ -50,6 +50,6 @@ $action = $_REQUEST['action'] ?? null;
     elseif ($action === 'logout') {
     Auth::init();
     Auth::logout();
-    //will lead to logout page
+    header('Location: /index.php');
     exit;
     }

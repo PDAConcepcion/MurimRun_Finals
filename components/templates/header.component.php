@@ -3,17 +3,15 @@ declare(strict_types=1);
 
 require_once UTILS_PATH . '/auth.utils.php';
 
-
-    function navHeader(array $user = null): void
-    {
-
+function navHeader(array $user = null): void
+{
     $rightButton = [
         'login' => 'Login',
         'loginLink' => '/pages/loginPage/index.php',
         'signup' => 'SignUp',
         'signupLink' => '/pages/signupPage/index.php',
         'logout' => 'Logout',
-        'logoutLink' => '/handlers/logout.handler.php'
+        'logoutLink' => '/handlers/auth.handlers.php?action=logout'
     ];
 
     $navList = [
@@ -39,14 +37,14 @@ require_once UTILS_PATH . '/auth.utils.php';
         </div>
 
         <div class="right-section">
-            <?php //if ($isSignedIn): ?>
+            <?php if (Auth::check()): ?>
                 <!-- Show only Logout button if signed in -->
                 <button class="logout-btn">
                     <a href="<?php echo htmlspecialchars($rightButton['logoutLink']); ?>">
                         <?php echo htmlspecialchars($rightButton['logout']); ?>
                     </a>
                 </button>
-            <?php //else: ?>
+            <?php else: ?>
                 <!-- Show Login and SignUp buttons if not signed in -->
                 <button class="login-btn">
                     <a href="<?php echo htmlspecialchars($rightButton['loginLink']); ?>">
@@ -58,7 +56,7 @@ require_once UTILS_PATH . '/auth.utils.php';
                         <?php echo htmlspecialchars($rightButton['signup']); ?>
                     </a>
                 </button>
-            <?php //endif; ?>
+            <?php endif; ?>
         </div>
     </header>
 <?php } ?>
