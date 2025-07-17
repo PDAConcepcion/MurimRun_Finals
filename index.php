@@ -3,15 +3,11 @@ require_once BASE_PATH . '/bootstrap.php';
 require_once HANDLERS_PATH . '/postgreChecker.handler.php';
 require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
 
-// Include the head component
-include TEMPLATES_PATH . '/head.component.php';
 
-$services = [
-    "Courier Services",
-    "Realtime Tracking",
-    "24/7 Customer Support",
-]
-    ?>
+
+require_once STATICDATAS_PATH . '/services.staticData.php';
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,8 +17,6 @@ $services = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MurimRun - Swift as the Blade!</title>
 
-    <link rel="stylesheet" href="/assets/css/header.css">
-    <link rel="stylesheet" href="/assets/css/footer.css">
     <link rel="stylesheet" href="/assets/css/style.css">
 
 </head>
@@ -32,41 +26,51 @@ $services = [
     <main>
 
 
-        <section class="cards">
-            <div class="card-container">
-                <div class="image-container">
-                    <img src="" alt="">
-                </div>
-                <div class="description-container">
 
-                    <h1>
+        <div class="content">
+            <div class="intro-background">
+                <img src="assets/img/martial-arts-2400.jpg" alt="MurimRun Background" />
+                <div class="overlay"></div>
+                <div class="intro-container">
+                    <h1 class="">MurimRun</h1>
 
-                    </h1>
-                    <p>Description</p>
-                </div>
-            </div>
-            <div class="card-container">
-                <div class="image-container">
-                    <img src="" alt="">
-                </div>
-                <div class="description-container">
-                    <h1>Title</h1>
-                    <p>Description</p>
-                </div>
-            </div>
-            <div class="card-container">
-                <div class="image-container">
-                    <img src="" alt="">
-                </div>
-                <div class="description-container">
-                    <h1>Title</h1>
-                    <p>Description</p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+                        faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+                        pretium tellus duis convallis. Tempus leo eu aenean sed diam urna
+                        tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
+                        Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut
+                        hendrerit semper vel class aptent taciti sociosqu. Ad litora
+                        torquent per conubia nostra inceptos himenaeos.
+                    </p>
+                    <div class="btn-actions">
+                        <a href="/pages/signupPage/index.php">
+                            <button class="btn">Create Account</button>
+                        </a>
+                        <a href="/pages/loginPage/index.php">
+                            <button class="btn">Log In</button>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-        </section>
+            <section class="cards">
+                <?php foreach ($services as $info): ?>
+                    <div class="card-container">
+                        <div class="image-container">
+                            <img src="" alt="">
+                        </div>
+                        <div class="description-container">
+                            <h1><?php echo $info['service'] ?></h1>
+                            <p><?php echo $info['description'] ?></p>
+                        </div>
+                    </div>
+                <?php endforeach ?>
+            </section>
+        </div>
 
     </main>
+
 
 
 </body>
