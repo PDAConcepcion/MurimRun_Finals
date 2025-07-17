@@ -29,7 +29,7 @@ require_once STATICDATAS_PATH . '/services.staticData.php';
 
         <div class="content">
             <div class="intro-background">
-                <img src="assets/img/martial-arts-2400.jpg" alt="MurimRun Background" />
+                <img src="assets/img/murimrun-bg-2.png" alt="MurimRun Background" />
                 <div class="overlay"></div>
                 <div class="intro-container">
                     <h1 class="">MurimRun</h1>
