@@ -33,8 +33,18 @@ require_once BASE_PATH . '/bootstrap.php';
             <form action="../../handlers/signup.handler.php" method="POST" class="signup-form">
 
                 <div class="form-group">
-                    <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" placeholder="e.g., Juan dela Cruz" required>
+                    <label for="userName">User Name</label>
+                    <input type="text" id="userName" name="userName" placeholder="e.g., JuanDC123" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="e.g., Juan" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="e.g., Dela Cruz" required>
                 </div>
 
                 <div class="form-group">
