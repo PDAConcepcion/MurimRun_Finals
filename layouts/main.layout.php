@@ -25,5 +25,5 @@ function renderMainLayout(callable $content, string $title, array $customJsCss =
     head($title, $customJsCss['css'] ?? []);
     navHeader($user);
     $content();
-    footer();
+    footer( $customJsCss['js'] ?? []);
 }
