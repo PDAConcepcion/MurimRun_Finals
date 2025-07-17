@@ -29,11 +29,11 @@ renderMainLayout(function () use ($error) { ?>
                 </div>
             <?php endif; ?>
 
-            <form action="../../handler/auth.handlers.php?action=login" method="post">
+            <form action="../../handlers/auth.handlers.php?action=login" method="post">
                 <label for="username">Username or Email</label>
                 <input type="text" name="username" id="username" placeholder="Enter Username or Email" required>
 
-                <label for="username">Password</label>
+                <label for="password">Password</label>
                 <input type="password" name="password" id="password" placeholder="Enter Password" required>
 
                 <div>
