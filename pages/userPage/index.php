@@ -1,52 +1,43 @@
 <?php
-// Includes the header.
-require_once __DIR__ . '/../../components/templates/header.component.php';
+require_once LAYOUTS_PATH . '/main.layout.php';
+require_once UTILS_PATH . '/sectCourier.util.php';
+require_once UTILS_PATH . '/envSetter.util.php';
 
-// --- DUMMY DATA ---
-// In a real application, this array would be populated from your database.
-$couriers = [
-    [
-        'id' => 1,
-        'name' => 'Flash Express',
-        'details' => 'Fast and reliable delivery service available nationwide. Operates 24/7.',
-        'image' => '../../assets/img/nyebe_white.png' // Placeholder image
-    ],
-    [
-        'id' => 2,
-        'name' => 'LBC Express',
-        'details' => 'Wide network coverage and trusted service for documents and parcels.',
-        'image' => '../../assets/img/nyebe_white.png' // Placeholder image
-    ],
-    [
-        'id' => 3,
-        'name' => 'J&T Express',
-        'details' => 'Known for its extensive reach, even in remote areas. Offers cash on delivery.',
-        'image' => '../../assets/img/nyebe_white.png' // Placeholder image
-    ]
+// Setup DB connection
+$host = $databases['pgHost'];
+$port = $databases['pgPort'];
+$username = $databases['pgUser'];
+$password = $databases['pgPassword'];
+$dbname = $databases['pgDB'];
+$dsn = "pgsql:host={$host};port={$port};dbname={$dbname}";
+$pdo = new PDO($dsn, $username, $password, [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+]);
+
+// Fetch couriers from DB
+$couriers = SectCouriers::getAll($pdo);
+
+$pageCss = [
+    '../../assets/css/footer.css',
+    '../../assets/css/header.css',
+    '../../assets/css/style.css',
+    '/assets/css/userPage.css'
 ];
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard - MurimRun</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/userPage.css">
-</head>
-<body>
+$pageJs = [
+    'assets/js/userPage.js'
+];
 
-    <main class="user-page">
+renderMainLayout(function () use ($couriers): void { ?>
+    <section class="user-page">
         <div class="page-header">
             <h1>Available Couriers</h1>
             <a href="../accountPage/" class="btn btn-secondary">Edit Profile</a>
         </div>
-        
         <div class="courier-list">
             <?php foreach ($couriers as $courier): ?>
                 <div class="courier-card">
-                    <img src="<?= htmlspecialchars($courier['image']) ?>" alt="<?= htmlspecialchars($courier['name']) ?> Logo" class="courier-logo">
+                    <img src="<?= htmlspecialchars($courier['image']) ?? '../../assets/img/nyebe_white.png' ?>" alt="<?= htmlspecialchars($courier['name']) ?> Logo" class="courier-logo">
                     <div class="courier-info">
                         <h3 class="courier-name"><?= htmlspecialchars($courier['name']) ?></h3>
                         <p class="courier-details"><?= htmlspecialchars($courier['details']) ?></p>
@@ -55,12 +46,5 @@ $couriers = [
                 </div>
             <?php endforeach; ?>
         </div>
-    </main>
-
-    <?php
-    // Includes the footer.
-    require_once __DIR__ . '/../../components/templates/footer.component.php';
-    ?>
-    <script src="assets/js/userPage.js"></script>
-</body>
-</html>
+    </section>
+<?php }, 'User Dashboard - MurimRun', ['css' => $pageCss, 'js' => $pageJs]);
