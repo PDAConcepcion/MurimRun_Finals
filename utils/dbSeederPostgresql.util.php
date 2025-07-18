@@ -34,14 +34,10 @@ foreach ($sqlFiles as $file) {
     $sql = file_get_contents($file);
     if ($sql === false) {
         throw new RuntimeException("Could not read $file");
-    }
-    try {
-        $pdo->exec($sql);
+    } else {
         echo "Creation Success from $file\n";
-    } catch (PDOException $e) {
-        echo "Error applying $file: " . $e->getMessage() . "\n";
-        exit(1);
     }
+    $pdo->exec($sql);
 }
 
 echo "✅ PostgreSQL reset complete!\n";
@@ -109,6 +105,8 @@ $courier_id = $pdo->query('SELECT courier_id FROM public."SectCouriers_table" LI
 if (is_array($deliveries) && count($deliveries)) {
     $stmt = $pdo->prepare('INSERT INTO public."Deliveries_table" (user_id, courier_id, origin, destination, package_description, status, weight_kg, delivery_time_estimate) VALUES (:user_id, :courier_id, :origin, :destination, :package_description, :status, :weight_kg, :delivery_time_estimate)');
     foreach ($deliveries as $d) {
+        // Ensure 'return' is a boolean, default to false if missing or empty
+        //$returnValue = isset($d['return']) && $d['return'] !== '' ? (bool)$d['return'] : false;
         $stmt->execute([
             ':user_id' => $user_id,
             ':courier_id' => $courier_id,
@@ -127,19 +125,19 @@ if (is_array($deliveries) && count($deliveries)) {
 
 // Seed courier_deliveries
 echo "Seeding courier deliveries…\n";
-    $delivery_ids = $pdo->query('SELECT delivery_id FROM public."Deliveries_table"')->fetchAll(PDO::FETCH_COLUMN);
-    $courier_id = $pdo->query('SELECT courier_id FROM public."SectCouriers_table" LIMIT 1')->fetchColumn();
-    $count = 0;
-    foreach ($delivery_ids as $delivery_id) {
-        if ($courier_id && $delivery_id) {
-            $stmt = $pdo->prepare('INSERT INTO public."courier_deliveries" (courier_id, delivery_id) VALUES (:courier_id, :delivery_id)');
-            $stmt->execute([
-                ':courier_id' => $courier_id,
-                ':delivery_id' => $delivery_id,
-            ]);
-            $count++;
-        }
+$delivery_ids = $pdo->query('SELECT delivery_id FROM public."Deliveries_table"')->fetchAll(PDO::FETCH_COLUMN);
+$courier_id = $pdo->query('SELECT courier_id FROM public."SectCouriers_table" LIMIT 1')->fetchColumn();
+$count = 0;
+foreach ($delivery_ids as $delivery_id) {
+    if ($courier_id && $delivery_id) {
+        $stmt = $pdo->prepare('INSERT INTO public."courier_deliveries" (courier_id, delivery_id) VALUES (:courier_id, :delivery_id)');
+        $stmt->execute([
+            ':courier_id' => $courier_id,
+            ':delivery_id' => $delivery_id,
+        ]);
+        $count++;
     }
+}
 echo "Inserted $count courier deliveries into courier_deliveries.\n";
 
 echo "✅ PostgreSQL seeding complete!\n";
