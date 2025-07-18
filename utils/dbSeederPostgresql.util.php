@@ -104,6 +104,8 @@ $courierid = $pdo->query('SELECT courierid FROM public."SectCouriers_table" LIMI
 if (is_array($deliveries) && count($deliveries)) {
     $stmt = $pdo->prepare('INSERT INTO public."Deliveries_table" (userid, courierid, origin, destination, packagedescription, status, weight_kg, deliverytimeestimate) VALUES (:userid, :courierid, :origin, :destination, :packagedescription, :status, :weight_kg, :deliverytimeestimate)');
     foreach ($deliveries as $d) {
+        // Ensure 'return' is a boolean, default to false if missing or empty
+        //$returnValue = isset($d['return']) && $d['return'] !== '' ? (bool)$d['return'] : false;
         $stmt->execute([
             ':userid' => $userid,
             ':courierid' => $courierid,
@@ -113,6 +115,7 @@ if (is_array($deliveries) && count($deliveries)) {
             ':status' => $d['status'],
             ':weight_kg' => $d['weight_kg'],
             ':deliverytimeestimate' => $d['deliverytimeestimate'],
+
         ]);
     }
     echo "Inserted " . count($deliveries) . " deliveries into Deliveries_table.\n";
