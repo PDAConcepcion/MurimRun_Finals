@@ -1,49 +1,52 @@
-header {
+.header-section {
   position: fixed;
+  width: 100vw;
+  height: 60px;
+  background-color: #a3333d;
+  display: flex;
   justify-content: center;
   align-items: center;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  height: 60px;
+  z-index: 100;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0px;
+  padding: 0px;
 }
 
 .header-container {
-  padding-left: 100px;
-  padding-right: 100px;
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  background-color: rgb(163, 51, 61);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 900px;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0px;
 }
 
 .left-section,
 .middle-section,
 .right-section {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .nav-bar ul {
   list-style: none;
   display: flex;
+  flex-direction: row;
   padding: 0;
   margin: 0;
-  gap: 40px;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-bar a {
   text-decoration: none;
-  color: rgb(255, 255, 255);
-  font-size: 17px;
+  color: white;
 }
 
-.left-section h1 {
-  padding: 10px;
-  margin: 0px;
-  font-family: "Marvel", sans-serif;
+.logo a {
+  text-decoration: none;
   color: white;
-  font-size: 32px;
+  padding: 0;
 }
