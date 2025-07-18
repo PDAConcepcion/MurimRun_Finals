@@ -81,7 +81,7 @@ if (is_array($users) && count($users)) {
 echo "Seeding sect couriers…\n";
 $sectCouriers = @include DUMMIES_PATH . '/sectcouriers.staticData.php';
 if (is_array($sectCouriers) && count($sectCouriers)) {
-    $stmt = $pdo->prepare('INSERT INTO public."SectCouriers_table" (name, sectname, rank, speedrating, status) VALUES (:name, :sectname, :rank, :speedrating, :status)');
+    $stmt = $pdo->prepare('INSERT INTO public."SectCouriers_table" (name, sectname, rank, speedrating, status, image) VALUES (:name, :sectname, :rank, :speedrating, :status, :image)');
     foreach ($sectCouriers as $sc) {
         $stmt->execute([
             ':name' => $sc['name'],
@@ -89,6 +89,7 @@ if (is_array($sectCouriers) && count($sectCouriers)) {
             ':rank' => $sc['rank'],
             ':speedrating' => $sc['speedrating'],
             ':status' => $sc['status'],
+            ':image' => $sc['image'],
         ]);
     }
     echo "Inserted " . count($sectCouriers) . " sect couriers into SectCouriers_table.\n";

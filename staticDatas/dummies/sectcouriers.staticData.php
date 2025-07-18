@@ -7,6 +7,7 @@ return [
         'rank' => 'A',
         'speedrating' => 95,
         'status' => 'Available',
+        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
     ],
     [
         'name' => 'Li Si',
@@ -14,6 +15,7 @@ return [
         'rank' => 'B',
         'speedrating' => 88,
         'status' => 'Busy',
+        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
     ],
     [
         'name' => 'Wang Wu',
@@ -21,6 +23,7 @@ return [
         'rank' => 'C',
         'speedrating' => 80,
         'status' => 'Available',
+        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
     ],
     [
         'name' => 'Kim Min',
@@ -28,5 +31,6 @@ return [
         'rank' => 'A',
         'speedrating' => 99,
         'status' => 'On Leave',
+        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
     ],
 ];
