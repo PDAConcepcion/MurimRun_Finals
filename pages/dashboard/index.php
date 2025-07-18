@@ -46,7 +46,10 @@ $courierInfo = require_once DUMMIES_PATH . '/deliveries.staticData.php';
                             <p><?php echo $courier['packagedescription']; ?></p>
                             <p><?php echo $courier['weight_kg']; ?> kg</p>
 
+                        </div>
 
+                        <div class="button-container">
+                            <a class="btn-2" href="">Show more >>></a>
                         </div>
                     </div>
 
