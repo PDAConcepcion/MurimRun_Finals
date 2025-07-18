@@ -21,6 +21,8 @@ $order = [
 ];
 
 $pageCss = [
+    '../../assets/css/header.css',
+    '../../assets/css/footer.css',
     '../../assets/css/style.css',
     'assets/css/accountPage.css'
 ];
