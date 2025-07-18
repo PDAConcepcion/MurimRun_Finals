@@ -69,5 +69,19 @@ class userDatabase
         ':email' => $email,
     ]);
     }
+
+    /**
+     * Check if a user exists by email.
+     *
+     * @param PDO $pdo
+     * @param string $email
+     * @return bool Returns true if user exists, false otherwise.
+     */
+    public static function existsByEmail(PDO $pdo, string $email): bool
+    {
+        $stmt = $pdo->prepare('SELECT 1 FROM public."User_table" WHERE email = :email LIMIT 1');
+        $stmt->execute([':email' => $email]);
+        return (bool)$stmt->fetchColumn();
+    }
 }
- ?>
+?>
