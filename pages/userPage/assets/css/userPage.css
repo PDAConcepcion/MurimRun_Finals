@@ -1,0 +1,90 @@
+.user-page {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+}
+
+/* General button styles for reuse, can be moved to a global style.css */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Courier List Styling */
+.courier-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.courier-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.courier-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 5px;
+    background-color: #f0f0f0; /* Placeholder background */
+}
+
+.courier-info {
+    flex-grow: 1; /* Allows this section to take up available space */
+}
+
+.courier-name {
+    margin: 0 0 5px 0;
+    font-size: 1.5rem;
+}
+
+.courier-details {
+    margin: 0;
+    color: #555;
+}
+
+.select-courier-btn {
+    flex-shrink: 0; /* Prevents the button from shrinking */
+}

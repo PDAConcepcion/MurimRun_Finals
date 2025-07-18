@@ -1,21 +1,39 @@
 <?php
-    $title = "MurimRun";
-    $cssFiles = [
-        '/assets/css/style.css',
-        '/assets/css/header.css'
-    ];
-?>
+    require_once UTILS_PATH . "/htmlEscape.util.php";
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title; ?></title>
+    // $title = "MurimRun";
+    // $cssFiles = [
+    //     '/assets/css/style.css',
+    //     '/assets/css/header.css'
+    // ];
+    
+    function head($title, array $pageCss = []) 
+    {
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title><?php echo $title; ?></title>
+            <?php
+            if (!empty($pageCss)) {
+                foreach ($pageCss as $cssFile) {
+                    echo '<link rel="stylesheet" href="' . htmlspecialchars($cssFile) . '">' . PHP_EOL;
+                }
+            }
+           ?>
 
-    <?php foreach ($cssFiles as $cssFile): ?>
-        <link rel="stylesheet" href="<?php echo $cssFile; ?>">
-    <?php endforeach; ?>
+           <style>
+                main {
+                    min-height: 100dvh;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+           </style>
 
-</head>
-<body>
+        </head>
+            <body>
+                <main>
+                <?php } ?>

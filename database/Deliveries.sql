@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS public."Deliveries_table" (
     packagedescription text DEFAULT 'Pending',
     status text,
     deliverytimeestimate text,
+    weight_kg int NOT NULL DEFAULT 0,
     createdat timestamp DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (userid) REFERENCES "User_table"(userid),

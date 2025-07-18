@@ -81,7 +81,7 @@ if (is_array($users) && count($users)) {
 echo "Seeding sect couriers…\n";
 $sectCouriers = @include DUMMIES_PATH . '/sectcouriers.staticData.php';
 if (is_array($sectCouriers) && count($sectCouriers)) {
-    $stmt = $pdo->prepare('INSERT INTO public."SectCouriers_table" (name, sectname, rank, speedrating, status) VALUES (:name, :sectname, :rank, :speedrating, :status)');
+    $stmt = $pdo->prepare('INSERT INTO public."SectCouriers_table" (name, sectname, rank, speedrating, status, image) VALUES (:name, :sectname, :rank, :speedrating, :status, :image)');
     foreach ($sectCouriers as $sc) {
         $stmt->execute([
             ':name' => $sc['name'],
@@ -89,6 +89,7 @@ if (is_array($sectCouriers) && count($sectCouriers)) {
             ':rank' => $sc['rank'],
             ':speedrating' => $sc['speedrating'],
             ':status' => $sc['status'],
+            ':image' => $sc['image'],
         ]);
     }
     echo "Inserted " . count($sectCouriers) . " sect couriers into SectCouriers_table.\n";
@@ -102,8 +103,10 @@ $deliveries = @include DUMMIES_PATH . '/deliveries.staticData.php';
 $userid = $pdo->query('SELECT userid FROM public."User_table" LIMIT 1')->fetchColumn();
 $courierid = $pdo->query('SELECT courierid FROM public."SectCouriers_table" LIMIT 1')->fetchColumn();
 if (is_array($deliveries) && count($deliveries)) {
-    $stmt = $pdo->prepare('INSERT INTO public."Deliveries_table" (userid, courierid, origin, destination, packagedescription, status, deliverytimeestimate) VALUES (:userid, :courierid, :origin, :destination, :packagedescription, :status, :deliverytimeestimate)');
+    $stmt = $pdo->prepare('INSERT INTO public."Deliveries_table" (userid, courierid, origin, destination, packagedescription, status, weight_kg, deliverytimeestimate) VALUES (:userid, :courierid, :origin, :destination, :packagedescription, :status, :weight_kg, :deliverytimeestimate)');
     foreach ($deliveries as $d) {
+        // Ensure 'return' is a boolean, default to false if missing or empty
+        //$returnValue = isset($d['return']) && $d['return'] !== '' ? (bool)$d['return'] : false;
         $stmt->execute([
             ':userid' => $userid,
             ':courierid' => $courierid,
@@ -111,7 +114,9 @@ if (is_array($deliveries) && count($deliveries)) {
             ':destination' => $d['destination'],
             ':packagedescription' => $d['packagedescription'],
             ':status' => $d['status'],
+            ':weight_kg' => $d['weight_kg'],
             ':deliverytimeestimate' => $d['deliverytimeestimate'],
+
         ]);
     }
     echo "Inserted " . count($deliveries) . " deliveries into Deliveries_table.\n";

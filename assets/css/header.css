@@ -1,18 +1,32 @@
-.user {
+.header-section {
   position: fixed;
-  width: 100%;
-  background-color: burlywood;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  width: 100vw;
+  height: 60px;
+  background-color: #a3333d;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  text-align: center;
-  top: 0px;
-  left: 0px;
-  right: 0px;
+  z-index: 100;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0px;
+  padding: 0px;
 }
 
-.nav-bar {
-  justify-self: center;
+.header-container {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0px;
+}
+
+.left-section,
+.middle-section,
+.right-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-bar ul {
@@ -24,4 +38,15 @@
   gap: 20px;
   justify-content: center;
   align-items: center;
+}
+
+.nav-bar a {
+  text-decoration: none;
+  color: white;
+}
+
+.logo a {
+  text-decoration: none;
+  color: white;
+  padding: 0;
 }
