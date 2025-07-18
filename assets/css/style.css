@@ -22,33 +22,65 @@ section {
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 div h1 {
   color: white;
   font-size: 3rem;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
 .content {
   width: 100%;
+  margin-top: 60px;
 }
 
 .intro-background {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   position: relative;
   width: 100%;
-  min-height: 70vh;
-  overflow: hidden;
+  height: 60vh; /* or any height you prefer */
+}
+
+.intro-background img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+  z-index: -2;
 }
 
 .intro-background .overlay {
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.intro-container {
+  position: relative;
+  z-index: 3;
+  color: white;
+  text-align: left;
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+/* 
+.intro-background .overlay {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -56,9 +88,9 @@ img {
 }
 
 .intro-background img {
-  position: absolute;
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   object-fit: cover;
   object-position: bottom;
   z-index: -2;
@@ -77,23 +109,10 @@ img {
 
 .intro-container p {
   font-size: 1rem;
-}
-
-.btn {
-  background-color: #f64740;
-  padding: 10px 15px;
-  border-style: none;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 0.8rem;
-  color: white;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-/* Add HOVER EFFECT here */
+} */
 
 .cards {
+  margin-top: -100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -133,38 +152,7 @@ img {
   color: rgb(124, 124, 124);
 }
 
-
-.intro-background .overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: -1;
-}
-
-.intro-background img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: bottom;
-  z-index: -2;
-}
-
-.intro-container {
-  position: relative;
-  z-index: 3;
-  color: white;
-  text-align: left;
-  width: 100%;
-  max-width: 900px;
-  margin: 0;
-  padding: 2rem;
-}
-
-.intro-container p {
-  font-size: 1rem;
-}
+/* MAIN BUTTON */
 
 .btn {
   background-color: #f64740;
@@ -188,60 +176,6 @@ img {
   font-weight: 700;
 }
 
-.btn:active {
-}
-/* Add HOVER EFFECT here */
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-  padding: 50px 0;
-}
-
-.card-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: rgb(231, 231, 231);
-  width: 270px;
-  padding: 12px;
-  border-radius: 10px;
-}
-
-.image-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 220px;
-  background-color: black;
-}
-
-.description-container {
-  align-self: stretch;
-  text-align: left;
-}
-
-.description-container h1 {
-  font-size: 20px;
-  color: rgb(37, 37, 37);
-}
-
-.description-container p {
-  color: rgb(124, 124, 124);
-}
-
-a {
-  text-decoration: none;
-}
-
-.button-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
 .btn-2 {
   background: none;
   border: none;
@@ -257,6 +191,8 @@ a {
   color: red;
 }
 
+/* RESPONSIVE */
+/* 
 @media screen and (max-width: 1024px) {
   .intro-container {
     padding: 40px 15px;
@@ -297,5 +233,4 @@ a {
   .card-container {
     width: 45%;
   }
-}
-
+} */
