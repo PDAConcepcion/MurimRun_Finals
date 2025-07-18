@@ -118,6 +118,31 @@ body {
   color: rgb(124, 124, 124);
 }
 
+a {
+  text-decoration: none;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.btn-2 {
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.8rem;
+}
+
+.btn-2:hover {
+  color: black;
+}
+
+.btn-2:active {
+  color: red;
+}
+
 @media screen and (max-width: 1024px) {
   .intro-container {
     padding: 40px 15px;
