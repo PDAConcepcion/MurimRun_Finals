@@ -94,7 +94,7 @@ renderMainLayout(function () use ($user, $order) { ?>
 <?php 
 }, 'Account Page', ['css' => $pageCss]);
 ?>
-    <div class="account-page">
+    <!-- <div class="account-page">
         <div class="form-container">
             <h1>Account Settings</h1>
 
@@ -110,4 +110,4 @@ renderMainLayout(function () use ($user, $order) { ?>
                         required>
                 </div>
                 <button type="submit" class="btn btn-primary">Save Username</button>
-            </form>
+            </form> -->
