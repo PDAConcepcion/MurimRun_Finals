@@ -7,13 +7,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
   gap: 10px;
   margin: 25px;
+  width: 100%;
 }
 
 .courier-container {
-  width: 600px;
   height: 100%;
   background-color: rgb(255, 255, 255);
   display: flex;

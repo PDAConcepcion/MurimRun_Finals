@@ -4,5 +4,6 @@ CREATE TABLE IF NOT EXISTS public."SectCouriers_table" (
     sectname text NOT NULL,
     rank varchar(254) NOT NULL,
     speedrating int,
-    status text DEFAULT 'Available'
+    status text DEFAULT 'Available',
+    image text
 );
