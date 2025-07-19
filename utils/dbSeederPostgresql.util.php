@@ -81,7 +81,7 @@ if (is_array($users) && count($users)) {
 echo "Seeding sect couriers…\n";
 $sectCouriers = @include DUMMIES_PATH . '/sectcouriers.staticData.php';
 if (is_array($sectCouriers) && count($sectCouriers)) {
-    $stmt = $pdo->prepare('INSERT INTO public."SectCouriers_table" (name, sectname, rank, speedrating, status) VALUES (:name, :sectname, :rank, :speedrating, :status)');
+    $stmt = $pdo->prepare('INSERT INTO public."SectCouriers_table" (name, sectname, rank, speedrating, status, image) VALUES (:name, :sectname, :rank, :speedrating, :status, :image)');
     foreach ($sectCouriers as $sc) {
         $stmt->execute([
             ':name' => $sc['name'],
@@ -89,6 +89,7 @@ if (is_array($sectCouriers) && count($sectCouriers)) {
             ':rank' => $sc['rank'],
             ':speedrating' => $sc['speedrating'],
             ':status' => $sc['status'],
+            ':image' => $sc['image'],
         ]);
     }
     echo "Inserted " . count($sectCouriers) . " sect couriers into SectCouriers_table.\n";
@@ -99,20 +100,22 @@ if (is_array($sectCouriers) && count($sectCouriers)) {
 // Seed Deliveries_table
 echo "Seeding deliveries…\n";
 $deliveries = @include DUMMIES_PATH . '/deliveries.staticData.php';
-$userid = $pdo->query('SELECT userid FROM public."User_table" LIMIT 1')->fetchColumn();
-$courierid = $pdo->query('SELECT courierid FROM public."SectCouriers_table" LIMIT 1')->fetchColumn();
+$user_id = $pdo->query('SELECT user_id FROM public."User_table" LIMIT 1')->fetchColumn();
+$courier_id = $pdo->query('SELECT courier_id FROM public."SectCouriers_table" LIMIT 1')->fetchColumn();
 if (is_array($deliveries) && count($deliveries)) {
-    $stmt = $pdo->prepare('INSERT INTO public."Deliveries_table" (userid, courierid, origin, destination, packagedescription, status, weight_kg, deliverytimeestimate) VALUES (:userid, :courierid, :origin, :destination, :packagedescription, :status, :weight_kg, :deliverytimeestimate)');
+    $stmt = $pdo->prepare('INSERT INTO public."Deliveries_table" (user_id, courier_id, origin, destination, package_description, status, weight_kg, delivery_time_estimate) VALUES (:user_id, :courier_id, :origin, :destination, :package_description, :status, :weight_kg, :delivery_time_estimate)');
     foreach ($deliveries as $d) {
+        // Ensure 'return' is a boolean, default to false if missing or empty
+        //$returnValue = isset($d['return']) && $d['return'] !== '' ? (bool)$d['return'] : false;
         $stmt->execute([
-            ':userid' => $userid,
-            ':courierid' => $courierid,
+            ':user_id' => $user_id,
+            ':courier_id' => $courier_id,
             ':origin' => $d['origin'],
             ':destination' => $d['destination'],
-            ':packagedescription' => $d['packagedescription'],
+            ':package_description' => $d['package_description'],
             ':status' => $d['status'],
             ':weight_kg' => $d['weight_kg'],
-            ':deliverytimeestimate' => $d['deliverytimeestimate'],
+            ':delivery_time_estimate' => $d['delivery_time_estimate'],
         ]);
     }
     echo "Inserted " . count($deliveries) . " deliveries into Deliveries_table.\n";
@@ -122,15 +125,15 @@ if (is_array($deliveries) && count($deliveries)) {
 
 // Seed courier_deliveries
 echo "Seeding courier deliveries…\n";
-$deliveryids = $pdo->query('SELECT deliveryid FROM public."Deliveries_table"')->fetchAll(PDO::FETCH_COLUMN);
-$courierid = $pdo->query('SELECT courierid FROM public."SectCouriers_table" LIMIT 1')->fetchColumn();
+$delivery_ids = $pdo->query('SELECT delivery_id FROM public."Deliveries_table"')->fetchAll(PDO::FETCH_COLUMN);
+$courier_id = $pdo->query('SELECT courier_id FROM public."SectCouriers_table" LIMIT 1')->fetchColumn();
 $count = 0;
-foreach ($deliveryids as $deliveryid) {
-    if ($courierid && $deliveryid) {
-        $stmt = $pdo->prepare('INSERT INTO public."courier_deliveries" (courierid, deliveryid) VALUES (:courierid, :deliveryid)');
+foreach ($delivery_ids as $delivery_id) {
+    if ($courier_id && $delivery_id) {
+        $stmt = $pdo->prepare('INSERT INTO public."courier_deliveries" (courier_id, delivery_id) VALUES (:courier_id, :delivery_id)');
         $stmt->execute([
-            ':courierid' => $courierid,
-            ':deliveryid' => $deliveryid,
+            ':courier_id' => $courier_id,
+            ':delivery_id' => $delivery_id,
         ]);
         $count++;
     }
