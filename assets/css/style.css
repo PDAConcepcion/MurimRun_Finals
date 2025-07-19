@@ -74,6 +74,10 @@ div h1 {
   margin: 0 auto;
 }
 
+.intro-container p {
+  font-size: 1rem;
+}
+
 .cards {
   margin-top: -100px;
   display: flex;
@@ -115,46 +119,81 @@ div h1 {
   color: rgb(124, 124, 124);
 }
 
-/* MAIN BUTTON */
+/* buttons */
+:root {
+  --btn-color: #f64740;
+  --btn-color-dark: #a3333d;
+  --border-radius: 20px;
+  --font-sm: 0.8rem;
+  --font-xs: 0.75rem;
+  --font-md: 0.9rem;
+  --hover-dark: rgba(0, 0, 0, 0.2);
+}
 
+/* affects padding and bg color mainly */
 .btn {
-  background-color: #f64740;
-  padding: 10px 15px;
-  border: 2px solid transparent;
-  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: var(--font-sm);
   font-weight: 600;
-  font-size: 0.8rem;
   color: white;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  transition: all 0.3s ease;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-group {
+  display: inline-flex;
+  border: 2px solid #f64740;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background-color: #f64740;
 }
 
 .btn:hover {
-  color: #f64740;
-  background-color: transparent;
-  border-style: solid;
-  border-color: #f64740;
-  border-width: 2px;
-  font-weight: 700;
+  background-color: var(--hover-dark);
 }
 
-.btn-2 {
-  background: none;
-  border: none;
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 0.8rem;
+.btn-left {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 1px solid var(--hover-dark);
 }
 
-.btn-2:hover {
-  color: black;
+.btn-right {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
-.btn-2:active {
-  color: red;
+.radius-default {
+  border-radius: var(--border-radius);
 }
 
-@media screen and (max-width: 1366px) {
+.radius-none {
+  border-radius: 0;
+}
+
+.text-xs {
+  font-size: var(--font-xs);
+}
+
+.text-sm {
+  font-size: var(--font-sm);
+}
+
+.text-md {
+  font-size: var(--font-md);
+}
+
+@media screen and (max-width: 1024px) {
   .intro-container {
     padding: 40px 15px;
     text-align: left;
@@ -174,17 +213,6 @@ div h1 {
       rgb(0, 0, 0) 60%,
       rgb(0, 0, 0) 100%
     );
-  }
-
-  .btn {
-    padding: 13px 18px;
-    border-style: none;
-    border-radius: 26px;
-    font-weight: 600;
-    font-size: 1rem;
-    color: white;
-    margin-top: 10px;
-    margin-bottom: 10px;
   }
 
   .cards {
