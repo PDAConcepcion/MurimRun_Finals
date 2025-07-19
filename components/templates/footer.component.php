@@ -1,10 +1,31 @@
-<footer>
-    <div class="container">
+<?php
+function footer(array $customJs = []): void  { ?>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="group-name">
+                <h1>MurimRun</h1>
+            </div>
 
-        <a href="">Privacy Policy</a>
-        <a href="">Terms of Service</a>
-        <a href="">Careers</a>
-        <a href="">Support</a>
+            <?php if (!empty($customJs)) {
+                foreach ($customJs as $jsFile) {
+                    echo "<script src=\"{$jsFile}\"></script>\n";
+                }
+            } ?>
 
-    </div>
-</footer>
+            <div class="members-container">
+                <a href="">Rey Vincent Putian</a>
+                <a href="">Patrick Concepcion</a>
+                <a href="">William Andres</a>
+                <a href="">Gabriel Camino</a>
+            </div>
+
+            <div class="copyright">
+                <p>© 2022 MurimRun, All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
+<?php } ?>

@@ -1,49 +1,226 @@
-main {
-  width: 100%;
-  height: 100vh;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
-}
-
 body {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
-  padding: 0px;
-  margin: 0px;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+section {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+div h1 {
+  color: white;
+  font-size: 3rem;
 }
 
 .content {
-  width: 60%;
-  height: 100%;
-  margin: 00 auto;
-  padding-top: 70px;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  margin-top: 60px;
 }
 
-.btn {
+.intro-background {
+  position: relative;
+  width: 100%;
+  height: 60vh; /* or any height you prefer */
+}
+
+.intro-background img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+  z-index: -2;
+}
+
+.intro-background .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.intro-container {
+  position: relative;
+  z-index: 3;
   color: white;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: rgb(219, 118, 50);
-  border-style: none;
+  text-align: left;
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+.intro-container p {
+  font-size: 1rem;
+}
+
+.cards {
+  margin-top: -100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  padding: 50px 0;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(231, 231, 231);
+  width: 270px;
+  padding: 12px;
   border-radius: 10px;
 }
 
-.error-message {
+.image-container {
   display: flex;
-  flex-direction: column;
-
   justify-content: center;
+  width: 100%;
+  height: 220px;
+  background-color: black;
+}
+
+.description-container {
+  align-self: stretch;
+  text-align: left;
+}
+
+.description-container h1 {
+  font-size: 20px;
+  color: rgb(37, 37, 37);
+}
+
+.description-container p {
+  color: rgb(124, 124, 124);
+}
+
+/* buttons */
+:root {
+  --btn-color: #f64740;
+  --btn-color-dark: #a3333d;
+  --border-radius: 20px;
+  --font-sm: 0.8rem;
+  --font-xs: 0.75rem;
+  --font-md: 0.9rem;
+  --hover-dark: rgba(0, 0, 0, 0.2);
+}
+
+/* affects padding and bg color mainly */
+.btn {
+  padding: 10px 20px;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
 }
 
-.error-message h1 {
-  font-weight: 900;
-  font-size: 45px;
+.btn-group {
+  display: inline-flex;
+  border: 2px solid #f64740;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background-color: #f64740;
 }
 
-.error-message p {
+.btn:hover {
+  background-color: var(--hover-dark);
+}
+
+.btn-left {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 1px solid var(--hover-dark);
+}
+
+.btn-right {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.radius-default {
+  border-radius: var(--border-radius);
+}
+
+.radius-none {
+  border-radius: 0;
+}
+
+.text-xs {
+  font-size: var(--font-xs);
+}
+
+.text-sm {
+  font-size: var(--font-sm);
+}
+
+.text-md {
+  font-size: var(--font-md);
+}
+
+@media screen and (max-width: 1024px) {
+  .intro-container {
+    padding: 40px 15px;
+    text-align: left;
+    width: 900px;
+  }
+
+  .intro-container p {
+    font-size: 0.7rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(to bottom, rgb(0, 0, 0) 60%, rgb(0, 0, 0) 100%);
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgb(0, 0, 0) 60%,
+      rgb(0, 0, 0) 100%
+    );
+  }
+
+  .cards {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .card-container {
+    width: 45%;
+  }
 }
