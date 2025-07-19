@@ -1,4 +1,5 @@
 .header-section {
+  top: 0px;
   position: fixed;
   width: 100vw;
   height: 60px;
@@ -51,28 +52,7 @@
   padding: 0;
 }
 
-/* button group */
-.btn-group {
-  display: inline-flex;
-  border: 1px solid var(--btn-color);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  background-color: var(--btn-color);
-}
-
-.btn-left {
-  border-top-left-radius: var(--border-radius);
-  border-bottom-left-radius: var(--border-radius);
-  border-right: 1px solid var(--btn-color);
-}
-
-.btn-right {
-  border-top-right-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
-}
-
-.btn-left,
-.btn-right {
-  font-weight: 600;
-  font-size: 1rem;
+.btn-group a {
+  margin-left: auto;
+  font-size: var(--font-md);
 }
