@@ -26,19 +26,20 @@ function navHeader(array $user = null): void
 
 
             <div class="left-section">
-                <h1>MurimRun</h1>
+                <a href="/index.php">MurimRun</a>
             </div>
 
+
+
             <div class="middle-section">
-                <nav id="nav-menu" class="nav-bar">
-                    <ul>
-                        <?php foreach ($navList as $item): ?>
-                            <li><a
-                                    href="<?php echo htmlspecialchars($item['link']); ?>"><?php echo htmlspecialchars($item['label']); ?></a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </nav>
+                <div class="nav-btn">
+                    <?php foreach ($navList as $item): ?>
+                        <a class="btn-4 und"
+                            href="<?php echo htmlspecialchars($item['link']); ?>"><?php echo htmlspecialchars($item['label']); ?></a>
+                    <?php endforeach; ?>
+
+                </div>
+
             </div>
 
             <div class="right-section">
