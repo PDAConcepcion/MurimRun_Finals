@@ -31,7 +31,7 @@ class Auth
             // 1) Fetch the user record
             $stmt = $pdo->prepare("
                 SELECT
-                userid,
+                user_id,
                 first_name,
                 last_name,
                 username,
