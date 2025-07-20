@@ -31,7 +31,7 @@ class Auth
             // 1) Fetch the user record
             $stmt = $pdo->prepare("
                 SELECT
-                userid,
+                user_id,
                 first_name,
                 last_name,
                 username,
@@ -56,7 +56,7 @@ class Auth
             return false;
         } else {
             error_log('[Auth::login] Retrieved user: ' . var_export([
-                'id' => $user['userid'],
+                'id' => $user['user_id'],
                 'username' => $user['username'],
                 'role' => $user['role'],
             ], true));
@@ -71,14 +71,14 @@ class Auth
         // 3) Success: regenerate session & store user + role
         session_regenerate_id(true);
         $_SESSION['user'] = [
-            'id' => $user['userid'],
+            'id' => $user['user_id'],
             'first_name' => $user['first_name'],
             'last_name' => $user['last_name'],
             'username' => $user['username'],
             'email' => $user['email'],
             'role' => $user['role'],
         ];
-        error_log("[Auth::login] Login successful for user_id={$user['userid']}");
+        error_log("[Auth::login] Login successful for user_id={$user['user_id']}");
 
         return true;
     }

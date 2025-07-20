@@ -1,43 +1,87 @@
 <?php
-// Includes the header.
-require_once __DIR__ . '/../../components/templates/header.component.php';
-?>
+require_once LAYOUTS_PATH . '/main.layout.php';
+require_once UTILS_PATH . '/auth.utils.php';
+require_once UTILS_PATH . '/envSetter.util.php';
+require_once UTILS_PATH . '/user.utils.php';
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Settings - MurimRun</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/accountPage.css">
-</head>
-<body>
-    <main class="account-page">
-        <div class="form-container">
-            <h1>Account Settings</h1>
+// Setup DB connection
+$host = $databases['pgHost'];
+$port = $databases['pgPort'];
+$username = $databases['pgUser'];
+$password = $databases['pgPassword'];
+$dbname = $databases['pgDB'];
+$dsn = "pgsql:host={$host};port={$port};dbname={$dbname}";
+$pdo = new PDO($dsn, $username, $password, [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+]);
 
-            <form action="../../handlers/updateUsername.handler.php" method="POST" class="account-form">
-                <h2>Change Username</h2>
-                <div class="form-group">
-                    <label for="currentUsername">Current Username</label>
-                    <input type="text" id="currentUsername" name="currentUsername" value="user_placeholder" disabled>
-                </div>
-                <div class="form-group">
-                    <label for="newUsername">New Username</label>
-                    <input type="text" id="newUsername" name="newUsername" placeholder="Enter your new username" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Save Username</button>
-            </form>
+Auth::init();
+$sessionUser = Auth::user();
 
-            ' tags.
-            -->
+if (!$sessionUser) {
+    header('Location: /pages/loginPage/index.php');
+    exit;
+}
+
+$user = userDatabase::getById($pdo, $sessionUser['id']);
+
+$pageCss = [
+    '../../assets/css/header.css',
+    '../../assets/css/footer.css',
+    '../../assets/css/style.css',
+    'assets/css/accountPage.css'
+];
+
+$editMode = isset($_GET['edit']) && $_GET['edit'] == '1';
+
+renderMainLayout(function () use ($user, $editMode) { ?>
+<div class="account-page">
+    <section class="info-section">
+
+        <!-- User Profile Section -->
+        <div class="user-section">
+            <div class="user-top">
+                <h2>User Profile</h2>
+                <?php if ($editMode): ?>
+                <form method="POST" action="../../handlers/user.handler.php?action=update">
+                    <input type="hidden" name="original_user" value="<?php echo htmlspecialchars(json_encode($user), ENT_QUOTES, 'UTF-8'); ?>">
+                    <?php foreach ($user as $key => $userInfo): ?>
+                        <?php if ($key === 'password' || $key === 'user_id') continue; ?>
+                        <div class="user-info">
+                            <label>
+                                <?php echo ucfirst(str_replace('_', ' ', $key)); ?>:
+                                <input type="text" name="<?php echo htmlspecialchars($key); ?>" value="<?php echo htmlspecialchars($userInfo ?? ''); ?>">
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="index.php" class="btn btn-secondary">Cancel</a>
+                </form>
+            <?php else: ?>
+                    <?php foreach ($user as $key => $userInfo): ?>
+                        <?php if ($key === 'password') continue; // Hide password ?>
+                        <div class="user-info">
+                            <p>
+                                <strong>
+                                    <?php echo ucfirst(str_replace('_', ' ', $key)); ?>:
+                                </strong>
+                                <?php echo htmlspecialchars($userInfo); ?>
+                            </p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
-    </main>
-    <?php
-    // Includes the footer.
-    require_once __DIR__ . '/../../components/templates/footer.component.php';
-    ?>
-    <script src="assets/js/accountPage.js"></script>
-</body>
-</html>
+            <div class="user-bottom">
+                <?php if (!$editMode): ?>
+                    <button class="btn">
+                        <a href="index.php?edit=1">Edit Profile</a>
+                    </button>
+                <?php endif; ?>
+            </div>
+        </div>
+
+    </section>
+</div>
+<?php
+}, 'Account Page', ['css' => $pageCss]);
+?>
