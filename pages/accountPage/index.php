@@ -62,7 +62,7 @@ renderMainLayout(function () use ($user, $order) { ?>
 
             <!-- Left: Order Details -->
             <div class="courier-left">
-                <h2>Courier Info</h2>
+                <h2>Delivery Info</h2>
                 <?php foreach ($order as $key => $orderInfo): ?>
                     <div class="order-card">
                         <p>
