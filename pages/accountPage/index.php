@@ -1,121 +1,87 @@
 <?php
-// Includes the header.
-require_once __DIR__ . '/../../components/templates/header.component.php';
+require_once LAYOUTS_PATH . '/main.layout.php';
+require_once UTILS_PATH . '/auth.utils.php';
+require_once UTILS_PATH . '/envSetter.util.php';
+require_once UTILS_PATH . '/user.utils.php';
 
-$user = [
-    'username' => 'li hua',
-    'first_name' => 'li',
-    'last_name' => 'hua',
-    'password' => 'ILOVECULTIVATION',
-    'email' => 'CHinese111@gmail.com',
-    'role' => 'warrior',
+// Setup DB connection
+$host = $databases['pgHost'];
+$port = $databases['pgPort'];
+$username = $databases['pgUser'];
+$password = $databases['pgPassword'];
+$dbname = $databases['pgDB'];
+$dsn = "pgsql:host={$host};port={$port};dbname={$dbname}";
+$pdo = new PDO($dsn, $username, $password, [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+]);
+
+Auth::init();
+$sessionUser = Auth::user();
+
+if (!$sessionUser) {
+    header('Location: /pages/loginPage/index.php');
+    exit;
+}
+
+$user = userDatabase::getById($pdo, $sessionUser['id']);
+
+$pageCss = [
+    '../../assets/css/header.css',
+    '../../assets/css/footer.css',
+    '../../assets/css/style.css',
+    'assets/css/accountPage.css'
 ];
 
-$order = [
-    'origin' => 'Central Warehouse',
-    'destination' => 'Mount Hua Sect',
-    'package_description' => 'Herbs Shipment',
-    'weight_kg' => '25kg',
-    'status' => 'In Transit',
-    'delivery_time_estimate' => '2 days',
+$editMode = isset($_GET['edit']) && $_GET['edit'] == '1';
 
-];
+renderMainLayout(function () use ($user, $editMode) { ?>
+<div class="account-page">
+    <section class="info-section">
 
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Settings - MurimRun</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/accountPage.css">
-</head>
-
-<body>
-
-    <div class="account-page">
-        <section class=info-section>
-
-            <div class="user-section">
-
-                <div class="user-top">
-                    <h2>User Profile</h2>
+        <!-- User Profile Section -->
+        <div class="user-section">
+            <div class="user-top">
+                <h2>User Profile</h2>
+                <?php if ($editMode): ?>
+                <form method="POST" action="../../handlers/user.handler.php?action=update">
+                    <input type="hidden" name="original_user" value="<?php echo htmlspecialchars(json_encode($user), ENT_QUOTES, 'UTF-8'); ?>">
                     <?php foreach ($user as $key => $userInfo): ?>
-                        <?php if ($key === 'password')
-                            continue; ?>
+                        <?php if ($key === 'password' || $key === 'user_id') continue; ?>
                         <div class="user-info">
-                            <p><strong><?php echo ucfirst(str_replace('_', ' ', $key)); ?>: </strong>
-                                <?php echo htmlspecialchars($userInfo); ?></p>
-
+                            <label>
+                                <?php echo ucfirst(str_replace('_', ' ', $key)); ?>:
+                                <input type="text" name="<?php echo htmlspecialchars($key); ?>" value="<?php echo htmlspecialchars($userInfo ?? ''); ?>">
+                            </label>
                         </div>
                     <?php endforeach; ?>
-                </div>
-
-
-                <div class="user-bottom">
-                    <button class="btn"><a href="index.php">Edit Profile</a></button>
-                </div>
-
-            </div>
-
-
-
-            <div class="courier-section">
-                <div class="courier-left">
-                    <h2>Courier Info</h2>
-                    <?php foreach ($order as $key => $orderInfo): ?>
-                        <div class="order-card">
-                            <p><strong><?php echo ucfirst(str_replace('_', ' ', $key)); ?></strong></p>
-                            <div class="order-info">
-                                <p><?php echo htmlspecialchars($orderInfo); ?></p>
-                            </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="index.php" class="btn btn-secondary">Cancel</a>
+                </form>
+            <?php else: ?>
+                    <?php foreach ($user as $key => $userInfo): ?>
+                        <?php if ($key === 'password') continue; // Hide password ?>
+                        <div class="user-info">
+                            <p>
+                                <strong>
+                                    <?php echo ucfirst(str_replace('_', ' ', $key)); ?>:
+                                </strong>
+                                <?php echo htmlspecialchars($userInfo); ?>
+                            </p>
                         </div>
                     <?php endforeach; ?>
-                    <div class="courier-left-bottom">
-                        <button class="btn"><a href="index.php">Cancel Delivery</a></button>
-                    </div>
-                </div>
-
-                <div class="courier-right">
-                    <div class="courier-right-top">
-
-                        <img src="/assets/img/martial-arts-2400.jpg" alt="">
-                        <h2 class="packageId">Package ID: </h2>
-                    </div>
-                </div>
+                <?php endif; ?>
             </div>
-        </section>
-    </div>
+            <div class="user-bottom">
+                <?php if (!$editMode): ?>
+                    <button class="btn">
+                        <a href="index.php?edit=1">Edit Profile</a>
+                    </button>
+                <?php endif; ?>
+            </div>
+        </div>
 
-    <!-- <div class="account-page">
-        <div class="form-container">
-            <h1>Account Settings</h1>
-
-            <form action="../../handlers/updateUsername.handler.php" class="account-form" method="POST">
-                <h2>Change Username</h2>
-                <div class="form-group">
-                    <label for="currentUsername">Current Username</label>
-                    <input type="text" id="currentUsername" name="currentUsername" value="user_placeholder" disabled>
-                </div>
-                <div class="form-group">
-                    <label for="newUsername">New Username</label>
-                    <input type="text" id="newUsername" name="newUsername" placeholder="Enter your new username"
-                        required>
-                </div>
-                <button type="submit" class="btn btn-primary">Save Username</button>
-            </form>
-
-            ' tags.
-            -->
-    </div>
-    </div> -->
-    <?php
-    // Includes the footer.
-    require_once __DIR__ . '/../../components/templates/footer.component.php';
-    ?>
-    <script src="assets/js/accountPage.js"></script>
-</body>
-
-</html>
+    </section>
+</div>
+<?php
+}, 'Account Page', ['css' => $pageCss]);
+?>

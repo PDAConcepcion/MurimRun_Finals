@@ -29,8 +29,6 @@ function navHeader(array $user = null): void
                 <a href="/index.php">MurimRun</a>
             </div>
 
-
-
             <div class="middle-section">
                 <div class="nav-btn">
                     <?php foreach ($navList as $item): ?>
