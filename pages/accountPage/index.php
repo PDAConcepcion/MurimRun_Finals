@@ -1,24 +1,27 @@
 <?php
 require_once LAYOUTS_PATH . '/main.layout.php';
+require_once UTILS_PATH . '/auth.utils.php';
+require_once UTILS_PATH . '/envSetter.util.php';
+require_once UTILS_PATH . '/user.utils.php';
 
-$user = [
-    'username' => 'li hua',
-    'first_name' => 'li',
-    'last_name' => 'hua',
-    'password' => 'ILOVECULTIVATION',
-    'email' => 'CHinese111@gmail.com',
-    'role' => 'warrior',
-];
+// Setup DB connection
+$host = $databases['pgHost'];
+$port = $databases['pgPort'];
+$username = $databases['pgUser'];
+$password = $databases['pgPassword'];
+$dbname = $databases['pgDB'];
+$dsn = "pgsql:host={$host};port={$port};dbname={$dbname}";
+$pdo = new PDO($dsn, $username, $password, [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+]);
 
-$order = [
-    'origin' => 'Central Warehouse',
-    'destination' => 'Mount Hua Sect',
-    'package_description' => 'Herbs Shipment',
-    'weight_kg' => '25kg',
-    'status' => 'In Transit',
-    'delivery_time_estimate' => '2 days',
+Auth::init();
+$user = Auth::user();
 
-];
+if (!$user) {
+    header('Location: /pages/loginPage/index.php');
+    exit;
+}
 
 $pageCss = [
     '../../assets/css/header.css',
@@ -27,13 +30,12 @@ $pageCss = [
     'assets/css/accountPage.css'
 ];
 
-renderMainLayout(function () use ($user, $order) { ?>
+renderMainLayout(function () use ($user) { ?>
 <div class="account-page">
     <section class="info-section">
 
         <!-- User Profile Section -->
         <div class="user-section">
-
             <div class="user-top">
                 <h2>User Profile</h2>
                 <?php foreach ($user as $key => $userInfo): ?>
@@ -48,54 +50,20 @@ renderMainLayout(function () use ($user, $order) { ?>
                     </div>
                 <?php endforeach; ?>
             </div>
-
             <div class="user-bottom">
                 <button class="btn">
                     <a href="index.php">Edit Profile</a>
                 </button>
             </div>
-
         </div>
 
-        <!-- Courier Order Section -->
-        <div class="courier-section">
-
-            <!-- Left: Order Details -->
-            <div class="courier-left">
-                <h2>Delivery Info</h2>
-                <?php foreach ($order as $key => $orderInfo): ?>
-                    <div class="order-card">
-                        <p>
-                            <strong>
-                                <?php echo ucfirst(str_replace('_', ' ', $key)); ?>
-                            </strong>
-                        </p>
-                        <div class="order-info">
-                            <p><?php echo htmlspecialchars($orderInfo); ?></p>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-                <div class="courier-left-bottom">
-                    <button class="btn">
-                        <a href="index.php">Cancel Delivery</a>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Right: Courier Image and Package ID -->
-            <div class="courier-right">
-                <div class="courier-right-top">
-                    <img src="/assets/img/martial-arts-2400.jpg" alt="">
-                    <h2 class="packageId">Package ID: </h2>
-                </div>
-            </div>
-
-        </div>
     </section>
 </div>
-<?php 
+<?php
 }, 'Account Page', ['css' => $pageCss]);
 ?>
+
+
     <!-- <div class="account-page">
         <div class="form-container">
             <h1>Account Settings</h1>
