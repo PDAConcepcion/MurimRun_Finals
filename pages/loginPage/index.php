@@ -47,7 +47,7 @@ renderMainLayout(function () use ($error) { ?>
                             <input type="password" name="password" id="password" placeholder="Enter Password" required>
 
                             <div class="btn-group">
-                                <a href="" class="btn" type="submit">Submit</a>
+                                <button type="submit" class="btn">Submit</button>
                             </div>
                             <div class="account">
                                 <p>New to MurimRun? <a href="" class="create">Create a free account</a></p>
