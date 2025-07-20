@@ -40,14 +40,15 @@ $username = $baseUsername . rand(100, 999);
 
 // Collect processed input
 $input = [
-    'first_name' => $firstName,
-    'last_name' => $lastName,
-    'username' => $username,
-    'email' => $_POST['email'] ?? '',
-    'password' => $_POST['password'] ?? '',
-    'confirm_password' => $_POST['confirmPassword'] ?? '',
-    'role' => 'user', // Default role for new signups
+    'first_name'        => $_POST['first_name'] ?? '',
+    'last_name'         => $_POST['last_name'] ?? '',
+    'username'          => $_POST['username'] ?? '',
+    'email'             => $_POST['email'] ?? '',
+    'password'          => $_POST['password'] ?? '',
+    'confirm_password'  => $_POST['confirmPassword'] ?? '',
+    'role'              => 'user', // Default role for new signups
 ];
+
 
 // 1) Validate
 $errors = Signup::validate($input);
