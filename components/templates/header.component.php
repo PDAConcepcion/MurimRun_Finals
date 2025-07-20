@@ -26,19 +26,20 @@ function navHeader(array $user = null): void
 
 
             <div class="left-section">
-                <h1>MurimRun</h1>
+                <a href="/index.php">MurimRun</a>
             </div>
 
+
+
             <div class="middle-section">
-                <nav id="nav-menu" class="nav-bar">
-                    <ul>
-                        <?php foreach ($navList as $item): ?>
-                            <li><a
-                                    href="<?php echo htmlspecialchars($item['link']); ?>"><?php echo htmlspecialchars($item['label']); ?></a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </nav>
+                <div class="nav-btn">
+                    <?php foreach ($navList as $item): ?>
+                        <a class="btn-4 und"
+                            href="<?php echo htmlspecialchars($item['link']); ?>"><?php echo htmlspecialchars($item['label']); ?></a>
+                    <?php endforeach; ?>
+
+                </div>
+
             </div>
 
             <div class="right-section">
@@ -50,23 +51,20 @@ function navHeader(array $user = null): void
                         <span><?php echo htmlspecialchars($user['email']); ?></span><br>
                         <span style="font-size: 0.9em; color: #888;"><?php echo htmlspecialchars($user['role']); ?></span>
                     </div>
-                    <button class="logout-btn">
-                        <a href="<?php echo htmlspecialchars($rightButton['logoutLink']); ?>">
-                            <?php echo htmlspecialchars($rightButton['logout']); ?>
-                        </a>
-                    </button>
+                    <a class="btn" href="<?php echo htmlspecialchars($rightButton['logoutLink']); ?>">
+                        <?php echo htmlspecialchars($rightButton['logout']); ?>
+                    </a>
                 <?php else: ?>
                     <!-- Show Login and SignUp buttons if not signed in -->
-                    <button class="login-btn">
-                        <a href="<?php echo htmlspecialchars($rightButton['loginLink']); ?>">
+                    <div class="btn-group">
+
+                        <a class="btn btn-left" href="<?php echo htmlspecialchars($rightButton['loginLink']); ?>">
                             <?php echo htmlspecialchars($rightButton['login']); ?>
                         </a>
-                    </button>
-                    <button class="signup-btn">
-                        <a href="<?php echo htmlspecialchars($rightButton['signupLink']); ?>">
+                        <a class="btn btn-right" href="<?php echo htmlspecialchars($rightButton['signupLink']); ?>">
                             <?php echo htmlspecialchars($rightButton['signup']); ?>
                         </a>
-                    </button>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>

@@ -1,0 +1,124 @@
+p {
+  color: var(--color-text);
+}
+
+.admin {
+  background-image: url(/pages/dashboard/assets/img/murimrun-bg-1.png);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+  width: 100%;
+  top: 0px;
+  align-items: center;
+  height: 100%;
+}
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.courier-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  z-index: 2;
+}
+
+.description {
+  color: var(--color-bg);
+  font-size: var(--font-md);
+  width: 100%;
+}
+
+.rnd-tab {
+  border-radius: 20px;
+  overflow: hidden;
+  border: var(--box-highlight);
+}
+
+.courier-tab {
+  background-color: var(--box-transparent);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 200px;
+  width: 1200px;
+  box-shadow: var(--shadow-def);
+  backdrop-filter: var(--bg-blur);
+}
+
+.courier-total,
+.courier-available,
+.courier-ongoing,
+.delivery-stat,
+.user-stat {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-evenly;
+}
+
+.vr {
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/* deliveries and users tab */
+
+.deliveries-users {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  box-shadow: var(--shadow-def);
+}
+
+.delivery-stat,
+.user-stat {
+  background-color: var(--box-transparent);
+  backdrop-filter: var(--bg-blur);
+  width: 350px;
+  height: 200px;
+}
+
+.tag {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  width: 100px;
+}
+
+.result {
+  font-size: var(--font-xl);
+  font-weight: 700;
+}
+
+.al {
+  align-items: center;
+}
+
+.tn {
+  color: #3a6ea5;
+}
+
+.av {
+  color: #3ba55d;
+}
+
+.og {
+  color: #f4a261;
+}
+
+.td {
+  color: #6a4c93;
+}
+
+.us {
+  color: #2a9d8f;
+}
