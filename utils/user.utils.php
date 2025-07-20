@@ -1,6 +1,6 @@
 <?php 
 declare(strict_types=1);
-include_once UTILS_PATH . '/userView.utils.php';
+include_once UTILS_PATH . '/user.utils.php';
 
 class userDatabase
 {
