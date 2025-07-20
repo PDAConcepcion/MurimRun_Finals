@@ -52,6 +52,9 @@ renderMainLayout(function () use ($errors, $old) { ?>
                         <label for="email">Email </label>
                         <input type="email" name="email" id="email" required
                             value="<?php echo htmlspecialchars($old['email'] ?? ''); ?>">
+                        <label for="username">Username </label>
+                        <input type="username" name="username" id="username" required
+                            value="<?php echo htmlspecialchars($old['password'] ?? ''); ?>">
                         <label for="password">Password </label>
                         <input type="password" name="password" id="password" required
                             value="<?php echo htmlspecialchars($old['password'] ?? ''); ?>">
