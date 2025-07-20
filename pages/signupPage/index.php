@@ -27,7 +27,7 @@ renderMainLayout(function () use ($errors, $old) { ?>
             <div class="form-container">
                 <div class="logo-section">
                     <h2 class="signup-title">Create Your Account</h2>
-                    <p class="signup-subtitle">Join the adventure with MurimRun!</p>
+                    <p class="signup-subtitle">Join MurimRun!</p>
 
                 </div>
 
