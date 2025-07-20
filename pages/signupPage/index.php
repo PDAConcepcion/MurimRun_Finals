@@ -27,7 +27,7 @@ renderMainLayout(function () use ($errors, $old) { ?>
             <div class="form-container">
                 <div class="logo-section">
                     <h2 class="signup-title">Create Your Account</h2>
-                    <p class="signup-subtitle">Join the adventure with MurimRun!</p>
+                    <p class="signup-subtitle">Join MurimRun!</p>
 
                 </div>
 
@@ -52,6 +52,9 @@ renderMainLayout(function () use ($errors, $old) { ?>
                         <label for="email">Email </label>
                         <input type="email" name="email" id="email" required
                             value="<?php echo htmlspecialchars($old['email'] ?? ''); ?>">
+                        <label for="username">Username </label>
+                        <input type="username" name="username" id="username" required
+                            value="<?php echo htmlspecialchars($old['password'] ?? ''); ?>">
                         <label for="password">Password </label>
                         <input type="password" name="password" id="password" required
                             value="<?php echo htmlspecialchars($old['password'] ?? ''); ?>">
