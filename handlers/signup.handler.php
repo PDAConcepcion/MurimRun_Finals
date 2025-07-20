@@ -79,5 +79,5 @@ try {
 
 // 3) Success — clear old flashes and redirect to login
 unset($_SESSION['signup_errors'], $_SESSION['signup_old']);
-header('Location: /pages/login/index.php?message=Account%created%successfully');
+header('Location: /index.php?message=Account%created%successfully');
 exit;
