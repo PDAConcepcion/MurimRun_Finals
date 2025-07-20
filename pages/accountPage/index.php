@@ -1,24 +1,25 @@
 <?php
 require_once LAYOUTS_PATH . '/main.layout.php';
+require_once UTILS_PATH . '/DBConnection.php';
+require_once UTILS_PATH . '/user.utils.php';
+require_once UTILS_PATH . '/deliveries.util.php';
+require_once UTILS_PATH . '/auth.utils.php';
 
-$user = [
-    'username' => 'li hua',
-    'first_name' => 'li',
-    'last_name' => 'hua',
-    'password' => 'ILOVECULTIVATION',
-    'email' => 'CHinese111@gmail.com',
-    'role' => 'warrior',
-];
+Auth::init();
+$counter = Auth::user();
 
-$order = [
-    'origin' => 'Central Warehouse',
-    'destination' => 'Mount Hua Sect',
-    'package_description' => 'Herbs Shipment',
-    'weight_kg' => '25kg',
-    'status' => 'In Transit',
-    'delivery_time_estimate' => '2 days',
-
-];
+if ($currentUser && isset($currentUser['email'])) 
+{
+    $pdo = DBConnection::getPDO();
+    $user = userDatabase::ViewByEmail($pdo, $currentUser['email']);
+    $orders = Deliveries::getAll($pdo);
+    foreach ($orders as $o) {
+        if ($o['user_id'] === $user['user_id']) {
+            $order = $o;
+            break;
+        }
+    }
+}
 
 $pageCss = [
     '../../assets/css/header.css',
