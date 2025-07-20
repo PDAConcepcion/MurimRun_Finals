@@ -6,6 +6,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-content: center;
+  background-color: var(--color-bg);
 }
 
 main {
@@ -43,7 +44,7 @@ header {
   --font-lg: 2.62rem; /* 41.89px */
   --font-xl: 4.24rem; /* 67.77px */
   --font-xxl: 6.85rem; /* 109.64px */
-  --box-transparent: rgba(255, 255, 255, 0.6);
+  --box-transparent: rgba(255, 255, 255, 0.7);
   --color-bg: #f5f5f5;
   --color-text: #1c1c1c;
   --color-break: #cbaf87;
@@ -111,8 +112,23 @@ header {
   padding-top: 100px;
 }
 
+.head-text {
+  text-align: left;
+}
+
+.intro-text {
+  color: var(--color-bg);
+  font-size: 1.2rem;
+  transition: all 0.2s ease-in-out;
+  text-align: justify;
+}
+
 .actions {
   margin: 10px 0px;
+}
+
+.sh {
+  box-shadow: var(--shadow-def);
 }
 
 .cards {
@@ -126,11 +142,12 @@ header {
 .card-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   background-color: var(--box-transparent);
   width: 270px;
   padding: 12px;
   border-radius: 10px;
+  box-shadow: var(--shadow-def);
+  backdrop-filter: var(--bg-blur);
 }
 
 .image-container {
@@ -159,9 +176,6 @@ header {
   --btn-color: #f64740;
   --btn-color-dark: #a3333d;
   --border-radius: 20px;
-  --font-sm: 0.8rem;
-  --font-xs: 0.75rem;
-  --font-md: 0.9rem;
   --hover-dark: rgba(0, 0, 0, 0.2);
 }
 
@@ -240,27 +254,6 @@ header {
 }
 
 @media screen and (max-width: 1024px) {
-  .intro-container {
-    padding: 40px 15px;
-    text-align: left;
-    width: 900px;
-  }
-
-  .intro-container p {
-    font-size: 0.7rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    position: relative;
-    mask-image: linear-gradient(to bottom, rgb(0, 0, 0) 60%, rgb(0, 0, 0) 100%);
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      rgb(0, 0, 0) 60%,
-      rgb(0, 0, 0) 100%
-    );
-  }
-
   .cards {
     flex-wrap: wrap;
     gap: 20px;
