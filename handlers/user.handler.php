@@ -18,5 +18,25 @@ $pdo = new PDO($dsn, $username, $password, [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 ]);
 
-return userDatabase::ViewAll($pdo);
-?>
+$action = $_REQUEST['action'] ?? null;
+
+if ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user_id = $_POST['user_id'] ?? '';
+    $data = [
+        'username'   => $_POST['username'] ?? '',
+        'first_name' => $_POST['first_name'] ?? '',
+        'last_name'  => $_POST['last_name'] ?? '',
+        'email'      => $_POST['email'] ?? '',
+        'role'       => $_POST['role'] ?? '',
+        'password'   => $_POST['password'] ?? '', // Optional, only update if provided
+    ];
+    $success = userDatabase::updateById($pdo, $user_id, $data);
+    header('Location: /pages/accountPage/index.php?message=' . ($success ? 'updated' : 'update_failed'));
+    exit;
+}
+
+// Default: View all users
+$users = userDatabase::ViewAll($pdo);
+header('Content-Type: application/json');
+echo json_encode($users);
+exit;?>
