@@ -1,66 +1,77 @@
 <?php
 require_once LAYOUTS_PATH . '/main.layout.php';
 
-$courierInfo = require_once DUMMIES_PATH . '/deliveries.staticData.php';
 
-
+$sectCouriers = require DUMMIES_PATH . '/sectcouriers.staticData.php';
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin dashboard</title>
+    <title>User dashboard</title>
 
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
 
 </head>
 
-<body>
-    <main>
+<div class="page user">
+    <div class="overlay"></div>
 
-        <section class="courier-section">
-            <?php foreach ($courierInfo as $courier): ?>
-                <div class="courier-container">
+    <div class="dashboard">
+        <div class="head-title">
+            <h1 class="head-text">Dashboard</h1>
+            <p class="time-text"><?php echo date("D, M j Y") ?></p>
 
-                    <div class="courier-photo">
-                        <img src="" alt="profile photo">
+        </div>
+        <div class="user-dash">
+            <div class="courier-pick">
+
+                <?php foreach ($sectCouriers as $courier): ?>
+                    <div class="courier-container sh">
+                        <div class="courier-img"></div>
+                        <div class="info-block">
+                            <div class="info-type">
+                                <p class="info">Name: </p>
+                                <p class="info">Sect: </p>
+                                <p class="info">Rank: </p>
+                                <p class="info">Speed rating: </p>
+                                <p class="info">Status: </p>
+                            </div>
+
+                            <div class="info-result">
+                                <p class="info"><strong><?php echo $courier['name'] ?></strong></p>
+                                <p class="info"><strong><?php echo $courier['sectname'] ?></strong></p>
+                                <p class="info"><strong><?php echo $courier['rank'] ?></strong></p>
+                                <p class="info"><strong><?php echo $courier['speedrating'] ?></strong></p>
+                                <p class="info"><strong><?php echo $courier['status'] ?></strong></p>
+
+                            </div>
+
+
+                        </div>
+                        <div class="choice">
+
+                            <a class="btn-3 sc" href="">select</a>
+                        </div>
+
                     </div>
+                    <?php
+                endforeach
+                ?>
+            </div>
+            <div class="stat sh">
+                <h1>side</h1>
+            </div>
 
-                    <div class="courier-details">
-                        <div>
-                            <h3>Status: </h3>
-                            <p>Origin: </p>
-                            <p>Destination: </p>
-                            <p>Package description: </p>
-                            <p>Weight: </p>
+            <!-- end foreach -->
+        </div>
+    </div>
+</div>
 
-                        </div>
-                        <div>
-                            <h3><?php echo $courier['status']; ?></h3>
-                            <p><?php echo $courier['origin']; ?></p>
-                            <p><?php echo $courier['destination']; ?></p>
-                            <p><?php echo $courier['packagedescription']; ?></p>
-                            <p><?php echo $courier['weight_kg']; ?> kg</p>
 
-                        </div>
 
-                        <div class="button-container">
-                            <a class="btn-2" href="">Show more >>></a>
-                        </div>
-                    </div>
 
-                </div>
-                <?php
-            endforeach;
-            ?>
-        </section>
-
-    </main>
-
-</body>
 
 </html>
