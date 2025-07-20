@@ -1,23 +1,77 @@
 <?php
-require_once BASE_PATH . '/bootstrap.php';
-require_once HANDLERS_PATH . '/postgreChecker.handler.php';
-require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
+require_once LAYOUTS_PATH . '/main.layout.php';
 
-// Include the head component
-include TEMPLATES_PATH . '/head.component.php';
-?>
+$mongoCheckerResult = require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
+$postgresCheckerResult = require_once HANDLERS_PATH . '/postgreChecker.handler.php';
 
-<main>
-<?php include TEMPLATES_PATH . '/header.component.php'; ?>
+$pageCss = [
+    'assets/css/style.css',
+    'assets/css/header.css',
+    'assets/css/footer.css'
+];
 
-<h1 class="">
-    MurimRun
-</h1>
-</main>
+$services = [
+    [
+        "service" => "Courier Services",
+        "description" => "Slice Through Waiting. Choose MurimRun."
+    ],
+    [
+        "service" => "Realtime Tracking",
+        "description" => "Track your package realtime"
+    ],
+    [
+        "service" => "24/7 Customer Support",
+        "description" => "Talk to one of our agents"
+    ]
+];
 
-<!-- footer -->
-<?php include TEMPLATES_PATH . '/footer.component.php'; ?>
+renderMainLayout(function () use ($services) { ?>
 
-</body>
+    <div class="page">
+        <div class="background">
+            <div class="overlay"></div>
+        </div>
+        <div class="intro">
+            <h1 class="head-text">MurimRun</h1>
+            <p class="intro-text">
+                Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+                faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+                pretium tellus duis convallis. Tempus leo eu aenean sed diam urna
+                tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
+                Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut
+                hendrerit semper vel class aptent taciti sociosqu. Ad litora
+                torquent per conubia nostra inceptos himenaeos.
+            </p>
+            <div class="actions">
 
-</html>
+                <div class="btn-group sh">
+
+                    <a class="btn btn-left" href="/pages/signupPage/index.php">
+                        Create Account
+                    </a>
+                    <a class="btn btn-right" href="/pages/loginPage/index.php">
+                        Log In
+                    </a>
+                </div>
+            </div>
+            <section class="cards">
+                <?php foreach ($services as $info): ?>
+                    <div class="card-container">
+                        <div class="image-container">
+                            <img src="" alt="">
+                        </div>
+                        <div class="description-container">
+                            <h1><?php echo $info['service'] ?></h1>
+                            <p><?php echo $info['description'] ?></p>
+                        </div>
+                    </div>
+                <?php endforeach ?>
+            </section>
+        </div>
+
+
+    </div>
+    </div>
+
+
+<?php }, 'MurimRun - Swift as the Blade!', ['css' => $pageCss]);
