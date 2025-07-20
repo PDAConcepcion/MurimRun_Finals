@@ -1,18 +1,10 @@
 <?php
 require_once LAYOUTS_PATH . '/main.layout.php';
 require_once UTILS_PATH . '/sectCourier.util.php';
-require_once UTILS_PATH . '/envSetter.util.php';
+require_once UTILS_PATH . '/DBConnection.php';
 
 // Setup DB connection
-$host = $databases['pgHost'];
-$port = $databases['pgPort'];
-$username = $databases['pgUser'];
-$password = $databases['pgPassword'];
-$dbname = $databases['pgDB'];
-$dsn = "pgsql:host={$host};port={$port};dbname={$dbname}";
-$pdo = new PDO($dsn, $username, $password, [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-]);
+$pdo = DBConnection::getPDO();
 
 // Fetch couriers from DB
 $couriers = SectCouriers::getAll($pdo);

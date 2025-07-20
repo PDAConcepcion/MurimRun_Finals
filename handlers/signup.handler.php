@@ -3,7 +3,7 @@ declare(strict_stypes=1);
 
 require_once BASE_PATH . '/bootstrap.php';
 require_once BASE_PATH . '/vendor/autoload.php';
-require_once UTILS_PATH . '/envSetter.util.php';
+require_once UTILS_PATH . '/DBConnection.php';
 require_once UTILS_PATH . '/htmlEscape.util.php';
 require_once UTILS_PATH . '/auth.utils.php';
 require_once UTILS_PATH . '/signup.utils.php';
@@ -12,17 +12,9 @@ require_once UTILS_PATH . '/signup.utils.php';
 Auth::init();
 
 // Build PDO
-$host = 'host.docker.internal';
-$port = $databases['pgPort'];
-$dbUser = $databases['pgUser'];
-$dbPass = $databases['pgPassword'];
-$dbName = $databases['pgDB'];
+$pdo = DBConnection::getPDO();
 
-$dsn = "pgsql:host={$host};port={$port};dbname={$dbName}";
-$pdo = new PDO($dsn, $dbUser, $dbPass, [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,]);
-
-    // Only accept POST
+// Only accept POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: /pages/signup/index.php');
     exit;
