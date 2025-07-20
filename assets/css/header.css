@@ -11,6 +11,7 @@
   margin: 0px;
   padding: 0px;
   border-bottom: 1px solid rgb(230, 230, 230);
+  backdrop-filter: var(--bg-blur);
 }
 
 .header-container {
@@ -21,7 +22,6 @@
   justify-content: space-between;
   margin: 0;
   padding: 0px;
-  backdrop-filter: var(--bg-blur);
 }
 
 .left-section {
