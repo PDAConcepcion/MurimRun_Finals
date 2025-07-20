@@ -1,5 +1,5 @@
 <?php
-declare(strict_stypes=1);
+declare(strict_types=1);
 
 require_once BASE_PATH . '/bootstrap.php';
 require_once BASE_PATH . '/vendor/autoload.php';
@@ -79,5 +79,5 @@ try {
 
 // 3) Success — clear old flashes and redirect to login
 unset($_SESSION['signup_errors'], $_SESSION['signup_old']);
-header('Location: /pages/login/index.php?message=Account%created%successfully');
+header('Location: /index.php?message=Account%created%successfully');
 exit;
