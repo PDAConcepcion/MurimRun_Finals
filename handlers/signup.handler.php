@@ -28,17 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Process form data to match database schema
-$fullName = trim($_POST['fullName'] ?? '');
-$nameParts = explode(' ', $fullName, 2);
-$firstName = $nameParts[0] ?? '';
-$lastName = $nameParts[1] ?? '';
-
-// Generate username from first name + random number
-$baseUsername = strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $firstName));
-$username = $baseUsername . rand(100, 999);
-
-// Collect processed input
+// Collect processed input directly from POST
 $input = [
     'first_name'        => $_POST['first_name'] ?? '',
     'last_name'         => $_POST['last_name'] ?? '',
@@ -49,14 +39,13 @@ $input = [
     'role'              => 'user', // Default role for new signups
 ];
 
-
 // 1) Validate
 $errors = Signup::validate($input);
 
 if (count($errors) > 0) {
     $_SESSION['signup_errors'] = $errors;
     $_SESSION['signup_old'] = $input;
-    header('Location: /pages/signupPage/index.php'); // Fixed path
+    header('Location: /pages/signupPage/index.php');
     exit;
 }
 
@@ -69,7 +58,7 @@ try {
     if ($e->getCode() === '23505') {
         $_SESSION['signup_errors'] = ['Username already taken.'];
         $_SESSION['signup_old'] = $input;
-        header('Location: /pages/signup/index.php');
+        header('Location: /pages/signupPage/index.php');
         exit;
     }
     // Otherwise, fail hard
@@ -80,5 +69,5 @@ try {
 
 // 3) Success — clear old flashes and redirect to login
 unset($_SESSION['signup_errors'], $_SESSION['signup_old']);
-header('Location: /index.php?message=Account%created%successfully');
+header('Location: /pages/loginPage/index.php?message=Account%20created%20successfully');
 exit;
