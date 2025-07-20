@@ -23,8 +23,6 @@ $action = $_REQUEST['action'] ?? null;
 
 if ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $original_user = json_decode($_POST['original_user'] ?? '{}', true);
-
-    // Use original_user['user_id'] or another unique field as reference
     $reference_user_id = $original_user['user_id'] ?? '';
 
     $data = [
@@ -33,10 +31,24 @@ if ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         'last_name'  => $_POST['last_name'] ?? '',
         'email'      => $_POST['email'] ?? '',
         'role'       => $_POST['role'] ?? '',
-        'password'   => $_POST['password'] ?? '', // Optional
+        'password'   => $_POST['password'] ?? '',
     ];
-    
+
     $success = userDatabase::updateById($pdo, $reference_user_id, $data);
+
+    // Update session if successful
+    if ($success) {
+        $updatedUser = userDatabase::getById($pdo, $reference_user_id);
+        // Update session user (assuming Auth uses $_SESSION['user'])
+        $_SESSION['user'] = [
+            'id' => $updatedUser['user_id'],
+            'username' => $updatedUser['username'],
+            'email' => $updatedUser['email'],
+            'role' => $updatedUser['role'],
+            // add other fields as needed
+        ];
+    }
+
     header('Location: /pages/accountPage/index.php?message=' . ($success ? 'updated' : 'update_failed'));
     exit;
 }
