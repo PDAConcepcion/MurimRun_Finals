@@ -16,12 +16,14 @@ $pdo = new PDO($dsn, $username, $password, [
 ]);
 
 Auth::init();
-$user = Auth::user();
+$sessionUser = Auth::user();
 
-if (!$user) {
+if (!$sessionUser) {
     header('Location: /pages/loginPage/index.php');
     exit;
 }
+
+$user = userDatabase::getById($pdo, $sessionUser['id']);
 
 $pageCss = [
     '../../assets/css/header.css',
@@ -30,7 +32,9 @@ $pageCss = [
     'assets/css/accountPage.css'
 ];
 
-renderMainLayout(function () use ($user) { ?>
+$editMode = isset($_GET['edit']) && $_GET['edit'] == '1';
+
+renderMainLayout(function () use ($user, $editMode) { ?>
 <div class="account-page">
     <section class="info-section">
 
@@ -38,22 +42,41 @@ renderMainLayout(function () use ($user) { ?>
         <div class="user-section">
             <div class="user-top">
                 <h2>User Profile</h2>
-                <?php foreach ($user as $key => $userInfo): ?>
-                    <?php if ($key === 'password') continue; // Hide password ?>
-                    <div class="user-info">
-                        <p>
-                            <strong>
+                <?php if ($editMode): ?>
+                <form method="POST" action="../../handlers/user.handler.php?action=update">
+                    <input type="hidden" name="original_user" value="<?php echo htmlspecialchars(json_encode($user), ENT_QUOTES, 'UTF-8'); ?>">
+                    <?php foreach ($user as $key => $userInfo): ?>
+                        <?php if ($key === 'password' || $key === 'user_id') continue; ?>
+                        <div class="user-info">
+                            <label>
                                 <?php echo ucfirst(str_replace('_', ' ', $key)); ?>:
-                            </strong>
-                            <?php echo htmlspecialchars($userInfo); ?>
-                        </p>
-                    </div>
-                <?php endforeach; ?>
+                                <input type="text" name="<?php echo htmlspecialchars($key); ?>" value="<?php echo htmlspecialchars($userInfo ?? ''); ?>">
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="index.php" class="btn btn-secondary">Cancel</a>
+                </form>
+            <?php else: ?>
+                    <?php foreach ($user as $key => $userInfo): ?>
+                        <?php if ($key === 'password') continue; // Hide password ?>
+                        <div class="user-info">
+                            <p>
+                                <strong>
+                                    <?php echo ucfirst(str_replace('_', ' ', $key)); ?>:
+                                </strong>
+                                <?php echo htmlspecialchars($userInfo); ?>
+                            </p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
             <div class="user-bottom">
-                <button class="btn">
-                    <a href="index.php">Edit Profile</a>
-                </button>
+                <?php if (!$editMode): ?>
+                    <button class="btn">
+                        <a href="index.php?edit=1">Edit Profile</a>
+                    </button>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -62,22 +85,3 @@ renderMainLayout(function () use ($user) { ?>
 <?php
 }, 'Account Page', ['css' => $pageCss]);
 ?>
-
-
-    <!-- <div class="account-page">
-        <div class="form-container">
-            <h1>Account Settings</h1>
-
-            <form action="../../handlers/updateUsername.handler.php" class="account-form" method="POST">
-                <h2>Change Username</h2>
-                <div class="form-group">
-                    <label for="currentUsername">Current Username</label>
-                    <input type="text" id="currentUsername" name="currentUsername" value="user_placeholder" disabled>
-                </div>
-                <div class="form-group">
-                    <label for="newUsername">New Username</label>
-                    <input type="text" id="newUsername" name="newUsername" placeholder="Enter your new username"
-                        required>
-                </div>
-                <button type="submit" class="btn btn-primary">Save Username</button>
-            </form> -->
