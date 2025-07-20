@@ -14,6 +14,19 @@ class Deliveries
         $stmt = $pdo->query('SELECT * FROM public."Deliveries_table" ORDER BY created_at DESC');
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    /**
+     * Summary of getAllByUserId
+     * This method retrieves all deliveries for a specific user by their user ID.
+     * @param PDO $pdo
+     * @param string $user_id
+     * @return array
+     */
+    public static function getAllByUserId(PDO $pdo, string $user_id): array
+    {
+        $stmt = $pdo->prepare('SELECT * FROM public."Deliveries_table" WHERE user_id = :user_id ORDER BY created_at DESC');
+        $stmt->execute([':user_id' => $user_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     /**
      * Summary of getById
