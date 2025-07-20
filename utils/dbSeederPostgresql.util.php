@@ -113,7 +113,7 @@ if (is_array($deliveries) && count($deliveries)) {
             ':origin' => $d['origin'],
             ':destination' => $d['destination'],
             ':package_description' => $d['package_description'],
-            ':status' => $d['status'],
+            ':status' => (isset($sc['status']) && is_bool($sc['status'])) ? $sc['status'] : true,
             ':weight_kg' => $d['weight_kg'],
             ':delivery_time_estimate' => $d['delivery_time_estimate'],
         ]);

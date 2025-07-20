@@ -14,50 +14,59 @@ function navHeader(array $user = null): void
         'logoutLink' => '/handlers/auth.handlers.php?action=logout'
     ];
 
-    $navList = [
-        ['label' => 'Orders', 'link' => 'pages/orders/index.php'],
-        ['label' => 'Services', 'link' => 'pages/services/index.php'],
-        ['label' => 'About Us', 'link' => 'pages/about-us/index.php'],
+        // Nav links for guests
+    $guestNavList = [
+        ['label' => 'Orders', 'link' => '/pages/orders/index.php'],
+        ['label' => 'Services', 'link' => '/pages/services/index.php'],
+        ['label' => 'About Us', 'link' => '/pages/about-us/index.php'],
     ];
-    ?>
-    <header class="header-section">
 
+    $userNavList = [
+        ['label' => 'Dashboard', 'link' => '/pages/dashboard/index.php'],
+        ['label' => 'My Account', 'link' => '/pages/accountPage/index.php'],
+        ['label' => 'Orders', 'link' => '/pages/orders/index.php'],
+        ['label' => 'Services', 'link' => '/pages/services/index.php'],
+        ['label' => 'About Us', 'link' => '/pages/about-us/index.php'],
+    ];
+
+    $navList = (Auth::check() && $user) ? $userNavList : $guestNavList;
+?>
+    <header class="header-section">
         <div class="header-container">
 
-
+            <!-- Left: Logo -->
             <div class="left-section">
                 <a href="/index.php">MurimRun</a>
             </div>
 
-
-
+            <!-- Middle: Navigation Links -->
             <div class="middle-section">
                 <div class="nav-btn">
                     <?php foreach ($navList as $item): ?>
-                        <a class="btn-4 und"
-                            href="<?php echo htmlspecialchars($item['link']); ?>"><?php echo htmlspecialchars($item['label']); ?></a>
+                        <a class="btn-4 und" href="<?php echo htmlspecialchars($item['link']); ?>">
+                            <?php echo htmlspecialchars($item['label']); ?>
+                        </a>
                     <?php endforeach; ?>
-
                 </div>
-
             </div>
 
+            <!-- Right: User Info or Auth Buttons -->
             <div class="right-section">
                 <?php if (Auth::check() && $user): ?>
-                    <!-- Show only Logout button if signed in -->
-                    <!-- put the style in the css file -->
+                    <!-- User Info and Logout -->
                     <div class="user-info" style="margin-right: 16px; text-align: right;">
                         <span><strong><?php echo htmlspecialchars($user['username']); ?></strong></span><br>
                         <span><?php echo htmlspecialchars($user['email']); ?></span><br>
-                        <span style="font-size: 0.9em; color: #888;"><?php echo htmlspecialchars($user['role']); ?></span>
+                        <span style="font-size: 0.9em; color: #888;">
+                            <?php echo htmlspecialchars($user['role']); ?>
+                        </span>
                     </div>
                     <a class="btn" href="<?php echo htmlspecialchars($rightButton['logoutLink']); ?>">
                         <?php echo htmlspecialchars($rightButton['logout']); ?>
                     </a>
                 <?php else: ?>
-                    <!-- Show Login and SignUp buttons if not signed in -->
+                    <!-- Login and SignUp Buttons -->
                     <div class="btn-group">
-
                         <a class="btn btn-left" href="<?php echo htmlspecialchars($rightButton['loginLink']); ?>">
                             <?php echo htmlspecialchars($rightButton['login']); ?>
                         </a>
@@ -67,6 +76,7 @@ function navHeader(array $user = null): void
                     </div>
                 <?php endif; ?>
             </div>
+
         </div>
     </header>
 <?php } ?>

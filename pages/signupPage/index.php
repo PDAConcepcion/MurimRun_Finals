@@ -63,11 +63,10 @@ renderMainLayout(function () use ($errors, $old) { ?>
                             value="<?php echo htmlspecialchars($old['confirmPassword'] ?? ''); ?>">
                         <span id="password-match-message" class="password-message"></span>
 
-                        <a href="" class="btn">submit</a>
-
+                        <button type="submit" class="btn">Submit</button>
                     </form>
                     <div class="login-redirect">
-                        <p>Already have an account? <a href="../loginPage/">Log In</a></p>
+                        <p>Already have an account? <a href="../loginPage/index.php">Log In</a></p>
                     </div>
                 </div>
 

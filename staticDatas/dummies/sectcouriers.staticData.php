@@ -6,7 +6,7 @@ return [
         'sectname' => 'Azure Dragon Sect',
         'rank' => 'A',
         'speedrating' => 95,
-        'status' => 'Available',
+        'status' => true,
         'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
     ],
     [
@@ -14,7 +14,7 @@ return [
         'sectname' => 'White Tiger Sect',
         'rank' => 'B',
         'speedrating' => 88,
-        'status' => 'Busy',
+        'status' => true,
         'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
     ],
     [
@@ -22,7 +22,7 @@ return [
         'sectname' => 'Vermillion Bird Sect',
         'rank' => 'C',
         'speedrating' => 80,
-        'status' => 'Available',
+        'status' => true,
         'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
     ],
     [
@@ -30,7 +30,7 @@ return [
         'sectname' => 'Black Tortoise Sect',
         'rank' => 'A',
         'speedrating' => 99,
-        'status' => 'On Leave',
+        'status' => true,
         'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
     ],
 ];
