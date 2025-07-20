@@ -32,8 +32,8 @@ renderMainLayout(function () use ($services) { ?>
             <div class="overlay"></div>
         </div>
         <div class="intro">
-            <h1 class="">MurimRun</h1>
-            <p>
+            <h1 class="head-text">MurimRun</h1>
+            <p class="intro-text">
                 Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
                 faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
                 pretium tellus duis convallis. Tempus leo eu aenean sed diam urna
@@ -44,7 +44,7 @@ renderMainLayout(function () use ($services) { ?>
             </p>
             <div class="actions">
 
-                <div class="btn-group">
+                <div class="btn-group sh">
 
                     <a class="btn btn-left" href="/pages/signupPage/index.php">
                         Create Account
