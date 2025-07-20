@@ -23,6 +23,26 @@ class userDatabase
             return false;
         }
     }
+    
+    /**
+     * Get a user by user_id.
+     *
+     * @param PDO $pdo
+     * @param string $user_id
+     * @return array|false Returns user data as an associative array or false on failure.
+     */
+    public static function getById(PDO $pdo, string $user_id)
+    {
+        try {
+            $stmt = $pdo->prepare('SELECT * FROM public."User_table" WHERE user_id = :user_id LIMIT 1');
+            $stmt->execute([':user_id' => $user_id]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $user ?: false;
+        } catch (PDOException $e) {
+            error_log('[userDatabase::getById] PDOException: ' . $e->getMessage());
+            return false;
+        }
+    }
 
     /**
      * Update a user by user_id.

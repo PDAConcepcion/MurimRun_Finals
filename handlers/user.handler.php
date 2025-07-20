@@ -2,8 +2,9 @@
 declare(strict_types=1);
 require_once BASE_PATH . '/bootstrap.php';
 require_once BASE_PATH . '/vendor/autoload.php';
-require_once UTILS_PATH . '/user.util.php';
+require_once UTILS_PATH . '/user.utils.php';
 require_once UTILS_PATH . '/envSetter.util.php';
+require_once UTILS_PATH . '/auth.utils.php';
 
 Auth::init();
 
@@ -21,16 +22,21 @@ $pdo = new PDO($dsn, $username, $password, [
 $action = $_REQUEST['action'] ?? null;
 
 if ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $user_id = $_POST['user_id'] ?? '';
+    $original_user = json_decode($_POST['original_user'] ?? '{}', true);
+
+    // Use original_user['user_id'] or another unique field as reference
+    $reference_user_id = $original_user['user_id'] ?? '';
+
     $data = [
         'username'   => $_POST['username'] ?? '',
         'first_name' => $_POST['first_name'] ?? '',
         'last_name'  => $_POST['last_name'] ?? '',
         'email'      => $_POST['email'] ?? '',
         'role'       => $_POST['role'] ?? '',
-        'password'   => $_POST['password'] ?? '', // Optional, only update if provided
+        'password'   => $_POST['password'] ?? '', // Optional
     ];
-    $success = userDatabase::updateById($pdo, $user_id, $data);
+    
+    $success = userDatabase::updateById($pdo, $reference_user_id, $data);
     header('Location: /pages/accountPage/index.php?message=' . ($success ? 'updated' : 'update_failed'));
     exit;
 }
