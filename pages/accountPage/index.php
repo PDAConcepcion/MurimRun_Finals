@@ -111,9 +111,8 @@ renderMainLayout(function () use ($user, $editMode) { ?>
                         </div>
 
                         <div id="about" class="tab-content about" style="display: none;">
-                            <h2>Terms and Policies</h2>
+                            <h2>MurimRun Terms and Conditions</h2>
 
-                            <h4>Terms and Conditions</h4>
                         </div>
 
                     </div>
