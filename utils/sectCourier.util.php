@@ -13,6 +13,21 @@ class SectCouriers
         $stmt = $pdo->query('SELECT * FROM public."SectCouriers_table" ORDER BY name');
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    /**
+     * Set the status of a courier (true for available, false for unavailable).
+     * @param PDO $pdo
+     * @param string $courier_id
+     * @param bool $status
+     * @return bool
+     */
+    public static function setStatus(PDO $pdo, string $courier_id, bool $status): bool
+    {
+        $stmt = $pdo->prepare('UPDATE public."SectCouriers_table" SET status = :status WHERE courier_id = :courier_id');
+        return $stmt->execute([
+            ':status' => $status ? 'true' : 'false', // <-- ensure string 'true'/'false' for PostgreSQL boolean
+            ':courier_id' => $courier_id
+        ]);
+    }
 
     /**
      * Add a new sect courier.
