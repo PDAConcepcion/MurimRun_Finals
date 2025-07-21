@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 deliveryResult.style.color = 'green';
                 form.reset();
                 setTimeout(() => {
+                    window.location.reload();
                     deliveryResult.textContent = '';
                 }, 3000);
             } else {

@@ -44,7 +44,7 @@ renderMainLayout(function () use ($sectCouriers, $user) { ?>
         <div class="user-dash">
             <div class="courier-pick">
                 <?php foreach ($sectCouriers as $courier): ?>
-                    <div class="courier-container sh">
+                    <div class="courier-container sh<?php echo !$courier['status'] ? ' grayed-out' : ''; ?>">
                         <div class="courier-img">
                             <img src="<?php echo !empty($courier['image']) ? htmlspecialchars($courier['image']) : '../../assets/img/nyebe_white.png'; ?>"
                                  alt="<?php echo htmlspecialchars($courier['name']); ?> Logo"
@@ -70,47 +70,41 @@ renderMainLayout(function () use ($sectCouriers, $user) { ?>
                                 <?php endforeach; ?>
                             </div>
                         </div>
-
-                        <!-- choice button -->
                         <div class="choice">
-                            <button class="btn-3 sc select-btn" type="button" data-courier="<?php echo htmlspecialchars($courier['courier_id']); ?>">
+                            <button class="btn-3 sc select-btn" type="button" data-courier="<?php echo htmlspecialchars($courier['courier_id']); ?>" <?php echo !$courier['status'] ? 'disabled' : ''; ?>>
                                 select
                             </button>
                             <button class="btn-3 sc deselect-btn" type="button" style="display:none;" data-courier="<?php echo htmlspecialchars($courier['courier_id']); ?>">
                                 deselect
                             </button>
                         </div>
-
                     </div>
                 <?php endforeach; ?>
             </div>
-            
             <div class="stat sh">
                 <h1>Add Delivery</h1>
-                    <form id="addDeliveryForm" style="display:none;">
-                        <label for="origin">Origin:</label>
-                        <input type="text" name="origin" id="origin" required>
-                        <label for="destination">Destination:</label>
-                        <input type="text" name="destination" id="destination" required>
-                        <label for="package_description">Description:</label>
-                        <input type="text" name="package_description" id="package_description" required>
-                        <label for="weight_kg">Weight (kg):</label>
-                        <input type="number" name="weight_kg" id="weight_kg" required>
-                        <label for="delivery_time_estimate">Time Estimate:</label>
-                        <input type="text" name="delivery_time_estimate" id="delivery_time_estimate" required>
-                        <label>Courier:</label>
-                        <span id="selectedCourierName"></span>
-                        <input type="hidden" name="courier_id" id="courier_id" required>
-                        <input type="hidden" name="user_id" id="user_id" value="<?php echo htmlspecialchars($user['id']); ?>" required>
-
-                        <button type="submit" class="btn-3 sc">Add Delivery</button>
-                    </form>
+                <form id="addDeliveryForm" style="display:none;">
+                    <label for="origin">Origin:</label>
+                    <input type="text" name="origin" id="origin" required>
+                    <label for="destination">Destination:</label>
+                    <input type="text" name="destination" id="destination" required>
+                    <label for="package_description">Description:</label>
+                    <input type="text" name="package_description" id="package_description" required>
+                    <label for="weight_kg">Weight (kg):</label>
+                    <input type="number" name="weight_kg" id="weight_kg" required>
+                    <label for="delivery_time_estimate">Time Estimate:</label>
+                    <input type="text" name="delivery_time_estimate" id="delivery_time_estimate" required>
+                    <label>Courier:</label>
+                    <span id="selectedCourierName"></span>
+                    <input type="hidden" name="courier_id" id="courier_id" required>
+                    <input type="hidden" name="user_id" id="user_id" value="<?php echo htmlspecialchars($user['id']); ?>" required>
+                    <button type="submit" class="btn-3 sc">Add Delivery</button>
+                </form>
                 <div id="deliveryResult"></div>
             </div>
-
         </div>
     </div>
 </div>
 
 <?php }, 'User dashboard', ['css' => $pageCss, 'js' => $pageJs]);
-    
+
