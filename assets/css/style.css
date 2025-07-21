@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   margin: 0;
@@ -43,7 +47,7 @@ header {
   --font-lg: 2.62rem; /* 41.89px */
   --font-xl: 4.24rem; /* 67.77px */
   --font-xxl: 6.85rem; /* 109.64px */
-  --box-transparent: rgba(255, 255, 255, 0.7);
+  --box-transparent: rgba(255, 255, 255, 0.5);
   --color-bg: #f5f5f5;
   --color-text: #1c1c1c;
   --color-break: #cbaf87;
@@ -52,6 +56,7 @@ header {
   --shadow-def: 2px 4px 6px rgba(0, 0, 0, 0.2);
   --bg-blur: blur(3px);
   --box-highlight: 1px solid rgb(230, 230, 230);
+  --box-radius: 20px;
 }
 
 .head-section {
@@ -86,12 +91,15 @@ header {
 }
 
 .background {
-  background-image: url(/assets/img/murimrun-bg-2.png);
   height: 520px;
   width: 100%;
   position: fixed;
   background-position: center;
   z-index: -5;
+}
+
+.ims {
+  background-image: url(/assets/img/murimrun-bg-2.png);
 }
 
 .overlay {
@@ -200,6 +208,7 @@ header {
   border-radius: var(--border-radius);
   overflow: hidden;
   background-color: var(--btn-color);
+  margin: 20px 0px;
 }
 
 .btn:hover {
