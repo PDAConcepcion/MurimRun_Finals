@@ -28,7 +28,7 @@ $services = [
 renderMainLayout(function () use ($services) { ?>
 
     <div class="page">
-        <div class="background">
+        <div class="background ims">
             <div class="overlay"></div>
         </div>
         <div class="intro">
