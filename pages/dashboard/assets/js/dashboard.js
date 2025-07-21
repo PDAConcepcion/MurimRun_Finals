@@ -43,14 +43,24 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         const form = e.target;
         const data = new FormData(form);
-        fetch('../../handlers/deliveries.handler.php?action=add', {
+        fetch('/handlers/deliveries.handler.php?action=add', {
             method: 'POST',
             body: data
         })
         .then(res => res.json())
         .then(result => {
-            document.getElementById('deliveryResult').textContent = result.success ? 'Delivery added!' : 'Failed to add delivery';
-            if(result.success) form.reset();
+            const deliveryResult = document.getElementById('deliveryResult');
+            if (result.success) {
+                deliveryResult.textContent = 'Delivery successfully added!';
+                deliveryResult.style.color = 'green';
+                form.reset();
+                setTimeout(() => {
+                    deliveryResult.textContent = '';
+                }, 3000);
+            } else {
+                deliveryResult.textContent = 'Failed to add delivery';
+                deliveryResult.style.color = 'red';
+            }
         });
     };
 });

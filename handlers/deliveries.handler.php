@@ -48,7 +48,8 @@ if ($action === 'add' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         'weight_kg' => (float)($_POST['weight_kg'] ?? 0),
     ];
     $success = Deliveries::add($pdo, $data);
-    header('Location: /pages/deliveries/index.php?message=' . ($success ? 'added' : 'add_failed'));
+    header('Content-Type: application/json');
+    echo json_encode(['success' => $success]);
     exit;
 }
 

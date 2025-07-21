@@ -134,3 +134,8 @@ h1 {
     padding: 10px 20px;
     cursor: pointer;
 }
+
+#deliveryResult {
+    margin-top: 10px;
+    font-weight: bold;
+}
