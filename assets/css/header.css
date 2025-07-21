@@ -102,8 +102,35 @@
 }
 
 .btn-4:hover {
-  background-color: rgb(230, 230, 230);
-  color: var(--color-action);
+  background-color: var(--btn-color);
+  color: white;
+}
+
+.btn-4:focus {
+  background-color: var(--btn-color);
+  color: white;
+}
+
+.btn-5 {
+  padding: 10px 20px;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--btn-color);
+  text-decoration: none;
+  background-color: transparent;
+  border: 2px solid var(--btn-color);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-5:hover,
+.btn-5.active {
+  background-color: var(--btn-color);
+  color: white;
 }
 
 @media (max-width: 1920px) {

@@ -22,7 +22,7 @@ function navHeader(array $user = null): void
 
     $userNavList = [
         ['label' => 'My Account', 'link' => '/pages/accountPage/index.php'],
-        ['label' => 'Orders', 'link' => '/pages/orders/index.php'],
+        ['label' => 'Orders', 'link' => '/pages/ordersPage/index.php'],
         ['label' => 'Services', 'link' => '/pages/services/index.php'],
         ['label' => 'About Us', 'link' => '/pages/about-us/index.php'],
 
@@ -68,7 +68,7 @@ function navHeader(array $user = null): void
                             <?php echo htmlspecialchars($user['role']); ?>
                         </span>
                     </div>
-                    <a class="btn btn-group logout" href="<?php echo htmlspecialchars($rightButton['logoutLink']); ?>">
+                    <a class="btn-5" href="<?php echo htmlspecialchars($rightButton['logoutLink']); ?>">
                         <?php echo htmlspecialchars($rightButton['logout']); ?>
                     </a>
                 <?php else: ?>
