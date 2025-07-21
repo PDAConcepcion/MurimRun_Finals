@@ -4,6 +4,8 @@ declare(strict_types=1);
 require_once BASE_PATH . '/bootstrap.php';
 require_once BASE_PATH . '/vendor/autoload.php';
 require_once UTILS_PATH . '/deliveries.util.php';
+require_once UTILS_PATH . '/sectCourier.util.php';
+require_once UTILS_PATH . '/auth.utils.php';
 require_once UTILS_PATH . '/envSetter.util.php';
 
 Auth::init();
@@ -47,7 +49,14 @@ if ($action === 'add' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         'weight_kg' => (float)($_POST['weight_kg'] ?? 0),
     ];
     $success = Deliveries::add($pdo, $data);
-    header('Location: /pages/deliveries/index.php?message=' . ($success ? 'added' : 'add_failed'));
+
+    // Set courier as unavailable if delivery was added
+    if ($success && !empty($data['courier_id'])) {
+        SectCouriers::setStatus($pdo, $data['courier_id'], false);
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode(['success' => $success]);
     exit;
 }
 
