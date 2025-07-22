@@ -1,14 +1,15 @@
 <?php
+require_once LAYOUTS_PATH . '/main.layout.php';
 
 $sects = require_once DUMMIES_PATH . '/sectcouriers.staticData.php';
 
-?>
 
-<link rel="stylesheet" href="/assets/css/style.css">
-<link rel="stylesheet" href="assets/css/orders.css">
+$pageCss = [
+    '/assets/css/style.css',
+    'assets/css/orders.css'
+];
 
-
-
+renderMainLayout(function () use ($sects) { ?>
 <div class="page">
     <div class="background ims">
         <div class="overlay"></div>
@@ -86,3 +87,4 @@ $sects = require_once DUMMIES_PATH . '/sectcouriers.staticData.php';
 
     </div>
 </div>
+<?php }, 'Hire A Courier', ['css' => $pageCss]);
