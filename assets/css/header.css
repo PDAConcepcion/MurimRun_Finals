@@ -2,7 +2,7 @@
   top: 0px;
   position: fixed;
   width: 100%;
-  background-color: var(--box-transparent);
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,10 +16,10 @@
 
 .header-container {
   display: flex;
+  align-items: center;
   height: 60px;
-  width: 100%;
   max-width: 1200px;
-  justify-content: space-between;
+  width: 100%;
   margin: 0;
   padding: 0px;
 }
@@ -34,12 +34,41 @@
   color: var(--color-success);
 }
 
-.left-section,
-.middle-section,
-.right-section {
-  display: flex;
+.middle-section {
   justify-content: center;
+}
+
+.right-section {
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
+.left-section {
+  flex: 2;
+}
+.middle-section {
+  flex: 5;
+}
+.right-section {
+  flex: 3;
+}
+
+.user-login {
   align-items: center;
+  text-align: right;
+  margin-right: 12px;
+  color: black;
+}
+
+.username {
+  font-size: 0.9em;
+  color: rgb(50, 50, 50);
+}
+
+.email {
+  font-weight: 300;
+  font-size: var(--font-xs);
+  color: rgb(91, 91, 91);
 }
 
 .btn-group a {
@@ -49,24 +78,57 @@
 
 .nav-btn {
   display: flex;
-  align-items: center;
+  justify-content: center;
   cursor: pointer;
   height: 100%;
 }
 
+.btn-group {
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: auto;
+}
+
 .btn-4 {
+  width: auto;
   padding: 18px;
   margin: 0px;
   text-decoration: none;
-  color: white;
-  font-size: 18px;
-  font-weight: 700;
+  color: var(--font-sm);
+  font-size: var(--font-sm);
   transition: all 0.2s ease-in;
 }
 
 .btn-4:hover {
-  background-color: rgb(230, 230, 230);
-  color: var(--color-action);
+  background-color: var(--btn-color);
+  color: white;
+}
+
+.btn-4:focus {
+  background-color: var(--btn-color);
+  color: white;
+}
+
+.btn-5 {
+  padding: 10px 20px;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--btn-color);
+  text-decoration: none;
+  background-color: transparent;
+  border: 2px solid var(--btn-color);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-5:hover,
+.btn-5.active {
+  background-color: var(--btn-color);
+  color: white;
 }
 
 @media (max-width: 1920px) {
