@@ -14,23 +14,29 @@ function navHeader(array $user = null): void
         'logoutLink' => '/handlers/auth.handlers.php?action=logout'
     ];
 
-        // Nav links for guests
+    // Nav links for guests
     $guestNavList = [
-        ['label' => 'Orders', 'link' => '/pages/orders/index.php'],
         ['label' => 'Services', 'link' => '/pages/services/index.php'],
         ['label' => 'About Us', 'link' => '/pages/about-us/index.php'],
     ];
 
     $userNavList = [
-        ['label' => 'Dashboard', 'link' => '/pages/dashboard/index.php'],
         ['label' => 'My Account', 'link' => '/pages/accountPage/index.php'],
-        ['label' => 'Orders', 'link' => '/pages/orders/index.php'],
+        ['label' => 'Orders', 'link' => '/pages/ordersPage/index.php'],
         ['label' => 'Services', 'link' => '/pages/services/index.php'],
         ['label' => 'About Us', 'link' => '/pages/about-us/index.php'],
+
+    ];
+
+    $currentPath = $_SERVER['REQUEST_URI'];
+
+    $hideButtonsPages = [
+        '/pages/loginPage/index.php',
+        '/pages/signupPage/index.php'
     ];
 
     $navList = (Auth::check() && $user) ? $userNavList : $guestNavList;
-?>
+    ?>
     <header class="header-section">
         <div class="header-container">
 
@@ -54,26 +60,31 @@ function navHeader(array $user = null): void
             <div class="right-section">
                 <?php if (Auth::check() && $user): ?>
                     <!-- User Info and Logout -->
-                    <div class="user-info" style="margin-right: 16px; text-align: right;">
-                        <span><strong><?php echo htmlspecialchars($user['username']); ?></strong></span><br>
-                        <span><?php echo htmlspecialchars($user['email']); ?></span><br>
-                        <span style="font-size: 0.9em; color: #888;">
+                    <div class="user-login">
+                        <span class="username">
+                            <strong>Hello, <?php echo htmlspecialchars($user['username']); ?></strong></span><br>
+                        <span class="email"><?php echo htmlspecialchars($user['email']); ?></span><br>
+                        <span class="role">
                             <?php echo htmlspecialchars($user['role']); ?>
                         </span>
                     </div>
-                    <a class="btn" href="<?php echo htmlspecialchars($rightButton['logoutLink']); ?>">
+                    <a class="btn-5" href="<?php echo htmlspecialchars($rightButton['logoutLink']); ?>">
                         <?php echo htmlspecialchars($rightButton['logout']); ?>
                     </a>
                 <?php else: ?>
-                    <!-- Login and SignUp Buttons -->
-                    <div class="btn-group">
-                        <a class="btn btn-left" href="<?php echo htmlspecialchars($rightButton['loginLink']); ?>">
-                            <?php echo htmlspecialchars($rightButton['login']); ?>
-                        </a>
-                        <a class="btn btn-right" href="<?php echo htmlspecialchars($rightButton['signupLink']); ?>">
-                            <?php echo htmlspecialchars($rightButton['signup']); ?>
-                        </a>
-                    </div>
+
+                    <?php if (!in_array($currentPath, $hideButtonsPages)): ?>
+                        <!-- Login and SignUp Buttons -->
+                        <div class="btn-group">
+                            <a class="btn btn-left" href="<?php echo htmlspecialchars($rightButton['loginLink']); ?>">
+                                <?php echo htmlspecialchars($rightButton['login']); ?>
+                            </a>
+                            <a class="btn btn-right" href="<?php echo htmlspecialchars($rightButton['signupLink']); ?>">
+                                <?php echo htmlspecialchars($rightButton['signup']); ?>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+
                 <?php endif; ?>
             </div>
 
