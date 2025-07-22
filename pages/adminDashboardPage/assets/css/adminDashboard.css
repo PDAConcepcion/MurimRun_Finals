@@ -2,8 +2,8 @@ p {
   color: var(--color-text);
 }
 
-.admin {
-  background-image: url(/pages/dashboard/assets/img/murimrun-bg-1.png);
+h1 {
+  color: var(--color-text);
 }
 
 .page {
@@ -14,28 +14,69 @@ p {
   top: 0px;
   align-items: center;
   height: 100%;
-}
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1;
+  padding-top: 60px;
 }
 
-.courier-container {
-  margin-top: 50px;
+.title-section {
+  justify-content: space-between;
+}
+
+.admin-db {
+  width: 900px;
+  padding-top: 20px;
+}
+
+.d-head {
   display: flex;
-  flex-direction: column;
-  gap: 30px;
-  z-index: 2;
+  align-items: center;
+  width: 100%;
+  padding: 5px 0px;
+  height: auto;
+}
+
+.d-head select {
+  padding: 5px;
+  text-align: center;
+  border: none;
+  background-color: rgb(219, 219, 219);
+  margin-left: 10px;
+}
+
+.db-table {
+  border: 1px solid rgb(219, 219, 219);
+  background-color: white;
+  border-radius: 16px;
+  width: 100%;
+  min-height: 500px;
+}
+
+.table-area {
+  width: 100%;
+}
+
+.table-area th,
+.table-area td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table-area th {
+  background-color: rgb(204, 204, 204);
+  font-weight: bold;
+}
+
+.table-area thead th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.table-area thead th:last-child {
+  border-top-right-radius: 12px;
 }
 
 .description {
-  color: var(--color-bg);
-  font-size: var(--font-md);
+  color: var(--color-text);
+  font-size: var(--font-sm);
   width: 100%;
 }
 
