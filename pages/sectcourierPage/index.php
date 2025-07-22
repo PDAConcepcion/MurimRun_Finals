@@ -5,7 +5,11 @@ $sects = require_once DUMMIES_PATH . '/sectcouriers.staticData.php';
 
 $pageCss = [
     '/assets/css/style.css',
-    'assets/css/orders.css'
+    'assets/css/sectcourier.css'
+];
+
+$pageJs = [
+    'assets/js/sectcourier.js'
 ];
 
 renderMainLayout(function () use ($sects) { ?>
@@ -90,4 +94,5 @@ renderMainLayout(function () use ($sects) { ?>
         </section>
     </div>
 </div>
-<?php }, 'Hire A Courier', ['css' => $pageCss]);
+
+<?php }, 'Hire A Courier', ['css' => $pageCss, 'js' => $pageJs]); ?>
