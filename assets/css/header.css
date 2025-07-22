@@ -57,20 +57,18 @@
   align-items: center;
   text-align: right;
   margin-right: 12px;
+  color: black;
 }
 
 .username {
   font-size: 0.9em;
-  color: var(--color-text);
+  color: rgb(50, 50, 50);
 }
 
 .email {
   font-weight: 300;
   font-size: var(--font-xs);
-}
-
-.role {
-  color: black;
+  color: rgb(91, 91, 91);
 }
 
 .btn-group a {
