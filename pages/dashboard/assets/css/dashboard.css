@@ -90,6 +90,11 @@ h1 {
   background-color: #1c1c1c;
 }
 
+.courier-img img{
+  width: inherit;
+  height: inherit;
+}
+
 .info-block {
   min-width: 0;
   flex: 1;
@@ -113,4 +118,24 @@ h1 {
 
 .sc {
   align-self: flex-end;
+}
+
+.grayed-out {
+    opacity: 0.4;
+    pointer-events: none;
+    filter: grayscale(1);
+}
+
+.deselect-btn {
+    background-color: var(--btn-color-dark);
+    color: #fff;
+    border-radius: var(--border-radius);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#deliveryResult {
+    margin-top: 10px;
+    font-weight: bold;
 }

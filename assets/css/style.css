@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   margin: 0;
@@ -10,16 +14,16 @@ body {
 }
 
 main {
-  width: 100%;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 section {
-  margin: 0;
+  width: 100%;
   padding: 0;
 }
 
@@ -27,7 +31,7 @@ a {
   text-decoration: none;
 }
 
-div h1 {
+h1 {
   color: var(--color-text);
 }
 
@@ -43,7 +47,7 @@ header {
   --font-lg: 2.62rem; /* 41.89px */
   --font-xl: 4.24rem; /* 67.77px */
   --font-xxl: 6.85rem; /* 109.64px */
-  --box-transparent: rgba(255, 255, 255, 0.7);
+  --box-transparent: rgba(255, 255, 255, 0.5);
   --color-bg: #f5f5f5;
   --color-text: #1c1c1c;
   --color-break: #cbaf87;
@@ -52,24 +56,20 @@ header {
   --shadow-def: 2px 4px 6px rgba(0, 0, 0, 0.2);
   --bg-blur: blur(3px);
   --box-highlight: 1px solid rgb(230, 230, 230);
+  --box-radius: 20px;
 }
 
-.head-section {
+.title-section {
   display: flex;
-  flex-direction: column;
-  width: 1200px;
+  width: 100%;
+  align-items: center;
 }
 
-.head-title {
+.title-box {
   display: flex;
   justify-content: space-between;
   padding: 20px 0px;
-}
-
-.time-text {
   color: var(--color-bg);
-  font-size: var(--font-md);
-  font-weight: 700;
 }
 
 .page {
@@ -86,7 +86,6 @@ header {
 }
 
 .background {
-  background-image: url(/assets/img/murimrun-bg-2.png);
   height: 520px;
   width: 100%;
   position: fixed;
@@ -94,13 +93,37 @@ header {
   z-index: -5;
 }
 
+.ims {
+  background-image: url(/assets/img/murimrun-bg-2.png);
+}
+
 .overlay {
+  display: flex;
+  position: absolute;
   z-index: -4;
   width: 100%;
-  display: flex;
-  position: relative;
   background-color: rgba(0, 0, 0, 0.463);
   height: 100%;
+}
+
+.container {
+  display: flex;
+  width: 1200px;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.wd {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 200px;
+}
+
+@media (max-width: 1366px) {
+  .container {
+    width: 900px;
+  }
 }
 
 .intro {
@@ -156,7 +179,8 @@ header {
   height: 220px;
   background-color: black;
 }
-*/ .description-container {
+
+.description-container {
   align-self: stretch;
   text-align: left;
 }
@@ -200,6 +224,7 @@ header {
   border-radius: var(--border-radius);
   overflow: hidden;
   background-color: var(--btn-color);
+  margin: 20px 0px;
 }
 
 .btn:hover {

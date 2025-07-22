@@ -19,7 +19,7 @@ Auth::init();
 $sessionUser = Auth::user();
 
 if (!$sessionUser) {
-    header('Location: /pages/loginPage/index.php');
+    header('Location: /errors/forbidden.error.php');
     exit;
 }
 
