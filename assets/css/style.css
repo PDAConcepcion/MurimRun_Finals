@@ -73,7 +73,7 @@ header {
 }
 
 .page {
-  background-size: cover;
+  background-size: cover !important;
   background-position: center;
 }
 
