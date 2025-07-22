@@ -1,7 +1,33 @@
 <?php
 require_once LAYOUTS_PATH . '/main.layout.php';
+require_once UTILS_PATH . '/sectCourier.util.php';
+require_once UTILS_PATH . '/envSetter.util.php';
 
-$sects = require_once DUMMIES_PATH . '/sectcouriers.staticData.php';
+// Setup DB connection
+$host = $databases['pgHost'];
+$port = $databases['pgPort'];
+$username = $databases['pgUser'];
+$password = $databases['pgPassword'];
+$dbname = $databases['pgDB'];
+$dsn = "pgsql:host={$host};port={$port};dbname={$dbname}";
+$pdo = new PDO($dsn, $username, $password, [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+]);
+
+$couriers = SectCouriers::getAll($pdo);
+
+$sectNames = array_values(array_unique(array_filter(array_map(
+    fn($courier) => $courier['sectname'] ?? null,
+    $couriers
+))));
+
+$sectImage = [
+    '../../assets/img/Vermilion_Bird_Sect.png',
+    '../../assets/img/White_Tiger_Sect.png',
+    '../../assets/img/Black_turtiose_Sect.png',
+    '../../assets/img/Azure_Dragon_Sect.png',
+];
+
 
 $pageCss = [
     '/assets/css/style.css',
@@ -12,7 +38,7 @@ $pageJs = [
     'assets/js/sectcourier.js'
 ];
 
-renderMainLayout(function () use ($sects) { ?>
+renderMainLayout(function () use ($sectNames, $sectImage) { ?>
 <div class="page">
     <!-- Background image and overlay -->
     <div class="background ims">
@@ -47,18 +73,16 @@ renderMainLayout(function () use ($sects) { ?>
             <div class="content clr">
                 <h1>Choose a SECT</h1>
                 <div class="select-sect">
-                    <!-- Loop through sects and display each as a selectable option -->
-                    <?php foreach ($sects as $key => $sectDetail): ?>
+                    <?php for ($i = 0; $i < count($sectNames); $i++): ?>
                         <a href="" class="container" style="color: white;">
-                            <div class="sect-photo">
-                                <!-- sect photo here -->
-                            </div>
                             <div class="sect-deets">
-                                <!-- sect name here -->
-                                <h3><?php echo $sectDetail['sectname'] ?></h3>
+                                <h3><?php echo htmlspecialchars($sectNames[$i]); ?></h3>
+                            </div>
+                            <div class="sect-photo">
+                                <img src="<?php echo $sectImage[$i] ?? ''; ?>" alt="<?php echo htmlspecialchars($sectNames[$i]); ?>">
                             </div>
                         </a>
-                    <?php endforeach ?>
+                    <?php endfor; ?>
                 </div>
                 <p>
                     <!-- Additional info about sect selection -->
