@@ -25,6 +25,7 @@ function navHeader(array $user = null): void
         ['label' => 'Orders', 'link' => '/pages/ordersPage/index.php'],
         ['label' => 'Services', 'link' => '/pages/services/index.php'],
         ['label' => 'About Us', 'link' => '/pages/about-us/index.php'],
+        ['label' => 'Dashboard', 'link' => '/pages/adminDashboardPage/index.php']
 
     ];
 
