@@ -4,7 +4,16 @@ label {
 }
 
 .page {
-  position: fixed;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+video {
+  position: absolute;
+  z-index: -10;
 }
 
 .account-container {
@@ -57,6 +66,7 @@ label {
   box-sizing: border-box;
   padding: 40px 30px;
   box-shadow: var(--shadow-def);
+  border: var(--box-highlight);
 }
 
 .logo {
@@ -95,7 +105,7 @@ input {
   margin-bottom: 12px;
   margin-top: 4px;
   font-size: 14px;
-  padding: 2px;
+  padding: 10px 5px;
   box-sizing: border-box;
   border-style: solid;
   border-width: 1px;
