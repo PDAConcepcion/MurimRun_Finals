@@ -14,6 +14,7 @@ label {
 video {
   position: absolute;
   z-index: -10;
+  background-size: ;
 }
 
 .account-container {
@@ -67,6 +68,7 @@ video {
   padding: 40px 30px;
   box-shadow: var(--shadow-def);
   border: var(--box-highlight);
+  gap: 10px;
 }
 
 .logo {
@@ -77,6 +79,7 @@ video {
   display: flex;
   flex-direction: column;
   width: 100%;
+  gap: 5px;
 }
 
 .submit:hover {
@@ -84,14 +87,20 @@ video {
   color: var(--btn-color);
 }
 
-.btn-group {
+.submitBtn {
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: center;
 }
 
 .create {
-  color: var(--btn-color);
   font-weight: 700;
+  color: var(--color-text);
+}
+
+.create:hover {
+  color: var(--btn-color);
 }
 
 label {
@@ -111,8 +120,4 @@ input {
   border-width: 1px;
   border-color: lightgrey;
   border-radius: 5px;
-}
-
-input:placeholder-shown {
-  padding: 6px;
 }
