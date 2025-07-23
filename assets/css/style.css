@@ -251,6 +251,11 @@ input:required + label::after {
   border-radius: var(--border-radius);
   overflow: hidden;
   background-color: var(--btn-color);
+  transition: all 0.25s ease-out;
+}
+
+.btn-group:hover {
+  transform: scale(1.05);
 }
 
 .btn:hover {
@@ -280,15 +285,17 @@ input:required + label::after {
   color: white;
   border-radius: 22px;
   font-weight: bold;
-  transition: 0.2s all ease-in-out;
+  transition: all 0.25s ease-out;
   font-size: var(--font-sm);
   margin: 0;
   align-items: center;
+  box-shadow: var(--shadow-def);
 }
 
 .btn-2:hover {
   background-color: var(--btn-color-dark);
   color: white;
+  transform: scale(1.1);
 }
 
 .btn-2:active {
@@ -344,6 +351,7 @@ input:required + label::after {
 
 .btn-5:hover,
 .btn-5.active {
+  box-shadow: var(--shadow-def);
   background-color: var(--btn-color);
   color: white;
 }
