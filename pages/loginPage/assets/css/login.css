@@ -4,7 +4,17 @@ label {
 }
 
 .page {
-  position: fixed;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+video {
+  position: absolute;
+  z-index: -10;
+  background-size: ;
 }
 
 .account-container {
@@ -57,6 +67,8 @@ label {
   box-sizing: border-box;
   padding: 40px 30px;
   box-shadow: var(--shadow-def);
+  border: var(--box-highlight);
+  gap: 10px;
 }
 
 .logo {
@@ -67,6 +79,7 @@ label {
   display: flex;
   flex-direction: column;
   width: 100%;
+  gap: 5px;
 }
 
 .submit:hover {
@@ -74,14 +87,20 @@ label {
   color: var(--btn-color);
 }
 
-.btn-group {
+.submitBtn {
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: center;
 }
 
 .create {
-  color: var(--btn-color);
   font-weight: 700;
+  color: var(--color-text);
+}
+
+.create:hover {
+  color: var(--btn-color);
 }
 
 label {
@@ -95,14 +114,10 @@ input {
   margin-bottom: 12px;
   margin-top: 4px;
   font-size: 14px;
-  padding: 2px;
+  padding: 10px 5px;
   box-sizing: border-box;
   border-style: solid;
   border-width: 1px;
   border-color: lightgrey;
   border-radius: 5px;
-}
-
-input:placeholder-shown {
-  padding: 6px;
 }

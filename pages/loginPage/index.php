@@ -35,26 +35,26 @@ renderMainLayout(function () use ($error) { ?>
                     <div class="login-field">
                         <?php if ($error === 'invalid_credential'): ?>
                             <div class="error-message" style="color: red; margin-bottom: 10px;">
-                                Invalid username or password.
+                                Invalid username or password!
                             </div>
                         <?php endif; ?>
 
                         <form action="../../handlers/auth.handlers.php?action=login" method="post">
                             <label for="username">Username or Email</label>
-                            <input type="text" name="username" id="username" placeholder="Enter Username or Email" required>
+                            <input type="text" name="username" id="username" placeholder="e.g. you@email.com" required>
 
                             <label for="password">Password</label>
                             <input type="password" name="password" id="password" placeholder="Enter Password" required>
 
-                            <div class="btn-group">
-                                <button type="submit" class="btn">Submit</button>
-                            </div>
-                            <div class="account">
-                                <p>New to MurimRun? <a href="" class="create">Create a free account</a></p>
-
-
+                            <div>
+                                <button type="submit" class="btn-2 submitBtn">Submit</button>
                             </div>
                         </form>
+
+                    </div>
+                    <div class="account">
+                        <p>New to MurimRun? <a href="/pages/signupPage/index.php" class="create">Create a free account</a>
+                        </p>
                     </div>
                 </div>
             </div>
