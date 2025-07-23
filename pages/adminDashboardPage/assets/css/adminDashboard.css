@@ -32,6 +32,7 @@ h1 {
   width: 100%;
   padding: 5px 0px;
   height: auto;
+  justify-content: space-between;
 }
 
 .d-head select {
@@ -162,4 +163,14 @@ h1 {
 
 .us {
   color: #2a9d8f;
+}
+
+.db-buttons {
+  background-color: var(--btn-action);
+}
+
+.btn-5 {
+  padding: 5px 10px;
+  font-size: var(--font-md);
+  font-weight: bolder;
 }
