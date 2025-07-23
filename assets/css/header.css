@@ -68,7 +68,13 @@
 .email {
   font-weight: 300;
   font-size: var(--font-xs);
-  color: rgb(91, 91, 91);
+  color: rgb(110, 110, 110);
+}
+
+.role {
+  color: rgb(50, 50, 50);
+  font-size: var(--font-xxs);
+  font-weight: bold;
 }
 
 .btn-group a {
