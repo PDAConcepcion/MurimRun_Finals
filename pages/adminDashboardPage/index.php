@@ -14,7 +14,6 @@ navHeader()
 
 <div class="page admin">
 
-    <div class="overlay"></div>
 
     <div class="container">
 
