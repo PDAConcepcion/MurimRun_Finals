@@ -1,6 +1,9 @@
 <?php
 require_once LAYOUTS_PATH . '/main.layout.php';
 
+require_once UTILS_PATH . '/auth.utils.php';
+
+
 $mongoCheckerResult = require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
 $postgresCheckerResult = require_once HANDLERS_PATH . '/postgreChecker.handler.php';
 
@@ -42,10 +45,10 @@ renderMainLayout(function () use ($services) { ?>
                 hendrerit semper vel class aptent taciti sociosqu. Ad litora
                 torquent per conubia nostra inceptos himenaeos.
             </p>
+
             <div class="actions">
 
                 <div class="btn-group sh">
-
                     <a class="btn btn-left" href="/pages/signupPage/index.php">
                         Create Account
                     </a>
@@ -53,6 +56,9 @@ renderMainLayout(function () use ($services) { ?>
                         Log In
                     </a>
                 </div>
+
+                <a class="btn-2" href="/pages/ordersPage/index.php">Get started</a>
+
             </div>
             <section class="cards">
                 <?php foreach ($services as $info): ?>
