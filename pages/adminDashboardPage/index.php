@@ -31,18 +31,28 @@ navHeader()
 
         <section class="admin-db">
             <div class="d-head">
-                <label for="categorySelect"><strong>Choose a category:</strong></label>
-                <select id="categorySelect" onchange="showCategory(this.value)">
-                    <option value="">-- Select --</option>
-                    <option value="users">Registered Users</option>
-                    <option value="deliveries">Ongoing Deliveries</option>
-                </select>
+                <div class="categories">
+                    <label for="categorySelect"><strong>Choose a category:</strong></label>
+                    <select id="categorySelect" onchange="showCategory(this.value)">
+                        <option value="">-- Select --</option>
+                        <option value="users">Registered Users</option>
+                        <option value="deliveries">Ongoing Deliveries</option>
+                    </select>
+                </div>
+                <div class="db-buttons">
+                    <button id="addBtn" class="btn-5" title="Add to database">Add</button>
+                    <button id="deleteBtn" class="btn-5" title="Delete from database">Delete</button>
+                </div>
+
             </div>
 
             <div class="db-table">
                 <table id="users" cellpadding="2" class="table-area" style="display: none">
                     <thead>
                         <tr>
+                            <th style="display: none" class="select-header">
+                                <input type="checkbox" id="selectAll" disabled>
+                            </th>
                             <th>Username</th>
                             <th>First Name</th>
                             <th>Last Name</th>
@@ -54,6 +64,10 @@ navHeader()
                         <?php foreach ($users as $user): ?>
                             <?php if (strtolower($user['role']) !== 'admin'): ?>
                                 <tr>
+                                    <td style="display: none" class="select-cell">
+                                        <input type="checkbox" name="selected_users[]"
+                                            value="<?= htmlspecialchars($user['username']) ?>" disabled>
+                                    </td>
                                     <td><?php echo htmlspecialchars($user['username']); ?></td>
                                     <td><?php echo htmlspecialchars($user['first_name']); ?></td>
                                     <td><?php echo htmlspecialchars($user['last_name']); ?></td>
