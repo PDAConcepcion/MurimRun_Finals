@@ -1,4 +1,5 @@
 footer {
+  bottom: 0px;
   width: 100%;
 }
 
@@ -11,9 +12,7 @@ footer {
 }
 
 h1 {
-  color: rgb(41, 31, 30);
   padding: 00;
-  font-size: 27px;
 }
 
 .members-container {
