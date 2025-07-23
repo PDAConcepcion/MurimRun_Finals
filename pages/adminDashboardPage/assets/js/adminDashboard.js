@@ -4,7 +4,8 @@ function showCategory(category) {
 
   if (userTable) {
     userTable.style.display = "none";
-    // Hide and disable user checkboxes
+
+    // hide/disable user checkboxes
     const headers = userTable.querySelectorAll(".select-header");
     const cells = userTable.querySelectorAll(".select-cell");
     const boxes = userTable.querySelectorAll(".select-cell input");
@@ -31,6 +32,8 @@ function showCategory(category) {
     deliveryTable.style.display = "table";
   }
 }
+
+//for add/delete button function
 
 document.addEventListener("DOMContentLoaded", function () {
   const addBtn = document.getElementById("addBtn");
