@@ -1,23 +1,18 @@
 <?php
+require_once LAYOUTS_PATH . '/main.layout.php';
 
+$pageCss = [
+    '../../assets/css/style.css',
+    '../../assets/css/footer.css',
+    '../../assets/css/header.css',
+    'assests/css/deliveries.css'
+];
 
-?>
+$pageJs = [
+    'assets/js/deliveries.js'
+];
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deliveries</title>
-
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/deliveries.css">
-</head>
-
-<body>
-
-
+renderMainLayout(function () { ?>
     <div class="page">
         <div class="container">
             <div class="search-bar">
@@ -29,13 +24,12 @@
                 </div>
             </div>
 
-
-
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc at convallis pulvinar, erat
                 lorem posuere elit, vel tincidunt nibh sem in nisl. Vestibulum ante ipsum primis in faucibus orci
                 luctus.
             </p>
+
             <section class="dlv-sec">
                 <div class="dlv-head">
                     <div class="hd-1">Order ID</div>
@@ -59,11 +53,8 @@
                         <div class="hd-1">div5</div>
                     </div>
                 </div>
-
             </section>
         </div>
-
     </div>
-</body>
 
-</html>
+<?php }, 'Deliveries', ['css' => $pageCss, 'js' => $pageJs]); ?>
