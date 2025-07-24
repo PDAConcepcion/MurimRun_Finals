@@ -31,12 +31,12 @@ $services = [
 
 renderMainLayout(function () use ($services) { ?>
 
+    <div class="background ims">
+        <div class="overlay"></div>
+    </div>
     <div class="page">
-        <div class="background ims">
-            <div class="overlay"></div>
-        </div>
         <div class="intro">
-            <h1 class="head-text">MurimRun</h1>
+            <div class="murimrun-logo"><img src="/assets/img/murimrun-wordmark-white.png" alt=""></div>
             <p class="intro-text">
                 Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
                 faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
@@ -62,22 +62,22 @@ renderMainLayout(function () use ($services) { ?>
 
             </div>
 
-            <section class="cards">
-                <?php foreach ($services as $info): ?>
-                    <div class="card-container scale-1">
-                        <div class="image-container">
-                            <img class="pic scale-2" src="/assets/img/Vermilion_Bird_Sect.png" alt="">
-                        </div>
-                        <div class="description-container">
-                            <h2><?php echo $info['service'] ?></h2>
-                            <p><?php echo $info['description'] ?></p>
-                        </div>
-                    </div>
-                <?php endforeach ?>
-            </section>
 
 
         </div>
+        <section class="cards">
+            <?php foreach ($services as $info): ?>
+                <div class="card-container scale-1">
+                    <div class="image-container">
+                        <img class="pic scale-2" src="/assets/img/Vermilion_Bird_Sect.png" alt="">
+                    </div>
+                    <div class="description-container">
+                        <h2><?php echo $info['service'] ?></h2>
+                        <p><?php echo $info['description'] ?></p>
+                    </div>
+                </div>
+            <?php endforeach ?>
+        </section>
         <section class="carousel">
             <div class="carousel-track">
                 <img src="image1.jpg" class="carousel-image" alt="">
