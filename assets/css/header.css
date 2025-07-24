@@ -17,7 +17,7 @@
 .header-container {
   display: flex;
   align-items: center;
-  height: 60px;
+  height: 70px;
   max-width: 1200px;
   width: 100%;
   margin: 0;
@@ -25,8 +25,8 @@
 }
 
 .left-section {
-  font-size: var(--font-md);
-  font-weight: 900;
+  flex: 2;
+  display: flex;
 }
 
 .left-section a {
@@ -34,34 +34,99 @@
   color: var(--color-success);
 }
 
-.middle-section {
+.logo-box {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  padding-right: 20px;
+  border-right: 1px solid rgb(255, 255, 255);
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  backdrop-filter: var(--bg-blur);
+  align-items: baseline;
+  position: absolute;
+  top: 70px;
+  background: var(--color-bg);
+  width: auto;
+}
+
+.nav-item {
+  width: 200px;
+  padding: 20px 50px 20px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-item:hover {
+  background-color: rgb(201, 201, 201);
+}
+
+.nav-btn {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  height: 100%;
+  font-weight: 500;
+}
+
+.nav-btn a {
+  font-size: 1.1rem;
 }
 
 .right-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-left {
   display: inline-flex;
-  justify-content: flex-end;
+  flex-direction: row;
+  width: auto;
+  height: 70px;
+  gap: 0;
+  align-items: center;
+  padding: 20px;
+  margin-right: 20px;
+  gap: 10px;
 }
 
-.left-section {
-  flex: 2;
-}
-.middle-section {
-  flex: 5;
-}
-.right-section {
-  flex: 3;
-}
-
-.user-login {
+.user-right {
   align-items: center;
   text-align: right;
-  margin-right: 12px;
   color: black;
 }
 
+.user-web,
+.user-mobile {
+  display: flex;
+  background-color: rgb(209, 209, 209);
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  overflow: hidden;
+  align-items: flex-end;
+  justify-content: center;
+}
+.user-web img,
+.user-mobile img {
+  width: 80%;
+  height: auto;
+  align-self: flex-end;
+}
+
 .username {
-  font-size: 0.9em;
+  font-size: var(--font-sm);
   color: rgb(50, 50, 50);
 }
 
@@ -73,20 +138,13 @@
 
 .role {
   color: rgb(50, 50, 50);
-  font-size: var(--font-xxs);
+  font-size: var(--font-sm);
   font-weight: bold;
 }
 
 .btn-group a {
   margin-left: auto;
   font-size: var(--font-sm);
-}
-
-.nav-btn {
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
-  height: 100%;
 }
 
 .btn-group {
@@ -106,8 +164,7 @@
 }
 
 .btn-4:hover {
-  background-color: var(--btn-color);
-  color: white;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .btn-4:focus {
@@ -117,6 +174,7 @@
 
 .btn-5 {
   padding: 10px 20px;
+  margin-left: 10px;
   font-size: var(--font-sm);
   font-weight: 600;
   color: var(--btn-color);
@@ -137,26 +195,101 @@
   color: white;
 }
 
-@media (max-width: 1920px) {
+/* 4K and above (Ultra HD) */
+@media (min-width: 2560px) {
+  /* Styles for very large screens */
+  .header-section {
+    min-height: 100px;
+  }
+}
+
+/* Full HD - 1080p and large desktops */
+@media (min-width: 1920px) and (max-width: 2559px) {
+  /* Styles for desktops */
   .header-container {
     max-width: 1200px;
   }
-}
-
-@media (max-width: 1440px) {
-  .header-container {
-    max-width: 1100px;
+  .header-section {
+    min-height: 70px;
   }
 }
 
-@media (max-width: 1366px) {
+/* Laptops and smaller desktops (HD ready) */
+@media (min-width: 1366px) and (max-width: 1919px) {
+  /* Styles for laptops */
+}
+
+/* Tablets landscape / small laptops */
+@media (min-width: 1024px) and (max-width: 1365px) {
+  /* Styles for tablets in landscape */
+  .header-section {
+    min-height: 50px;
+  }
   .header-container {
-    width: 900px;
+    max-width: 900px;
+  }
+
+  .mobile-nav.active {
+    display: flex;
+  }
+
+  .nav-btn a {
+    font-size: 0.9rem;
+  }
+
+  .btn-4 {
+    padding: auto 10px;
+  }
+
+  .right-section {
+    transform: scale(90%);
+  }
+
+  .logo-box {
+    border-right: none;
+  }
+  .user-login span {
+    font-size: var(--font-xxs);
   }
 }
 
-@media (max-width: 1024px) {
+/* Tablets portrait / large phones landscape */
+@media (max-width: 1023px) {
+  /* Styles for tablets portrait and landscape phones */
   .header-container {
-    max-width: 95%;
+    max-width: 740px;
   }
+
+  .left-section {
+    gap: 20px;
+  }
+  .hamburger {
+    display: block;
+  }
+  .mobile-nav.active {
+    display: flex;
+  }
+
+  .user-right {
+    display: none;
+  }
+  .user-web.dp {
+    display: none;
+  }
+  .nav-btn {
+    display: none;
+  }
+  .logo-box {
+    border-right: none;
+  }
+}
+
+/* Phones (portrait) */
+@media (min-width: 480px) and (max-width: 767px) {
+  /* Styles for medium phones */
+}
+
+/* Small phones */
+@media (max-width: 479px) {
+  /* Styles for small phones */
 }

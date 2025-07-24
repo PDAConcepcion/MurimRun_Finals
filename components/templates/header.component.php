@@ -22,12 +22,13 @@ function navHeader(array $user = null): void
 
     $userNavList = [
         ['label' => 'My Account', 'link' => '/pages/accountPage/index.php'],
-        ['label' => 'Orders', 'link' => '/pages/ordersPage/index.php'],
-        ['label' => 'Services', 'link' => '/pages/services/index.php'],
+        ['label' => 'Orders', 'link' => '/pages/dashboard/index.php'],
+        ['label' => 'Services', 'link' => '/pages/ordersPage/index.php'],
         ['label' => 'About Us', 'link' => '/pages/about-us/index.php'],
         ['label' => 'Dashboard', 'link' => '/pages/adminDashboardPage/index.php']
 
     ];
+
 
     $currentPath = $_SERVER['REQUEST_URI'];
 
@@ -42,32 +43,71 @@ function navHeader(array $user = null): void
         <div class="header-container">
 
             <!-- Left: Logo -->
-            <div class="left-section">
-                <a href="/index.php">MurimRun</a>
-            </div>
+            <div class="left-section navbar">
 
-            <!-- Middle: Navigation Links -->
-            <div class="middle-section">
-                <div class="nav-btn">
+                <!-- hamburger section for smaller screens -->
+
+                <div class="hamburger" id="hamburger">
+                    ☰
+                </div>
+
+                <div class="mobile-nav" id="mobileNav">
+                    <?php if (Auth::check() && $user): ?>
+                        <div class="user-left">
+
+                            <div class="user-mobile dp">
+                                <img src="/assets/img/user-icon.png" alt="">
+
+                            </div>
+
+                            <div class="user-info">
+                                <span class="username">
+                                    <strong>Hello, <?php echo htmlspecialchars($user['username']); ?></strong></span><br>
+                                <span class="email"><?php echo htmlspecialchars($user['email']); ?></span><br>
+                                <span class="role">
+                                    <?php echo htmlspecialchars($user['role']); ?>
+                                </span>
+                            </div>
+
+                        </div>
+                    <?php endif; ?>
+
+                    <?php foreach ($navList as $item): ?>
+                        <a class="nav-item" href="<?php echo htmlspecialchars($item['link']); ?>">
+                            <?php echo htmlspecialchars($item['label']); ?>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+
+                <div class="logo-box">
+                    <a href="/index.php">MurimRun</a>
+                </div>
+                <nav class="nav-btn">
                     <?php foreach ($navList as $item): ?>
                         <a class="btn-4 und" href="<?php echo htmlspecialchars($item['link']); ?>">
                             <?php echo htmlspecialchars($item['label']); ?>
                         </a>
                     <?php endforeach; ?>
-                </div>
+                </nav>
+
             </div>
+
+
 
             <!-- Right: User Info or Auth Buttons -->
             <div class="right-section">
                 <?php if (Auth::check() && $user): ?>
                     <!-- User Info and Logout -->
-                    <div class="user-login">
+                    <div class="user-login user-right">
                         <span class="username">
                             <strong>Hello, <?php echo htmlspecialchars($user['username']); ?></strong></span><br>
                         <span class="email"><?php echo htmlspecialchars($user['email']); ?></span><br>
                         <span class="role">
                             <?php echo htmlspecialchars($user['role']); ?>
                         </span>
+                    </div>
+                    <div class="user-web dp">
+                        <img src="/assets/img/user-icon.png" alt="">
                     </div>
                     <a class="btn-5" href="<?php echo htmlspecialchars($rightButton['logoutLink']); ?>">
                         <?php echo htmlspecialchars($rightButton['logout']); ?>
