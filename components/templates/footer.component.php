@@ -1,5 +1,6 @@
 <?php
-function footer(array $customJs = []): void  { ?>
+function footer(array $customJs = []): void
+{ ?>
     </main>
     <footer>
         <div class="footer-container">
@@ -25,7 +26,9 @@ function footer(array $customJs = []): void  { ?>
             </div>
         </div>
     </footer>
-</body>
+    <script src="/assets/js/header.js"></script>
 
-</html>
+    </body>
+
+    </html>
 <?php } ?>
