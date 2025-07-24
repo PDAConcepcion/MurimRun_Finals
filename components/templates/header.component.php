@@ -57,7 +57,6 @@ function navHeader(array $user = null): void
 
                             <div class="user-mobile dp">
                                 <img src="/assets/img/user-icon.png" alt="">
-
                             </div>
 
                             <div class="user-info">
@@ -80,7 +79,11 @@ function navHeader(array $user = null): void
                 </div>
 
                 <div class="logo-box">
-                    <a href="/index.php">MurimRun</a>
+                    <a href="/index.php">
+
+                        <img src="/assets/img/murimrun-wordmark-red.png" alt="">
+                    </a>
+
                 </div>
                 <nav class="nav-btn">
                     <?php foreach ($navList as $item): ?>
