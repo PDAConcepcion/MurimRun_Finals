@@ -42,49 +42,51 @@ function navHeader(array $user = null): void
     <header class="header-section">
         <div class="header-container">
 
-            <!-- Left: Logo -->
-            <div class="left-section navbar">
 
-                <!-- hamburger section for smaller screens -->
+            <!-- hamburger section for smaller screens -->
 
-                <div class="hamburger" id="hamburger">
-                    ☰
-                </div>
+            <div class="hamburger" id="hamburger">
+                ☰
+            </div>
 
-                <div class="mobile-nav" id="mobileNav">
-                    <?php if (Auth::check() && $user): ?>
-                        <div class="user-left">
+            <div class="mobile-nav" id="mobileNav">
+                <?php if (Auth::check() && $user): ?>
+                    <div class="user-left">
 
-                            <div class="user-mobile dp">
-                                <img src="/assets/img/user-icon.png" alt="">
-                            </div>
-
-                            <div class="user-info">
-                                <span class="username">
-                                    <strong>Hello, <?php echo htmlspecialchars($user['username']); ?></strong></span><br>
-                                <span class="email"><?php echo htmlspecialchars($user['email']); ?></span><br>
-                                <span class="role">
-                                    <?php echo htmlspecialchars($user['role']); ?>
-                                </span>
-                            </div>
-
+                        <div class="user-mobile dp">
+                            <img src="/assets/img/user-icon.png" alt="">
                         </div>
-                    <?php endif; ?>
 
-                    <?php foreach ($navList as $item): ?>
-                        <a class="nav-item" href="<?php echo htmlspecialchars($item['link']); ?>">
-                            <?php echo htmlspecialchars($item['label']); ?>
-                        </a>
-                    <?php endforeach; ?>
-                </div>
+                        <div class="user-info">
+                            <span class="username">
+                                <strong>Hello, <?php echo htmlspecialchars($user['username']); ?></strong></span><br>
+                            <span class="email"><?php echo htmlspecialchars($user['email']); ?></span><br>
+                            <span class="role">
+                                <?php echo htmlspecialchars($user['role']); ?>
+                            </span>
+                        </div>
 
-                <div class="logo-box">
-                    <a href="/index.php">
+                    </div>
+                <?php endif; ?>
 
-                        <img src="/assets/img/murimrun-wordmark-red.png" alt="">
+                <?php foreach ($navList as $item): ?>
+                    <a class="nav-item" href="<?php echo htmlspecialchars($item['link']); ?>">
+                        <?php echo htmlspecialchars($item['label']); ?>
                     </a>
+                <?php endforeach; ?>
+            </div>
 
-                </div>
+
+            <div class="logo-box">
+                <a href="/index.php">
+
+                    <img src="/assets/img/murimrun-wordmark-red.png" alt="">
+                </a>
+
+            </div>
+
+            <div class="middle-section">
+
                 <nav class="nav-btn">
                     <?php foreach ($navList as $item): ?>
                         <a class="btn-4 und" href="<?php echo htmlspecialchars($item['link']); ?>">
@@ -92,10 +94,7 @@ function navHeader(array $user = null): void
                         </a>
                     <?php endforeach; ?>
                 </nav>
-
             </div>
-
-
 
             <!-- Right: User Info or Auth Buttons -->
             <div class="right-section">

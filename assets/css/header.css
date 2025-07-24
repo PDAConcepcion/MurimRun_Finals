@@ -6,17 +6,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   z-index: 100;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 0px;
-  padding: 0px;
-  border-bottom: 1px solid rgb(230, 230, 230);
   backdrop-filter: var(--bg-blur);
 }
 
 .header-container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 70px;
   max-width: 1600px;
   width: 100%;
@@ -24,24 +23,12 @@
   padding: 0px;
 }
 
-.left-section {
-  flex: 2;
-  display: flex;
-  align-items: center;
-}
-
-.left-section a {
-  text-decoration: none;
-  color: var(--color-success);
-}
-
 .logo-box {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: auto;
   padding-right: 10px;
-  border-right: 1px solid rgb(201, 201, 201);
 }
 
 .logo-box img {
@@ -57,6 +44,11 @@
   padding: 10px;
 }
 
+.middle-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .mobile-nav {
   display: none;
   flex-direction: column;
@@ -96,6 +88,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  width: auto;
 }
 
 .user-left {
@@ -164,7 +157,7 @@
 
 .btn-4 {
   width: auto;
-  padding: 18px;
+  padding: 24px;
   margin: 0px;
   text-decoration: none;
   color: var(--font-sm);
@@ -220,6 +213,7 @@
 /* Laptops and smaller desktops (HD ready) */
 @media (min-width: 1366px) and (max-width: 1919px) {
   /* Styles for laptops */
+
   .header-container {
     max-width: 1200px;
     margin: auto;
@@ -234,6 +228,7 @@
   }
   .header-container {
     max-width: 1000px;
+    flex: 1;
   }
 
   .mobile-nav.active {
@@ -274,9 +269,6 @@
     justify-content: space-between;
   }
 
-  .left-section {
-    gap: 20px;
-  }
   .hamburger {
     display: block;
   }
