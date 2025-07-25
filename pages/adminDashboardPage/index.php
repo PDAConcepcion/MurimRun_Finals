@@ -1,8 +1,22 @@
 <?php
 
 require_once LAYOUTS_PATH . '/main.layout.php';
-$users = require_once DUMMIES_PATH . '/users.staticData.php';
+require_once UTILS_PATH . '/envSetter.util.php';
+require_once UTILS_PATH . '/user.utils.php';
+require_once UTILS_PATH . '/deliveries.util.php';
 
+// Setup DB connection
+$host = $databases['pgHost'];
+$port = $databases['pgPort'];
+$username = $databases['pgUser'];
+$password = $databases['pgPassword'];
+$dbname = $databases['pgDB'];
+$dsn = "pgsql:host={$host};port={$port};dbname={$dbname}";
+$pdo = new PDO($dsn, $username, $password, [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+]);
+
+$users = userDatabase::ViewAll($pdo);
 
 $pageCss = [
     'assets/css/adminDashboard.css',
@@ -32,8 +46,8 @@ renderMainLayout(function () use ($users) { ?>
                         <label for="categorySelect"><strong>Choose a category:</strong></label>
                         <select id="categorySelect" onchange="showCategory(this.value)">
                             <option value="">-- Select --</option>
-                            <option value="users">Registered Users</option>
-                            <option value="deliveries">Ongoing Deliveries</option>
+                            <option value="users">Users</option>
+                            <option value="deliveries">Deliveries</option>
                         </select>
                     </div>
                     <div class="db-buttons">
