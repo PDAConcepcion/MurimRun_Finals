@@ -1,7 +1,10 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 0;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,16 +13,15 @@ body {
 }
 
 main {
-  width: 100%;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
 }
 
 section {
-  margin: 0;
+  width: 100%;
   padding: 0;
 }
 
@@ -27,12 +29,16 @@ a {
   text-decoration: none;
 }
 
-div h1 {
-  color: var(--color-text);
+label[for]::after {
+  content: "*";
+  color: var(--btn-color);
+  margin-left: 4px;
 }
 
-header {
-  top: 0px;
+input:required + label::after {
+  content: "*";
+  color: var(--btn-color);
+  margin-left: 4px;
 }
 
 :root {
@@ -43,7 +49,7 @@ header {
   --font-lg: 2.62rem; /* 41.89px */
   --font-xl: 4.24rem; /* 67.77px */
   --font-xxl: 6.85rem; /* 109.64px */
-  --box-transparent: rgba(255, 255, 255, 0.7);
+  --box-transparent: rgba(255, 255, 255, 0.5);
   --color-bg: #f5f5f5;
   --color-text: #1c1c1c;
   --color-break: #cbaf87;
@@ -52,28 +58,24 @@ header {
   --shadow-def: 2px 4px 6px rgba(0, 0, 0, 0.2);
   --bg-blur: blur(3px);
   --box-highlight: 1px solid rgb(230, 230, 230);
+  --box-radius: 20px;
 }
 
-.head-section {
+.title-section {
   display: flex;
-  flex-direction: column;
-  width: 1200px;
+  width: 100%;
+  align-items: center;
 }
 
-.head-title {
+.title-box {
   display: flex;
   justify-content: space-between;
   padding: 20px 0px;
-}
-
-.time-text {
   color: var(--color-bg);
-  font-size: var(--font-md);
-  font-weight: 700;
 }
 
 .page {
-  background-size: cover;
+  background-size: cover !important;
   background-position: center;
 }
 
@@ -83,32 +85,57 @@ header {
   width: 100%;
   height: 100%;
   align-items: center;
+  max-width: 1600px;
+  margin: auto;
 }
 
 .background {
-  background-image: url(/assets/img/murimrun-bg-2.png);
-  height: 520px;
+  height: 100%;
   width: 100%;
   position: fixed;
   background-position: center;
   z-index: -5;
 }
 
+.ims {
+  background-image: url(/assets/img/murimrun-bg-2.png);
+  width: 100%;
+}
+
 .overlay {
+  display: flex;
+  position: absolute;
   z-index: -4;
   width: 100%;
-  display: flex;
-  position: relative;
   background-color: rgba(0, 0, 0, 0.463);
   height: 100%;
 }
 
-.intro {
+.murimrun-logo {
+  text-shadow: var(--shadow-def);
+}
+
+.container {
+  display: flex;
+  width: 1200px;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.wd {
   display: flex;
   flex-direction: column;
-  width: 1200px;
-  height: 100%;
-  padding-top: 100px;
+  width: 100%;
+  height: 200px;
+}
+
+.intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 1600px;
+  height: 100vh;
 }
 
 .head-text {
@@ -124,6 +151,9 @@ header {
 
 .actions {
   margin: 10px 0px;
+  justify-content: center;
+  display: flex;
+  height: auto;
 }
 
 .sh {
@@ -147,6 +177,7 @@ header {
   border-radius: 10px;
   box-shadow: var(--shadow-def);
   backdrop-filter: var(--bg-blur);
+  border: var(--box-highlight);
 }
 
 .image-container {
@@ -155,8 +186,35 @@ header {
   width: 100%;
   height: 220px;
   background-color: black;
+  overflow: hidden;
 }
-*/ .description-container {
+
+.pic {
+  object-fit: contain;
+}
+
+.scale-1,
+.scale-2,
+.scale-3 {
+  transition: all 0.3s ease-out;
+}
+
+.scale-1:hover {
+  transform: scale(1.05);
+  background-color: white;
+}
+
+.scale-2:hover {
+  transform: scale(1.15);
+  background-color: white;
+}
+
+.scale-3:hover {
+  transform: scale(1.2);
+  background-color: white;
+}
+
+.description-container {
   align-self: stretch;
   text-align: left;
 }
@@ -221,6 +279,29 @@ header {
   border-bottom-left-radius: 0;
 }
 
+.btn-2 {
+  display: flex;
+  background-color: var(--btn-color);
+  border: 2px solid var(--btn-color);
+  padding: 10px 20px;
+  color: white;
+  border-radius: 22px;
+  font-weight: bold;
+  transition: 0.2s all ease-in-out;
+  font-size: var(--font-sm);
+  margin: 0;
+  align-items: center;
+}
+
+.btn-2:hover {
+  background-color: var(--btn-color-dark);
+  color: white;
+}
+
+.btn-2:active {
+  background-color: var(--btn-color);
+}
+
 /* button 3 */
 .btn-3 {
   background-color: var(--btn-color);
@@ -230,6 +311,48 @@ header {
   border-radius: 22px;
   text-decoration: none;
   font-weight: 700;
+}
+
+.btn-4 {
+  width: auto;
+  padding: 18px;
+  margin: 0px;
+  text-decoration: none;
+  color: var(--font-sm);
+  font-size: var(--font-sm);
+  transition: all 0.2s ease-in;
+}
+
+.btn-4:hover {
+  background-color: var(--btn-color);
+  color: white;
+}
+
+.btn-4:focus {
+  background-color: var(--btn-color);
+  color: white;
+}
+
+.btn-5 {
+  padding: 10px 20px;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--btn-color);
+  text-decoration: none;
+  background-color: transparent;
+  border: 2px solid var(--btn-color);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-5:hover,
+.btn-5.active {
+  background-color: var(--btn-color);
+  color: white;
 }
 
 .radius-default {
@@ -252,13 +375,94 @@ header {
   font-size: var(--font-md);
 }
 
-@media screen and (max-width: 1024px) {
-  .cards {
-    flex-wrap: wrap;
-    gap: 20px;
-  }
+/* carousel section in landing */
 
-  .card-container {
-    width: 45%;
+.carousel {
+  position: relative;
+  width: 1200px;
+  height: 300px;
+  overflow: hidden;
+  margin: auto;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-image {
+  width: 600px;
+  height: 300px;
+  object-fit: cover;
+  background-color: #f64740;
+}
+
+button.prev,
+button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+button.prev {
+  left: 10px;
+}
+
+button.next {
+  right: 10px;
+}
+
+/* 4K and above (Ultra HD) */
+@media (min-width: 2560px) {
+  /* Styles for very large screens */
+  .page {
+    max-width: 1600px;
   }
+}
+
+/* Full HD - 1080p and large desktops */
+@media (min-width: 1920px) and (max-width: 2559px) {
+  /* Styles for desktops */
+}
+
+/* Laptops and smaller desktops (HD ready) */
+@media (min-width: 1366px) and (max-width: 1919px) {
+  /* Styles for laptops */
+
+  .page {
+    max-width: 1200px;
+  }
+}
+
+/* Tablets landscape / small laptops */
+@media (min-width: 1024px) and (max-width: 1365px) {
+  /* Styles for tablets in landscape */
+  .page {
+    max-width: 1000px;
+  }
+}
+
+/* Tablets portrait / large phones landscape */
+@media (max-width: 1023px) {
+  /* Styles for tablets portrait and landscape phones */
+  .page {
+    margin: 30px;
+  }
+}
+
+/* Phones (portrait) */
+@media (min-width: 480px) and (max-width: 767px) {
+  /* Styles for medium phones */
+}
+
+/* Small phones */
+@media (max-width: 479px) {
+  /* Styles for small phones */
 }

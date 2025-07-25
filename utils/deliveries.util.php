@@ -14,6 +14,36 @@ class Deliveries
         $stmt = $pdo->query('SELECT * FROM public."Deliveries_table" ORDER BY created_at DESC');
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Get all deliveries with courier and sect names joined.
+     * @param PDO $pdo
+     * @return array
+     */
+    public static function getAllWithCourierAndSect(PDO $pdo): array
+    {
+        $stmt = $pdo->query('
+            SELECT d.*, c.name AS courier_name, c.sectname AS sect_name
+            FROM public."Deliveries_table" d
+            JOIN public."SectCouriers_table" c ON d.courier_id = c.courier_id
+            ORDER BY d.created_at DESC
+        ');
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getAllWithCourierAndSectByUserId(PDO $pdo, string $user_id): array
+    {
+        $stmt = $pdo->prepare('
+            SELECT d.*, c.name AS courier_name, c.sectname AS sect_name
+            FROM public."Deliveries_table" d
+            JOIN public."SectCouriers_table" c ON d.courier_id = c.courier_id
+            WHERE d.user_id = :user_id
+            ORDER BY d.created_at DESC
+        ');
+        $stmt->execute([':user_id' => $user_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     /**
      * Summary of getAllByUserId
      * This method retrieves all deliveries for a specific user by their user ID.
