@@ -51,6 +51,7 @@
   min-width: 0px;
   justify-items: center;
   gap: 20px;
+  margin: 20px 0px;
 }
 
 .container {
@@ -189,6 +190,13 @@
   .sect-feature,
   .murim-way {
     max-width: 1000px;
+  }
+
+  .murimHead {
+    font-size: var(--font-md);
+  }
+  .murimDesc {
+    font-size: var(--font-sm);
   }
 }
 
