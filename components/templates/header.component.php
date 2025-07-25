@@ -16,17 +16,24 @@ function navHeader(array $user = null): void
 
     // Nav links for guests
     $guestNavList = [
-        ['label' => 'Services', 'link' => '/pages/services/index.php'],
+        ['label' => 'Services', 'link' => '/pages/sectcourierPage/index.php'],
         ['label' => 'About Us', 'link' => '/pages/about-us/index.php'],
     ];
 
     $userNavList = [
         ['label' => 'My Account', 'link' => '/pages/accountPage/index.php'],
-        ['label' => 'Orders', 'link' => '/pages/ordersPage/index.php'],
-        ['label' => 'Services', 'link' => '/pages/services/index.php'],
+        ['label' => 'Orders', 'link' => '/pages/deliveriesPage/index.php'],
+        ['label' => 'Services', 'link' => '/pages/sectcourierPage/index.php'],
+        ['label' => 'About Us', 'link' => '/pages/about-us/index.php'],
+        ['label' => 'Dashboard', 'link' => '/pages/dashboard/index.php']
+    ];
+
+    $adminNavList = [
+        ['label' => 'My Account', 'link' => '/pages/accountPage/index.php'],
+        ['label' => 'Orders', 'link' => '/pages/deliveriesPage/index.php'],
+        ['label' => 'Services', 'link' => '/pages/sectcourierPage/index.php'],
         ['label' => 'About Us', 'link' => '/pages/about-us/index.php'],
         ['label' => 'Dashboard', 'link' => '/pages/adminDashboardPage/index.php']
-
     ];
 
     $currentPath = $_SERVER['REQUEST_URI'];
@@ -36,7 +43,15 @@ function navHeader(array $user = null): void
         '/pages/signupPage/index.php'
     ];
 
-    $navList = (Auth::check() && $user) ? $userNavList : $guestNavList;
+    if (Auth::check() && $user) {
+        if (isset($user['role']) && strtolower($user['role']) === 'admin') {
+            $navList = $adminNavList;
+        } else {
+            $navList = $userNavList;
+        }
+    } else {
+        $navList = $guestNavList;
+    }
     ?>
     <header class="header-section">
         <div class="header-container">

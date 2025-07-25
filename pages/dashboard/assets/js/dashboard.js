@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
                     window.location.reload();
                     deliveryResult.textContent = '';
-                }, 3000);
+                }, 800);
             } else {
                 deliveryResult.textContent = 'Failed to add delivery';
                 deliveryResult.style.color = 'red';
