@@ -39,14 +39,15 @@ $pageJs = [
 renderMainLayout(function () use ($deliveries) { ?>
     <div class="page">
         <div class="container">
-            <div class="search-bar">
+            <div class="title-section">
+                <img src="/assets/img/murimrun-icons/murimrun-deliveries.png" alt="">
                 <h1>Deliveries</h1>
                 <!-- <div class="input-wrapper">
                     <input type="text" class="input-with-button" placeholder="Search orders...">
                     <button class="btn-3">Go</button>
                 </div> -->
-            </div>
 
+            </div>
             <p>
                 Learn everything about your package in this section. <br>
                 Track the current location, check the status, and find
