@@ -76,9 +76,8 @@ renderMainLayout(function () use ($users, $deliveries, $couriers) { ?>
                 <table id="users" cellpadding="2" class="table-area" style="display: none">
                     <thead>
                         <tr>
-                            <th style="display: none" class="select-header">
-                                <input type="checkbox" id="selectAll" disabled>
-                            </th>
+                            <th></th>
+                            <th>User ID</th>
                             <th>Username</th>
                             <th>First Name</th>
                             <th>Last Name</th>
@@ -90,10 +89,10 @@ renderMainLayout(function () use ($users, $deliveries, $couriers) { ?>
                         <?php foreach ($users as $user): ?>
                             <?php if (strtolower($user['role']) !== 'admin'): ?>
                                 <tr>
-                                    <td style="display: none" class="select-cell">
-                                        <input type="checkbox" name="selected_users[]"
-                                            value="<?= htmlspecialchars($user['username']) ?>" disabled>
+                                    <td class="select-cell">
+                                        <input type="checkbox" name="selected_users[]" value="<?= htmlspecialchars($user['username']) ?>">
                                     </td>
+                                    <td><?php echo htmlspecialchars($user['user_id']); ?></td>
                                     <td><?php echo htmlspecialchars($user['username']); ?></td>
                                     <td><?php echo htmlspecialchars($user['first_name']); ?></td>
                                     <td><?php echo htmlspecialchars($user['last_name']); ?></td>
@@ -109,6 +108,7 @@ renderMainLayout(function () use ($users, $deliveries, $couriers) { ?>
                 <table id="deliveries" cellpadding="2" class="table-area" style="display: none">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Order ID</th>
                             <th>User ID</th>
                             <th>Courier ID</th>
@@ -123,6 +123,9 @@ renderMainLayout(function () use ($users, $deliveries, $couriers) { ?>
                     <tbody>
                         <?php foreach ($deliveries as $delivery): ?>
                             <tr>
+                                <td class="select-cell">
+                                    <input type="checkbox" name="selected_deliveries[]" value="<?= htmlspecialchars($delivery['delivery_id']) ?>">
+                                </td>
                                 <td><?= htmlspecialchars($delivery['delivery_id']) ?></td>
                                 <td><?= htmlspecialchars($delivery['user_id']) ?></td>
                                 <td><?= htmlspecialchars($delivery['courier_id']) ?></td>
@@ -141,6 +144,7 @@ renderMainLayout(function () use ($users, $deliveries, $couriers) { ?>
                 <table id="sectcouriers" cellpadding="2" class="table-area" style="display: none">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Courier ID</th>
                             <th>Name</th>
                             <th>Sect Name</th>
@@ -152,6 +156,9 @@ renderMainLayout(function () use ($users, $deliveries, $couriers) { ?>
                     <tbody>
                         <?php foreach ($couriers as $courier): ?>
                             <tr>
+                                <td class="select-cell">
+                                    <input type="checkbox" name="selected_couriers[]" value="<?= htmlspecialchars($courier['courier_id']) ?>">
+                                </td>
                                 <td><?= htmlspecialchars($courier['courier_id']) ?></td>
                                 <td><?= htmlspecialchars($courier['name']) ?></td>
                                 <td><?= htmlspecialchars($courier['sectname']) ?></td>
