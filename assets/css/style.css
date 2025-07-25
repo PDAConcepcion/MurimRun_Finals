@@ -68,6 +68,11 @@ input:required + label::after {
   align-items: center;
 }
 
+.title-section img {
+  height: 80px;
+  padding: 20px;
+}
+
 .title-box {
   display: flex;
   justify-content: space-between;
