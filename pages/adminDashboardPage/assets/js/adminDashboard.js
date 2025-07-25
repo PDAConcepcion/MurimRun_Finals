@@ -39,53 +39,98 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (deleteBtn) {
-    deleteBtn.addEventListener("click", function () {
-      const tables = ["users", "deliveries", "sectcouriers"];
-      let activeTable = tables.find(t => {
-        const el = document.getElementById(t);
-        return el && el.style.display !== "none";
-      });
-      if (!activeTable) return;
+  deleteBtn.addEventListener("click", function () {
+    const tables = ["users", "deliveries", "sectcouriers"];
+    let activeTable = tables.find(t => {
+      const el = document.getElementById(t);
+      return el && el.style.display !== "none";
+    });
+    if (!activeTable) return;
 
-      const table = document.getElementById(activeTable);
-      const checked = table.querySelectorAll('.select-cell input[type="checkbox"]:checked');
-      if (checked.length === 0) return;
+    const table = document.getElementById(activeTable);
+    const checked = table.querySelectorAll('.select-cell input[type="checkbox"]:checked');
+    if (checked.length === 0) return;
 
-      const ids = Array.from(checked).map(cb => cb.value);
+    const ids = Array.from(checked).map(cb => cb.value);
 
-      if (!confirm(`Are you sure you want to delete the selected ${activeTable}?`)) return;
-
-      let url = "";
-      let body = new FormData();
+    // For users and sectcouriers, check for related deliveries first
+    if (activeTable === "users" || activeTable === "sectcouriers") {
+      let checkUrl = "";
+      let checkBody = new FormData();
       if (activeTable === "users") {
-        url = "/handlers/user.handler.php?action=delete";
-        ids.forEach(id => body.append("user_ids[]", id));
-      } else if (activeTable === "deliveries") {
-        url = "/handlers/deliveries.handler.php?action=delete";
-        ids.forEach(id => body.append("delivery_ids[]", id));
-      } else if (activeTable === "sectcouriers") {
-        url = "/handlers/sectCourier.handler.php?action=delete";
-        ids.forEach(id => body.append("courier_ids[]", id));
+        checkUrl = "/handlers/user.handler.php?action=checkDelete";
+        ids.forEach(id => checkBody.append("user_ids[]", id));
+      } else {
+        checkUrl = "/handlers/sectCourier.handler.php?action=checkDelete";
+        ids.forEach(id => checkBody.append("courier_ids[]", id));
       }
-
-      fetch(url, {
+      fetch(checkUrl, {
         method: "POST",
-        body: body
+        body: checkBody
       })
       .then(res => res.json())
       .then(result => {
-        if (result.success) {
-          checked.forEach(cb => cb.closest("tr").remove());
-          updateActionButtonsVisibility();
+        let proceed = true;
+        if (result.hasDeliveries) {
+          proceed = confirm(`Warning: Deleting will also remove ${result.deliveriesCount} related deliveries. Continue?`);
         } else {
-          alert("Failed to delete selected items.");
+          proceed = confirm(`Are you sure you want to delete the selected ${activeTable}?`);
         }
-      })
-      .catch(err => {
-        alert("Failed to delete: " + err);
+        if (!proceed) return;
+
+        // Now actually delete
+        let url = "";
+        let body = new FormData();
+        if (activeTable === "users") {
+          url = "/handlers/user.handler.php?action=delete";
+          ids.forEach(id => body.append("user_ids[]", id));
+        } else {
+          url = "/handlers/sectCourier.handler.php?action=delete";
+          ids.forEach(id => body.append("courier_ids[]", id));
+        }
+        fetch(url, {
+          method: "POST",
+          body: body
+        })
+        .then(res => res.json())
+        .then(result => {
+          if (result.success) {
+            checked.forEach(cb => cb.closest("tr").remove());
+            updateActionButtonsVisibility();
+          } else {
+            alert("Failed to delete selected items.");
+          }
+        })
+        .catch(err => {
+          alert("Failed to delete: " + err);
+        });
       });
+      return;
+    }
+
+    // For deliveries, just delete directly
+    let url = "/handlers/deliveries.handler.php?action=delete";
+    let body = new FormData();
+    ids.forEach(id => body.append("delivery_ids[]", id));
+    if (!confirm(`Are you sure you want to delete the selected deliveries?`)) return;
+    fetch(url, {
+      method: "POST",
+      body: body
+    })
+    .then(res => res.json())
+    .then(result => {
+      if (result.success) {
+        checked.forEach(cb => cb.closest("tr").remove());
+        updateActionButtonsVisibility();
+      } else {
+        alert("Failed to delete selected items.");
+      }
+    })
+    .catch(err => {
+      alert("Failed to delete: " + err);
     });
-  }
+  });
+}
 
   if (selectAll) {
     selectAll.addEventListener("change", function () {

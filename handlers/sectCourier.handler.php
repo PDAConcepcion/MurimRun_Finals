@@ -5,6 +5,7 @@ require_once BASE_PATH . '/bootstrap.php';
 require_once BASE_PATH . '/vendor/autoload.php';
 require_once UTILS_PATH . '/sectCourier.util.php';
 require_once UTILS_PATH . '/envSetter.util.php';
+require_once UTILS_PATH . '/auth.utils.php';
 
 // Initialize authentication/session
 Auth::init();
@@ -70,11 +71,33 @@ if ($action === 'updateByName' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
+if ($action === 'checkDelete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $ids = $_POST['courier_ids'] ?? [];
+    $hasDeliveries = false;
+    $deliveriesCount = 0;
+    foreach ($ids as $id) {
+        $stmt = $pdo->prepare('SELECT COUNT(*) FROM public."Deliveries_table" WHERE courier_id = :courier_id');
+        $stmt->execute([':courier_id' => $id]);
+        $count = (int)$stmt->fetchColumn();
+        if ($count > 0) {
+            $hasDeliveries = true;
+            $deliveriesCount += $count;
+        }
+    }
+    header('Content-Type: application/json');
+    echo json_encode(['hasDeliveries' => $hasDeliveries, 'deliveriesCount' => $deliveriesCount]);
+    exit;
+}
+
 if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $ids = $_POST['courier_ids'] ?? [];
         $success = true;
         foreach ($ids as $id) {
+            // First, delete all deliveries for this courier
+            $stmt = $pdo->prepare('DELETE FROM public."Deliveries_table" WHERE courier_id = :courier_id');
+            $stmt->execute([':courier_id' => $id]);
+            // Then, delete the courier
             $success = $success && SectCouriers::removeById($pdo, $id);
         }
         header('Content-Type: application/json');

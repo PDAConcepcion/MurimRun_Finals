@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 require_once BASE_PATH . '/bootstrap.php';
 require_once BASE_PATH . '/vendor/autoload.php';
 require_once UTILS_PATH . '/user.utils.php';
@@ -53,11 +54,33 @@ if ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
+if ($action === 'checkDelete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $ids = $_POST['user_ids'] ?? [];
+    $hasDeliveries = false;
+    $deliveriesCount = 0;
+    foreach ($ids as $id) {
+        $stmt = $pdo->prepare('SELECT COUNT(*) FROM public."Deliveries_table" WHERE user_id = :user_id');
+        $stmt->execute([':user_id' => $id]);
+        $count = (int)$stmt->fetchColumn();
+        if ($count > 0) {
+            $hasDeliveries = true;
+            $deliveriesCount += $count;
+        }
+    }
+    header('Content-Type: application/json');
+    echo json_encode(['hasDeliveries' => $hasDeliveries, 'deliveriesCount' => $deliveriesCount]);
+    exit;
+}
+
 if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $ids = $_POST['user_ids'] ?? [];
         $success = true;
         foreach ($ids as $id) {
+            // First, delete all deliveries for this user
+            $stmt = $pdo->prepare('DELETE FROM public."Deliveries_table" WHERE user_id = :user_id');
+            $stmt->execute([':user_id' => $id]);
+            // Then, delete the user
             $success = $success && userDatabase::removeById($pdo, $id);
         }
         header('Content-Type: application/json');
