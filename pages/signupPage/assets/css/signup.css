@@ -16,14 +16,22 @@ h2 {
   color: var(--color-action);
 }
 
-.signup-section {
-  display: flex;
-  flex-direction: column;
+.overlay {
+  position: fixed;
+}
+
+.overlay img {
   width: 100%;
-  max-width: 1200px;
-  padding-top: 100px;
+  height: 100%;
+  object-fit: cover;
   justify-content: center;
+  top: 0px;
+  animation: breathe 12s ease-in-out infinite;
+}
+
+.page {
   align-items: center;
+  height: 100vh;
 }
 
 .logo-section {
@@ -48,6 +56,8 @@ h2 {
   padding: 40px 30px;
   box-shadow: var(--shadow-def);
   gap: 20px;
+  border: var(--box-highlight);
+  transition: all 0.2s ease-in-out;
 }
 
 label {
@@ -85,9 +95,14 @@ input:placeholder-shown {
 }
 
 .login-redirect a {
-  color: var(--color-action);
+  color: var(--color-text);
   text-decoration: none;
   font-weight: bold;
+}
+
+.login-redirect a:hover {
+  text-decoration: underline;
+  color: var(--btn-color);
 }
 
 .password-message {
@@ -104,4 +119,28 @@ input:placeholder-shown {
 
 .password-message.mismatch {
   color: #dc3545;
+}
+
+.btn-2 {
+  justify-content: center;
+  width: 100%;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05); /* slight zoom */
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .form-container {
+    transform: scale(0.7);
+  }
+  .page {
+    padding-bottom: 50px;
+  }
 }
