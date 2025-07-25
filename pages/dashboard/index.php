@@ -34,9 +34,10 @@ $pageJs = [
 
 renderMainLayout(function () use ($sectCouriers, $user) { ?>
 
-<div class="page user">
-    <div class="overlay"></div>
-    <div class="dashboard">
+    <div class="background order">
+        <div class="overlay"></div>
+    </div>
+    <div class="page">
         <div class="head-title">
             <h1 class="head-text">Dashboard</h1>
             <p class="time-text"><?php echo date("D, M j Y") ?></p>
@@ -47,15 +48,15 @@ renderMainLayout(function () use ($sectCouriers, $user) { ?>
                     <div class="courier-container sh<?php echo !$courier['status'] ? ' grayed-out' : ''; ?>">
                         <div class="courier-img">
                             <img src="<?php echo !empty($courier['image']) ? htmlspecialchars($courier['image']) : '../../assets/img/nyebe_white.png'; ?>"
-                                 alt="<?php echo htmlspecialchars($courier['name']); ?> Logo"
-                                 class="courier-logo">
+                                alt="<?php echo htmlspecialchars($courier['name']); ?> Logo" class="courier-logo">
                         </div>
                         <div class="info-block">
                             <div class="info-type">
                                 <?php foreach ($courier as $key => $value): ?>
                                     <?php
-                                        if (in_array($key, ['courier_id', 'image'])) continue;
-                                        $label = ucwords(str_replace(['_', 'id'], [' ', ' ID'], $key));
+                                    if (in_array($key, ['courier_id', 'image']))
+                                        continue;
+                                    $label = ucwords(str_replace(['_', 'id'], [' ', ' ID'], $key));
                                     ?>
                                     <p class="info"><?php echo $label; ?>:</p>
                                 <?php endforeach; ?>
@@ -63,18 +64,21 @@ renderMainLayout(function () use ($sectCouriers, $user) { ?>
                             <div class="info-result">
                                 <?php foreach ($courier as $key => $value): ?>
                                     <?php
-                                        if (in_array($key, ['courier_id', 'image'])) continue;
-                                        $display = ($key === 'status') ? ($value ? 'Available' : 'Unavailable') : htmlspecialchars($value);
+                                    if (in_array($key, ['courier_id', 'image']))
+                                        continue;
+                                    $display = ($key === 'status') ? ($value ? 'Available' : 'Unavailable') : htmlspecialchars($value);
                                     ?>
                                     <p class="info"><strong><?php echo $display; ?></strong></p>
                                 <?php endforeach; ?>
                             </div>
                         </div>
                         <div class="choice">
-                            <button class="btn-3 sc select-btn" type="button" data-courier="<?php echo htmlspecialchars($courier['courier_id']); ?>" <?php echo !$courier['status'] ? 'disabled' : ''; ?>>
+                            <button class="btn-3 sc select-btn" type="button"
+                                data-courier="<?php echo htmlspecialchars($courier['courier_id']); ?>" <?php echo !$courier['status'] ? 'disabled' : ''; ?>>
                                 select
                             </button>
-                            <button class="btn-3 sc deselect-btn" type="button" style="display:none;" data-courier="<?php echo htmlspecialchars($courier['courier_id']); ?>">
+                            <button class="btn-3 sc deselect-btn" type="button" style="display:none;"
+                                data-courier="<?php echo htmlspecialchars($courier['courier_id']); ?>">
                                 deselect
                             </button>
                         </div>
@@ -82,7 +86,9 @@ renderMainLayout(function () use ($sectCouriers, $user) { ?>
                 <?php endforeach; ?>
             </div>
             <div class="stat sh">
-                <h1>Add Delivery</h1>
+                <h1>Input Delivery Details</h1>
+                <label>Selected Courier:</label>
+                <span id="selectedCourierName"></span>
                 <form id="addDeliveryForm" style="display:none;">
                     <label for="origin">Origin:</label>
                     <input type="text" name="origin" id="origin" required>
@@ -94,17 +100,15 @@ renderMainLayout(function () use ($sectCouriers, $user) { ?>
                     <input type="number" name="weight_kg" id="weight_kg" required>
                     <label for="delivery_time_estimate">Time Estimate:</label>
                     <input type="text" name="delivery_time_estimate" id="delivery_time_estimate" required>
-                    <label>Courier:</label>
-                    <span id="selectedCourierName"></span>
                     <input type="hidden" name="courier_id" id="courier_id" required>
-                    <input type="hidden" name="user_id" id="user_id" value="<?php echo htmlspecialchars($user['id']); ?>" required>
+                    <input type="hidden" name="user_id" id="user_id" value="<?php echo htmlspecialchars($user['id']); ?>"
+                        required>
                     <button type="submit" class="btn-3 sc">Add Delivery</button>
                 </form>
                 <div id="deliveryResult"></div>
             </div>
         </div>
     </div>
-</div>
 
 <?php }, 'User dashboard', ['css' => $pageCss, 'js' => $pageJs]);
 
