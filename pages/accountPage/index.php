@@ -66,7 +66,7 @@ renderMainLayout(function () use ($user, $editMode) { ?>
                                         <input type="hidden" name="original_user"
                                             value="<?php echo htmlspecialchars(json_encode($user), ENT_QUOTES, 'UTF-8'); ?>">
                                         <?php foreach ($user as $key => $userInfo): ?>
-                                            <?php if ($key === 'password' || $key === 'user_id' || $key === 'role')
+                                            <?php if ($key === 'password' || $key === 'user_id' || $key === 'role'|| $key === 'createdat')
                                                 continue; ?>
                                             <div class="user-info">
                                                 <label>
