@@ -5,7 +5,7 @@ function footer(array $customJs = []): void
     <footer>
         <div class="footer-container">
             <div class="group-name">
-                <h1>MurimRun</h1>
+                <img src="/assets/img/murimrun-wordmark-white.png" alt="">
             </div>
 
             <?php if (!empty($customJs)) {
@@ -15,14 +15,14 @@ function footer(array $customJs = []): void
             } ?>
 
             <div class="members-container">
-                <a href="">Rey Vincent Putian</a>
-                <a href="">Patrick Concepcion</a>
-                <a href="">William Andres</a>
-                <a href="">Gabriel Camino</a>
+                <p>Rey Vincent Putian</p>
+                <p>Patrick Concepcion</p>
+                <p>William Andres</p>
+                <p>Gabriel Camino</p>
             </div>
 
             <div class="copyright">
-                <p>© 2022 MurimRun, All Rights Reserved.</p>
+                <p>© 2025 MurimRun, All Rights Reserved.</p>
             </div>
         </div>
     </footer>
