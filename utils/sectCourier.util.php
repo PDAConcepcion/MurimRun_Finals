@@ -114,17 +114,17 @@ class SectCouriers
             ':oldName' => $oldName,
         ]);
     }
-
+    
     /**
-     * Remove a sect courier by name.
+     * Remove a sect courier by courier_id.
      * @param PDO $pdo
-     * @param string $name
+     * @param string $courier_id
      * @return bool
      */
-    public static function removeByName(PDO $pdo, string $name): bool
+    public static function removeById(PDO $pdo, string $courier_id): bool
     {
-        $stmt = $pdo->prepare('DELETE FROM public."SectCouriers_table" WHERE name = :name');
-        return $stmt->execute([':name' => $name]);
+        $stmt = $pdo->prepare('DELETE FROM public."SectCouriers_table" WHERE courier_id = :courier_id');
+        return $stmt->execute([':courier_id' => $courier_id]);
     }
 }
 ?>

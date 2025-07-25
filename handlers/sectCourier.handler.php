@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 require_once BASE_PATH . '/bootstrap.php';
 require_once BASE_PATH . '/vendor/autoload.php';
-require_once UTILS_PATH . '/sectCouriers.utils.php';
+require_once UTILS_PATH . '/sectCourier.util.php';
 require_once UTILS_PATH . '/envSetter.util.php';
 
 // Initialize authentication/session
@@ -70,9 +70,14 @@ if ($action === 'updateByName' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-if ($action === 'removeByName' && isset($_POST['name'])) {
-    $success = SectCouriers::removeByName($pdo, $_POST['name']);
-    header('Location: /pages/sectCouriers/index.php?message=' . ($success ? 'removed' : 'remove_failed'));
+if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $ids = $_POST['courier_ids'] ?? [];
+    $success = true;
+    foreach ($ids as $courier_id) {
+        $success = $success && SectCouriers::removeById($pdo, $courier_id);
+    }
+    header('Content-Type: application/json');
+    echo json_encode(['success' => $success]);
     exit;
 }
 ?>

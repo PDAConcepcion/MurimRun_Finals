@@ -1,7 +1,3 @@
-/**
- * Handles showing and hiding tables based on the selected category.
- * Also hides/disables checkboxes by default when switching categories.
- */
 function showCategory(category) {
   const userTable = document.getElementById("users");
   const deliveryTable = document.getElementById("deliveries");
@@ -10,8 +6,7 @@ function showCategory(category) {
   if (userTable) userTable.style.display = "none";
   if (deliveryTable) deliveryTable.style.display = "none";
   if (sectCouriersTable) sectCouriersTable.style.display = "none";
-  
-  // Show the selected table
+
   if (category === "users" && userTable) {
     userTable.style.display = "table";
   } else if (category === "deliveries" && deliveryTable) {
@@ -21,27 +16,21 @@ function showCategory(category) {
   }
 }
 
-// For add/delete button function and single selection logic
 document.addEventListener("DOMContentLoaded", function () {
-  const addBtn = document.getElementById("addBtn");
   const editBtn = document.getElementById("editBtn");
   const deleteBtn = document.getElementById("deleteBtn");
   const selectAll = document.getElementById("selectAll");
   const userTable = document.getElementById("users");
   const dbTable = document.querySelector('.db-table');
 
-  /**
-   * Shows or hides the user checkboxes and enables/disables them.
-   * @param {boolean} show - Whether to show and enable checkboxes.
-   */
   function toggleCheckboxes(show) {
     const headers = userTable.querySelectorAll(".select-header");
     const cells = userTable.querySelectorAll(".select-cell");
     const checkboxes = userTable.querySelectorAll(".select-cell input");
 
-    headers.forEach((header) => (header.style.display = show ? "" : "none"));
-    cells.forEach((cell) => (cell.style.display = show ? "" : "none"));
-    checkboxes.forEach((cb) => (cb.disabled = !show));
+    headers.forEach(header => header.style.display = show ? "" : "none");
+    cells.forEach(cell => cell.style.display = show ? "" : "none");
+    checkboxes.forEach(cb => cb.disabled = !show);
 
     if (selectAll) {
       selectAll.disabled = !show;
@@ -49,49 +38,71 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Show checkboxes when Add or Delete is clicked
-  if (addBtn) {
-    addBtn.addEventListener("click", () => {
-      toggleCheckboxes(true);
-    });
-  }
-
   if (deleteBtn) {
-    deleteBtn.addEventListener("click", () => {
-      toggleCheckboxes(true);
-    });
-  }
+    deleteBtn.addEventListener("click", function () {
+      const tables = ["users", "deliveries", "sectcouriers"];
+      let activeTable = tables.find(t => {
+        const el = document.getElementById(t);
+        return el && el.style.display !== "none";
+      });
+      if (!activeTable) return;
 
-  // Handle "Select All" checkbox for users table
-  if (selectAll) {
-    selectAll.addEventListener("change", function () {
-      const checkboxes = userTable.querySelectorAll(
-        ".select-cell input:not(:disabled)"
-      );
-      checkboxes.forEach((cb) => {
-        cb.checked = this.checked;
+      const table = document.getElementById(activeTable);
+      const checked = table.querySelectorAll('.select-cell input[type="checkbox"]:checked');
+      if (checked.length === 0) return;
+
+      const ids = Array.from(checked).map(cb => cb.value);
+
+      if (!confirm(`Are you sure you want to delete the selected ${activeTable}?`)) return;
+
+      let url = "";
+      let body = new FormData();
+      if (activeTable === "users") {
+        url = "/handlers/user.handler.php?action=delete";
+        ids.forEach(id => body.append("user_ids[]", id));
+      } else if (activeTable === "deliveries") {
+        url = "/handlers/deliveries.handler.php?action=delete";
+        ids.forEach(id => body.append("delivery_ids[]", id));
+      } else if (activeTable === "sectcouriers") {
+        url = "/handlers/sectCourier.handler.php?action=delete";
+        ids.forEach(id => body.append("courier_ids[]", id));
+      }
+
+      fetch(url, {
+        method: "POST",
+        body: body
+      })
+      .then(res => res.json())
+      .then(result => {
+        if (result.success) {
+          checked.forEach(cb => cb.closest("tr").remove());
+          updateActionButtonsVisibility();
+        } else {
+          alert("Failed to delete selected items.");
+        }
+      })
+      .catch(err => {
+        alert("Failed to delete: " + err);
       });
     });
   }
 
-  // Function to update the visibility of Edit and Delete buttons
-  function updateActionButtonsVisibility() {
-    const checkedBoxes = dbTable.querySelectorAll('input[type="checkbox"]:checked');
-    if (editBtn) {
-      editBtn.style.display = checkedBoxes.length === 1 ? "" : "none";
-    }
-    if (deleteBtn) {
-      deleteBtn.style.display = checkedBoxes.length > 0 ? "" : "none";
-    }
+  if (selectAll) {
+    selectAll.addEventListener("change", function () {
+      const checkboxes = userTable.querySelectorAll(".select-cell input:not(:disabled)");
+      checkboxes.forEach(cb => cb.checked = this.checked);
+    });
   }
 
-  // Listen for changes on all checkboxes in the db-table
+  function updateActionButtonsVisibility() {
+    const checkedBoxes = dbTable.querySelectorAll('input[type="checkbox"]:checked');
+    if (editBtn) editBtn.style.display = checkedBoxes.length === 1 ? "" : "none";
+    if (deleteBtn) deleteBtn.style.display = checkedBoxes.length > 0 ? "" : "none";
+  }
+
   dbTable.addEventListener('change', function (e) {
-    if (e.target.type === "checkbox") {
-      updateActionButtonsVisibility();
-    }
+    if (e.target.type === "checkbox") updateActionButtonsVisibility();
   });
 
-  // Also check on page load (in case of pre-checked boxes)
   updateActionButtonsVisibility();
 });

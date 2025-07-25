@@ -45,6 +45,18 @@ class userDatabase
     }
 
     /**
+     * Remove a user by user_id.
+     * @param PDO $pdo
+     * @param string $user_id
+     * @return bool
+     */
+    public static function removeById(PDO $pdo, string $user_id): bool
+    {
+        $stmt = $pdo->prepare('DELETE FROM public."User_table" WHERE user_id = :user_id');
+        return $stmt->execute([':user_id' => $user_id]);
+    }
+
+    /**
      * Update a user by user_id.
      *
      * @param PDO $pdo

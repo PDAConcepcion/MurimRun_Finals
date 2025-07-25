@@ -53,6 +53,17 @@ if ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
+if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $ids = $_POST['user_ids'] ?? [];
+    $success = true;
+    foreach ($ids as $user_id) {
+        $success = $success && userDatabase::removeById($pdo, $user_id);
+    }
+    header('Content-Type: application/json');
+    echo json_encode(['success' => $success]);
+    exit;
+}
+
 // Default: View all users
 $users = userDatabase::ViewAll($pdo);
 header('Content-Type: application/json');

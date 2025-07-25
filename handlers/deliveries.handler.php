@@ -79,8 +79,13 @@ if ($action === 'updateById' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-if ($action === 'removeById' && isset($_POST['delivery_id'])) {
-    $success = Deliveries::removeById($pdo, $_POST['delivery_id']);
-    header('Location: /pages/deliveries/index.php?message=' . ($success ? 'removed' : 'remove_failed'));
+if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $ids = $_POST['delivery_ids'] ?? [];
+    $success = true;
+    foreach ($ids as $delivery_id) {
+        $success = $success && Deliveries::removeById($pdo, $delivery_id);
+    }
+    header('Content-Type: application/json');
+    echo json_encode(['success' => $success]);
     exit;
 }
