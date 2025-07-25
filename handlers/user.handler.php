@@ -54,13 +54,18 @@ if ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $ids = $_POST['user_ids'] ?? [];
-    $success = true;
-    foreach ($ids as $user_id) {
-        $success = $success && userDatabase::removeById($pdo, $user_id);
+    try {
+        $ids = $_POST['user_ids'] ?? [];
+        $success = true;
+        foreach ($ids as $id) {
+            $success = $success && userDatabase::removeById($pdo, $id);
+        }
+        header('Content-Type: application/json');
+        echo json_encode(['success' => $success]);
+    } catch (Throwable $e) {
+        header('Content-Type: application/json', true, 500);
+        echo json_encode(['success' => false, 'error' => $e->getMessage()]);
     }
-    header('Content-Type: application/json');
-    echo json_encode(['success' => $success]);
     exit;
 }
 

@@ -71,13 +71,18 @@ if ($action === 'updateByName' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $ids = $_POST['courier_ids'] ?? [];
-    $success = true;
-    foreach ($ids as $courier_id) {
-        $success = $success && SectCouriers::removeById($pdo, $courier_id);
+    try {
+        $ids = $_POST['courier_ids'] ?? [];
+        $success = true;
+        foreach ($ids as $id) {
+            $success = $success && SectCouriers::removeById($pdo, $id);
+        }
+        header('Content-Type: application/json');
+        echo json_encode(['success' => $success]);
+    } catch (Throwable $e) {
+        header('Content-Type: application/json', true, 500);
+        echo json_encode(['success' => false, 'error' => $e->getMessage()]);
     }
-    header('Content-Type: application/json');
-    echo json_encode(['success' => $success]);
     exit;
 }
 ?>

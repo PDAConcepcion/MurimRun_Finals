@@ -90,7 +90,7 @@ renderMainLayout(function () use ($users, $deliveries, $couriers) { ?>
                             <?php if (strtolower($user['role']) !== 'admin'): ?>
                                 <tr>
                                     <td class="select-cell">
-                                        <input type="checkbox" name="selected_users[]" value="<?= htmlspecialchars($user['username']) ?>">
+                                        <input type="checkbox" name="selected_users[]" value="<?= htmlspecialchars($user['user_id']) ?>">
                                     </td>
                                     <td><?php echo htmlspecialchars($user['user_id']); ?></td>
                                     <td><?php echo htmlspecialchars($user['username']); ?></td>
