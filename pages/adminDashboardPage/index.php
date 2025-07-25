@@ -4,6 +4,7 @@ require_once LAYOUTS_PATH . '/main.layout.php';
 require_once UTILS_PATH . '/envSetter.util.php';
 require_once UTILS_PATH . '/user.utils.php';
 require_once UTILS_PATH . '/deliveries.util.php';
+require_once UTILS_PATH . '/sectCourier.util.php';
 
 // Setup DB connection
 $host = $databases['pgHost'];
@@ -17,18 +18,22 @@ $pdo = new PDO($dsn, $username, $password, [
 ]);
 
 $users = userDatabase::ViewAll($pdo);
+$deliveries = Deliveries::getAll($pdo);
+$couriers = SectCouriers::getAll($pdo);
+
 
 $pageCss = [
     'assets/css/adminDashboard.css',
-    '/assets/css/style.css',
-    '/assets/css/header.css'
+    '../../assets/css/header.css',
+    '../../assets/css/footer.css',
+    '../../assets/css/style.css'
 ];
 
 $pageJs = [
     'assets/js/adminDashboard.js'
 ];
 
-renderMainLayout(function () use ($users) { ?>
+renderMainLayout(function () use ($users, $deliveries, $couriers) { ?>
     <div class="page admin">
         <div class="container">
             <div class="title-section">
@@ -48,6 +53,7 @@ renderMainLayout(function () use ($users) { ?>
                             <option value="">-- Select --</option>
                             <option value="users">Users</option>
                             <option value="deliveries">Deliveries</option>
+                            <option value="sectcouriers">Sect Couriers</option>
                         </select>
                     </div>
                     <div class="db-buttons">
@@ -87,6 +93,60 @@ renderMainLayout(function () use ($users) { ?>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <table id="deliveries" cellpadding="2" class="table-area" style="display: none">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>User ID</th>
+                            <th>Courier ID</th>
+                            <th>Origin</th>
+                            <th>Destination</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>ETA</th>
+                            <th>Weight (kg)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($deliveries as $delivery): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($delivery['delivery_id']) ?></td>
+                                <td><?= htmlspecialchars($delivery['user_id']) ?></td>
+                                <td><?= htmlspecialchars($delivery['courier_id']) ?></td>
+                                <td><?= htmlspecialchars($delivery['origin']) ?></td>
+                                <td><?= htmlspecialchars($delivery['destination']) ?></td>
+                                <td><?= htmlspecialchars($delivery['package_description']) ?></td>
+                                <td><?= htmlspecialchars($delivery['status']) ?></td>
+                                <td><?= htmlspecialchars($delivery['delivery_time_estimate']) ?></td>
+                                <td><?= htmlspecialchars($delivery['weight_kg']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <table id="sectcouriers" cellpadding="2" class="table-area" style="display: none">
+                    <thead>
+                        <tr>
+                            <th>Courier ID</th>
+                            <th>Name</th>
+                            <th>Sect Name</th>
+                            <th>Rank</th>
+                            <th>Speed Rating</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($couriers as $courier): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($courier['courier_id']) ?></td>
+                                <td><?= htmlspecialchars($courier['name']) ?></td>
+                                <td><?= htmlspecialchars($courier['sectname']) ?></td>
+                                <td><?= htmlspecialchars($courier['rank']) ?></td>
+                                <td><?= htmlspecialchars($courier['speedrating']) ?></td>
+                                <td><?= htmlspecialchars($courier['status'] ? 'Available' : 'Unavailable') ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
                 </div>
             </section>
         </div>

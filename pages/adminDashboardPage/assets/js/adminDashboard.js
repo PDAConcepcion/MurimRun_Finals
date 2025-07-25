@@ -1,6 +1,8 @@
 function showCategory(category) {
   const userTable = document.getElementById("users");
   const deliveryTable = document.getElementById("deliveries");
+    const sectCouriersTable = document.getElementById("sectcouriers");
+
 
   if (userTable) {
     userTable.style.display = "none";
@@ -26,10 +28,16 @@ function showCategory(category) {
     deliveryTable.style.display = "none";
   }
 
+  if (sectCouriersTable) {
+    sectCouriersTable.style.display = "none";
+  }
+
   if (category === "users" && userTable) {
     userTable.style.display = "table";
   } else if (category === "deliveries" && deliveryTable) {
     deliveryTable.style.display = "table";
+  } else if (category === "sectcouriers" && sectCouriersTable) {
+    sectCouriersTable.style.display = "table";
   }
 }
 
