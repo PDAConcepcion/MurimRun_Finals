@@ -53,21 +53,22 @@ if ($action === 'add' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-if ($action === 'updateByName' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!isset($_POST['oldName'])) {
+if ($action === 'updateById' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['courier_id'])) {
         header('Content-Type: application/json');
-        echo json_encode(['error' => 'Missing oldName parameter']);
+        echo json_encode(['error' => 'Missing courier_id parameter']);
         exit;
     }
     $data = [
-        'name' => $_POST['name'] ?? $_POST['oldName'],
+        'name' => $_POST['name'] ?? '',
         'sectname' => $_POST['sectname'] ?? '',
         'rank' => $_POST['rank'] ?? '',
         'speedrating' => $_POST['speedrating'] ?? 0,
         'status' => $_POST['status'] ?? 'Available',
     ];
-    $success = SectCouriers::updateByName($pdo, $_POST['oldName'], $data);
-    header('Location: /pages/sectCouriers/index.php?message=' . ($success ? 'updated' : 'update_failed'));
+    $success = SectCouriers::updateById($pdo, $_POST['courier_id'], $data);
+    header('Content-Type: application/json');
+    echo json_encode(['success' => $success]);
     exit;
 }
 
@@ -94,9 +95,22 @@ if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $ids = $_POST['courier_ids'] ?? [];
         $success = true;
         foreach ($ids as $id) {
-            // First, delete all deliveries for this courier
+            // Get all delivery_ids for this courier
+            $stmt = $pdo->prepare('SELECT delivery_id FROM public."Deliveries_table" WHERE courier_id = :courier_id');
+            $stmt->execute([':courier_id' => $id]);
+            $deliveryIds = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+            // Delete from courier_deliveries first
+            if (!empty($deliveryIds)) {
+                $in = implode(',', array_fill(0, count($deliveryIds), '?'));
+                $pdo->prepare("DELETE FROM public.\"courier_deliveries\" WHERE delivery_id IN ($in)")
+                    ->execute($deliveryIds);
+            }
+
+            // Delete all deliveries for this courier
             $stmt = $pdo->prepare('DELETE FROM public."Deliveries_table" WHERE courier_id = :courier_id');
             $stmt->execute([':courier_id' => $id]);
+
             // Then, delete the courier
             $success = $success && SectCouriers::removeById($pdo, $id);
         }

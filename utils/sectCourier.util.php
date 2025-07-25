@@ -94,27 +94,27 @@ class SectCouriers
      * @param array $data
      * @return bool
      */
-    public static function updateByName(PDO $pdo, string $oldName, array $data): bool
+    public static function updateById(PDO $pdo, string $courier_id, array $data): bool
     {
         $stmt = $pdo->prepare('
             UPDATE public."SectCouriers_table"
-            SET name = :newName,
+            SET name = :name,
                 sectname = :sectname,
                 rank = :rank,
                 speedrating = :speedrating,
                 status = :status
-            WHERE name = :oldName
+            WHERE courier_id = :courier_id
         ');
         return $stmt->execute([
-            ':newName' => $data['name'],
+            ':name' => $data['name'],
             ':sectname' => $data['sectname'],
             ':rank' => $data['rank'],
             ':speedrating' => $data['speedrating'],
             ':status' => $data['status'],
-            ':oldName' => $oldName,
+            ':courier_id' => $courier_id,
         ]);
     }
-    
+
     /**
      * Remove a sect courier by courier_id.
      * @param PDO $pdo

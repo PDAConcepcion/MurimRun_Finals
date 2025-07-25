@@ -67,6 +67,8 @@ if ($action === 'updateById' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
     $data = [
+        'user_id' => $_POST['user_id'] ?? '',
+        'courier_id' => $_POST['courier_id'] ?? '',
         'origin' => $_POST['origin'] ?? '',
         'destination' => $_POST['destination'] ?? '',
         'package_description' => $_POST['package_description'] ?? '',
@@ -75,7 +77,8 @@ if ($action === 'updateById' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         'weight_kg' => (float)($_POST['weight_kg'] ?? 0),
     ];
     $success = Deliveries::updateById($pdo, $_POST['delivery_id'], $data);
-    header('Location: /pages/deliveries/index.php?message=' . ($success ? 'updated' : 'update_failed'));
+    header('Content-Type: application/json');
+    echo json_encode(['success' => $success]);
     exit;
 }
 
