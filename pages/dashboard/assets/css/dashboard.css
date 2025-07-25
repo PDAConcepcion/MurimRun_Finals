@@ -2,22 +2,8 @@ h1 {
   text-shadow: var(--shadow-def);
 }
 
-* {
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
-}
-
-.user {
+.order {
   background-image: url(/pages/adminDashboardPage/assets/img/dash-img.png);
-}
-
-.page {
-  margin-top: 60px;
-  background-color: var(--color-bg);
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  align-items: center;
 }
 
 .overlay {
@@ -27,13 +13,13 @@ h1 {
   top: 0px;
   left: 0px;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1;
+  z-index: -2;
 }
 
 .dashboard {
   display: flex;
   flex-direction: column;
-  width: 1200px;
+  width: 1600px;
   z-index: 1;
 }
 
