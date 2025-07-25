@@ -19,12 +19,11 @@ if (Auth::check()) {
 $error = $_GET['error'] ?? '';
 renderMainLayout(function () use ($error) { ?>
 
+    <div class="bg-container">
+        <video autoplay muted loop playsinline class="bg-vid"
+            src="/pages/loginPage/assets/img/dragon-in-clouds.1920x1080.mp4"></video>
+    </div>
     <div class="page">
-        <div class="bg-container">
-
-            <video autoplay muted loop playsinline class="bg-vid"
-                src="/pages/loginPage/assets/img/dragon-in-clouds.1920x1080.mp4"></video>
-        </div>
         <div class="account-container">
 
             <div class="login-section">
