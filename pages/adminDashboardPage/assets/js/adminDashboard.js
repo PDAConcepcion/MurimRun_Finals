@@ -24,9 +24,11 @@ function showCategory(category) {
 // For add/delete button function and single selection logic
 document.addEventListener("DOMContentLoaded", function () {
   const addBtn = document.getElementById("addBtn");
+  const editBtn = document.getElementById("editBtn");
   const deleteBtn = document.getElementById("deleteBtn");
   const selectAll = document.getElementById("selectAll");
   const userTable = document.getElementById("users");
+  const dbTable = document.querySelector('.db-table');
 
   /**
    * Shows or hides the user checkboxes and enables/disables them.
@@ -48,13 +50,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Show checkboxes when Add or Delete is clicked
-  addBtn.addEventListener("click", () => {
-    toggleCheckboxes(true);
-  });
+  if (addBtn) {
+    addBtn.addEventListener("click", () => {
+      toggleCheckboxes(true);
+    });
+  }
 
-  deleteBtn.addEventListener("click", () => {
-    toggleCheckboxes(true);
-  });
+  if (deleteBtn) {
+    deleteBtn.addEventListener("click", () => {
+      toggleCheckboxes(true);
+    });
+  }
 
   // Handle "Select All" checkbox for users table
   if (selectAll) {
@@ -67,4 +73,25 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+
+  // Function to update the visibility of Edit and Delete buttons
+  function updateActionButtonsVisibility() {
+    const checkedBoxes = dbTable.querySelectorAll('input[type="checkbox"]:checked');
+    if (editBtn) {
+      editBtn.style.display = checkedBoxes.length === 1 ? "" : "none";
+    }
+    if (deleteBtn) {
+      deleteBtn.style.display = checkedBoxes.length > 0 ? "" : "none";
+    }
+  }
+
+  // Listen for changes on all checkboxes in the db-table
+  dbTable.addEventListener('change', function (e) {
+    if (e.target.type === "checkbox") {
+      updateActionButtonsVisibility();
+    }
+  });
+
+  // Also check on page load (in case of pre-checked boxes)
+  updateActionButtonsVisibility();
 });
