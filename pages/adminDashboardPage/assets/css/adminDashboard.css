@@ -17,7 +17,7 @@ h1 {
 }
 
 .title-section {
-  justify-content: space-between;
+  flex: inline-flex;
 }
 
 .admin-db {

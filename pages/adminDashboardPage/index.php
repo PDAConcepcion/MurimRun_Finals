@@ -18,15 +18,15 @@ navHeader()
     <div class="container">
 
         <div class="title-section">
+            <img src="/assets/img/murimrun-icons/murimrun-signup.png" alt="">
             <h1>Admin Dashboard</h1>
-            <p class="time-text"><?php echo date("D, M j Y") ?></p>
 
         </div>
-        <section class="description">
+        <div class="description">
             <h3>Welcome, Master.</h3>
             <p>Within this dashboard lies the power to oversee your delivery sect with the precision of
                 a seasoned warrior.</p>
-        </section>
+        </div>
 
         <section class="admin-db">
             <div class="d-head">
