@@ -24,78 +24,61 @@ document.addEventListener("DOMContentLoaded", function () {
   const deleteBtn = document.getElementById("deleteBtn");
   const selectAll = document.getElementById("selectAll");
   const userTable = document.getElementById("users");
-  const dbTable = document.querySelector('.db-table');
 
-  function toggleCheckboxes(show) {
-    const headers = userTable.querySelectorAll(".select-header");
-    const cells = userTable.querySelectorAll(".select-cell");
-    const checkboxes = userTable.querySelectorAll(".select-cell input");
+  // Edit button always visible
+  if (editBtn) {
+    editBtn.addEventListener("click", function () {
+      const tables = ["users", "deliveries", "sectcouriers"];
+      let activeTable = tables.find(t => {
+        const el = document.getElementById(t);
+        return el && el.style.display !== "none";
+      });
+      if (!activeTable) return;
 
-    headers.forEach(header => header.style.display = show ? "" : "none");
-    cells.forEach(cell => cell.style.display = show ? "" : "none");
-    checkboxes.forEach(cb => cb.disabled = !show);
+      const table = document.getElementById(activeTable);
+      const checked = table.querySelectorAll('.select-cell input[type="checkbox"]:checked');
+      if (checked.length !== 1) return;
 
-    if (selectAll) {
-      selectAll.disabled = !show;
-      selectAll.checked = false;
-    }
-  }
+      const row = checked[0].closest("tr");
+      const cells = row.querySelectorAll("td");
 
-if (editBtn) {
-  editBtn.addEventListener("click", function () {
-    const tables = ["users", "deliveries", "sectcouriers"];
-    let activeTable = tables.find(t => {
-      const el = document.getElementById(t);
-      return el && el.style.display !== "none";
+      document.querySelector('.edit-user-fields').style.display = "none";
+      document.querySelector('.edit-sectcourier-fields').style.display = "none";
+      document.querySelector('.edit-delivery-fields').style.display = "none";
+
+      if (activeTable === "users") {
+        document.querySelector('.edit-user-fields').style.display = "";
+        document.getElementById("edit_user_id").value = cells[1].textContent.trim();
+        document.getElementById("edit_username").value = cells[2].textContent.trim();
+        document.getElementById("edit_first_name").value = cells[3].textContent.trim();
+        document.getElementById("edit_last_name").value = cells[4].textContent.trim();
+        document.getElementById("edit_email").value = cells[5].textContent.trim();
+        document.getElementById("edit_role").value = cells[6].textContent.trim();
+        editModal.style.display = "flex";
+      } else if (activeTable === "sectcouriers") {
+        document.querySelector('.edit-sectcourier-fields').style.display = "";
+        document.getElementById("edit_courier_id").value = cells[1].textContent.trim();
+        document.getElementById("edit_name").value = cells[2].textContent.trim();
+        document.getElementById("edit_sectname").value = cells[3].textContent.trim();
+        document.getElementById("edit_rank").value = cells[4].textContent.trim();
+        document.getElementById("edit_speedrating").value = cells[5].textContent.trim();
+        document.getElementById("edit_status").value = cells[6].textContent.trim() === "Available" ? "true" : "false";
+        editModal.style.display = "flex";
+      } else if (activeTable === "deliveries") {
+        document.querySelector('.edit-delivery-fields').style.display = "";
+        document.getElementById("edit_delivery_id").value = cells[1].textContent.trim();
+        document.getElementById("edit_delivery_user_id").value = cells[2].textContent.trim();
+        document.getElementById("edit_delivery_courier_id").value = cells[3].textContent.trim();
+        document.getElementById("edit_origin").value = cells[4].textContent.trim();
+        document.getElementById("edit_destination").value = cells[5].textContent.trim();
+        document.getElementById("edit_package_description").value = cells[6].textContent.trim();
+        document.getElementById("edit_delivery_status").value = cells[7].textContent.trim();
+        document.getElementById("edit_delivery_time_estimate").value = cells[8].textContent.trim();
+        document.getElementById("edit_weight_kg").value = cells[9].textContent.trim();
+        editModal.style.display = "flex";
+      }
     });
-    if (!activeTable) return;
-
-    const table = document.getElementById(activeTable);
-    const checked = table.querySelectorAll('.select-cell input[type="checkbox"]:checked');
-    if (checked.length !== 1) return;
-
-    // FIX: Get the row and cells
-    const row = checked[0].closest("tr");
-    const cells = row.querySelectorAll("td");
-
-    // Show/hide modal fields
-    document.querySelector('.edit-user-fields').style.display = "none";
-    document.querySelector('.edit-sectcourier-fields').style.display = "none";
-    document.querySelector('.edit-delivery-fields').style.display = "none";
-
-    if (activeTable === "users") {
-      document.querySelector('.edit-user-fields').style.display = "";
-      document.getElementById("edit_user_id").value = cells[1].textContent.trim();
-      document.getElementById("edit_username").value = cells[2].textContent.trim();
-      document.getElementById("edit_first_name").value = cells[3].textContent.trim();
-      document.getElementById("edit_last_name").value = cells[4].textContent.trim();
-      document.getElementById("edit_email").value = cells[5].textContent.trim();
-      document.getElementById("edit_role").value = cells[6].textContent.trim();
-      editModal.style.display = "flex";
-    } else if (activeTable === "sectcouriers") {
-      document.querySelector('.edit-sectcourier-fields').style.display = "";
-      document.getElementById("edit_courier_id").value = cells[1].textContent.trim();
-      document.getElementById("edit_name").value = cells[2].textContent.trim();
-      document.getElementById("edit_sectname").value = cells[3].textContent.trim();
-      document.getElementById("edit_rank").value = cells[4].textContent.trim();
-      document.getElementById("edit_speedrating").value = cells[5].textContent.trim();
-      document.getElementById("edit_status").value = cells[6].textContent.trim() === "Available" ? "true" : "false";
-      editModal.style.display = "flex";
-    } else if (activeTable === "deliveries") {
-      document.querySelector('.edit-delivery-fields').style.display = "";
-      document.getElementById("edit_delivery_id").value = cells[1].textContent.trim();
-      document.getElementById("edit_delivery_user_id").value = cells[2].textContent.trim();
-      document.getElementById("edit_delivery_courier_id").value = cells[3].textContent.trim();
-      document.getElementById("edit_origin").value = cells[4].textContent.trim();
-      document.getElementById("edit_destination").value = cells[5].textContent.trim();
-      document.getElementById("edit_package_description").value = cells[6].textContent.trim();
-      document.getElementById("edit_delivery_status").value = cells[7].textContent.trim();
-      document.getElementById("edit_delivery_time_estimate").value = cells[8].textContent.trim();
-      document.getElementById("edit_weight_kg").value = cells[9].textContent.trim();
-      editModal.style.display = "flex";
-    }
-  });
-}
+  }
 
   if (editCancelBtn) {
     editCancelBtn.addEventListener("click", function () {
@@ -108,7 +91,6 @@ if (editBtn) {
       e.preventDefault();
       const formData = new FormData(editForm);
       let url = "/handlers/user.handler.php?action=updateById";
-      // Dynamically set handler based on active table
       const tables = ["users", "deliveries", "sectcouriers"];
       let activeTable = tables.find(t => {
         const el = document.getElementById(t);
@@ -138,6 +120,7 @@ if (editBtn) {
     });
   }
 
+  // Delete button always visible
   if (deleteBtn) {
     deleteBtn.addEventListener("click", function () {
       const tables = ["users", "deliveries", "sectcouriers"];
@@ -178,7 +161,6 @@ if (editBtn) {
           }
           if (!proceed) return;
 
-          // Now actually delete
           let url = "";
           let body = new FormData();
           if (activeTable === "users") {
@@ -196,7 +178,6 @@ if (editBtn) {
           .then(result => {
             if (result.success) {
               checked.forEach(cb => cb.closest("tr").remove());
-              updateActionButtonsVisibility();
             } else {
               alert("Failed to delete selected items.");
             }
@@ -221,7 +202,6 @@ if (editBtn) {
       .then(result => {
         if (result.success) {
           checked.forEach(cb => cb.closest("tr").remove());
-          updateActionButtonsVisibility();
         } else {
           alert("Failed to delete selected items.");
         }
@@ -238,16 +218,4 @@ if (editBtn) {
       checkboxes.forEach(cb => cb.checked = this.checked);
     });
   }
-
-  function updateActionButtonsVisibility() {
-    const checkedBoxes = dbTable.querySelectorAll('input[type="checkbox"]:checked');
-    if (editBtn) editBtn.style.display = checkedBoxes.length === 1 ? "" : "none";
-    if (deleteBtn) deleteBtn.style.display = checkedBoxes.length > 0 ? "" : "none";
-  }
-
-  dbTable.addEventListener('change', function (e) {
-    if (e.target.type === "checkbox") updateActionButtonsVisibility();
-  });
-
-  updateActionButtonsVisibility();
 });
