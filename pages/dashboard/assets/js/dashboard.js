@@ -1,3 +1,11 @@
+function scrollCourier(amount) {
+  const container = document.querySelector(".courier-pick");
+  container.scrollBy({
+    top: amount,
+    behavior: "smooth",
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const courierContainers = document.querySelectorAll(".courier-container");
   const addDeliveryForm = document.getElementById("addDeliveryForm");
@@ -41,37 +49,29 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  addDeliveryForm.onsubmit = function (e) {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-    fetch("/handlers/deliveries.handler.php?action=add", {
-      method: "POST",
-      body: data,
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        const deliveryResult = document.getElementById("deliveryResult");
-        if (result.success) {
-          deliveryResult.textContent = "Delivery successfully added!";
-          deliveryResult.style.color = "green";
-          form.reset();
-          setTimeout(() => {
-            window.location.reload();
-            deliveryResult.textContent = "";
-          }, 3000);
-        } else {
-          deliveryResult.textContent = "Failed to add delivery";
-          deliveryResult.style.color = "red";
-        }
-      });
-  };
+    addDeliveryForm.onsubmit = function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const data = new FormData(form);
+        fetch('/handlers/deliveries.handler.php?action=add', {
+            method: 'POST',
+            body: data
+        })
+        .then(res => res.json())
+        .then(result => {
+            const deliveryResult = document.getElementById('deliveryResult');
+            if (result.success) {
+                deliveryResult.textContent = 'Delivery successfully added!';
+                deliveryResult.style.color = 'green';
+                form.reset();
+                setTimeout(() => {
+                    window.location.reload();
+                    deliveryResult.textContent = '';
+                }, 800);
+            } else {
+                deliveryResult.textContent = 'Failed to add delivery';
+                deliveryResult.style.color = 'red';
+            }
+        });
+    };
 });
-
-function scrollCourier(amount) {
-  const container = document.querySelector(".courier-pick");
-  container.scrollBy({
-    top: amount,
-    behavior: "smooth",
-  });
-}
