@@ -18,6 +18,7 @@ $teamMember = [
 <div class="overlay">
 </div>
 <section class="page">
+    <h1>Team Members</h1>
     <div class="member-section">
         <?php
         foreach ($teamMember as $member):
