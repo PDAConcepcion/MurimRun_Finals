@@ -3,6 +3,9 @@ require_once LAYOUTS_PATH . '/main.layout.php';
 require_once UTILS_PATH . '/sectCourier.util.php';
 require_once UTILS_PATH . '/envSetter.util.php';
 
+$mongoCheckerResult = require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
+$postgresCheckerResult = require_once HANDLERS_PATH . '/postgreChecker.handler.php';
+
 // Setup DB connection
 $host = $databases['pgHost'];
 $port = $databases['pgPort'];

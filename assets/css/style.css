@@ -92,7 +92,7 @@ input:required + label::after {
   margin-right: auto;
   background-position: center;
   top: 60px;
-  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .background {
