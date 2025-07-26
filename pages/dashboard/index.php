@@ -120,5 +120,5 @@ renderMainLayout(function () use ($sectCouriers, $user) { ?>
         </div>
     </div>
 
-<?php }, 'MurimRun - Make a delivery!', ['css' => $pageCss, 'js' => $pageJs]);
+<?php }, 'Make a delivery!', ['css' => $pageCss, 'js' => $pageJs]);
 

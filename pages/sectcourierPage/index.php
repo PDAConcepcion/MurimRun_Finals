@@ -159,4 +159,4 @@ renderMainLayout(function () use ($sectNames, $sectImage) { ?>
 
     </section>
 
-<?php }, 'Hire A Courier', ['css' => $pageCss, 'js' => $pageJs]); ?>
+<?php }, 'About Us', ['css' => $pageCss, 'js' => $pageJs]); ?>

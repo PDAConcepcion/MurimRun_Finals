@@ -130,5 +130,5 @@ renderMainLayout(function () use ($user, $editMode) { ?>
         </div>
     </div>
     <?php
-}, 'Account Page', ['css' => $pageCss, 'js' => $pageJs]);
+}, 'My Account', ['css' => $pageCss, 'js' => $pageJs]);
 ?>
