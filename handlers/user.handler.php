@@ -54,6 +54,27 @@ if ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
+if ($action === 'updateById' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['user_id'])) {
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'Missing user_id parameter']);
+        exit;
+    }
+    $user_id = $_POST['user_id'];
+    $data = [
+        'username'   => $_POST['username'] ?? '',
+        'first_name' => $_POST['first_name'] ?? '',
+        'last_name'  => $_POST['last_name'] ?? '',
+        'email'      => $_POST['email'] ?? '',
+        'role'       => $_POST['role'] ?? '',
+        'password'   => $_POST['password'] ?? '',
+    ];
+    $success = userDatabase::updateById($pdo, $user_id, $data);
+    header('Content-Type: application/json');
+    echo json_encode(['success' => $success]);
+    exit;
+}
+
 if ($action === 'checkDelete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $ids = $_POST['user_ids'] ?? [];
     $hasDeliveries = false;
