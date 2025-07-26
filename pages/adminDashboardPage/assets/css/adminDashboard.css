@@ -14,11 +14,10 @@ h1 {
   top: 0px;
   align-items: center;
   height: 100%;
-  padding-top: 60px;
 }
 
 .title-section {
-  justify-content: space-between;
+  flex: inline-flex;
 }
 
 .admin-db {

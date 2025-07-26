@@ -1,43 +1,53 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const courierContainers = document.querySelectorAll('.courier-container');
-    const addDeliveryForm = document.getElementById('addDeliveryForm');
-    const courierIdInput = document.getElementById('courier_id');
-    const selectedCourierName = document.getElementById('selectedCourierName');
+function scrollCourier(amount) {
+  const container = document.querySelector(".courier-pick");
+  container.scrollBy({
+    top: amount,
+    behavior: "smooth",
+  });
+}
 
-    courierContainers.forEach(container => {
-        const selectBtn = container.querySelector('.select-btn');
-        const deselectBtn = container.querySelector('.deselect-btn');
-        const courierId = selectBtn.getAttribute('data-courier');
-        const courierName = container.querySelector('.courier-logo').alt.replace(' Logo', '');
+document.addEventListener("DOMContentLoaded", function () {
+  const courierContainers = document.querySelectorAll(".courier-container");
+  const addDeliveryForm = document.getElementById("addDeliveryForm");
+  const courierIdInput = document.getElementById("courier_id");
+  const selectedCourierName = document.getElementById("selectedCourierName");
 
-        selectBtn.addEventListener('click', function() {
-            courierContainers.forEach(c => {
-                if (c !== container) {
-                    c.classList.add('grayed-out');
-                    c.querySelector('.select-btn').style.display = '';
-                    c.querySelector('.deselect-btn').style.display = 'none';
-                } else {
-                    c.classList.remove('grayed-out');
-                    selectBtn.style.display = 'none';
-                    deselectBtn.style.display = '';
-                }
-            });
-            addDeliveryForm.style.display = '';
-            courierIdInput.value = courierId;
-            selectedCourierName.textContent = courierName;
-        });
+  courierContainers.forEach((container) => {
+    const selectBtn = container.querySelector(".select-btn");
+    const deselectBtn = container.querySelector(".deselect-btn");
+    const courierId = selectBtn.getAttribute("data-courier");
+    const courierName = container
+      .querySelector(".courier-logo")
+      .alt.replace(" Logo", "");
 
-        deselectBtn.addEventListener('click', function() {
-            courierContainers.forEach(c => {
-                c.classList.remove('grayed-out');
-                c.querySelector('.select-btn').style.display = '';
-                c.querySelector('.deselect-btn').style.display = 'none';
-            });
-            addDeliveryForm.style.display = 'none';
-            courierIdInput.value = '';
-            selectedCourierName.textContent = '';
-        });
+    selectBtn.addEventListener("click", function () {
+      courierContainers.forEach((c) => {
+        if (c !== container) {
+          c.classList.add("grayed-out");
+          c.querySelector(".select-btn").style.display = "";
+          c.querySelector(".deselect-btn").style.display = "none";
+        } else {
+          c.classList.remove("grayed-out");
+          selectBtn.style.display = "none";
+          deselectBtn.style.display = "";
+        }
+      });
+      addDeliveryForm.style.display = "";
+      courierIdInput.value = courierId;
+      selectedCourierName.textContent = courierName;
     });
+
+    deselectBtn.addEventListener("click", function () {
+      courierContainers.forEach((c) => {
+        c.classList.remove("grayed-out");
+        c.querySelector(".select-btn").style.display = "";
+        c.querySelector(".deselect-btn").style.display = "none";
+      });
+      addDeliveryForm.style.display = "none";
+      courierIdInput.value = "";
+      selectedCourierName.textContent = "";
+    });
+  });
 
     addDeliveryForm.onsubmit = function(e) {
         e.preventDefault();

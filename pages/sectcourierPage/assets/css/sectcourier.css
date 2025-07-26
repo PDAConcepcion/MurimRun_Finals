@@ -1,16 +1,11 @@
-.page {
-  background-image: url(/assets/img/grunge-paper-background.jpg);
-  z-index: 1;
-}
-
 .background {
   position: fixed;
-  background-image: url(/assets/img/murimrun-bg4.jpg);
   top: 0px;
   left: 0px;
   height: 100%;
   background-size: cover;
   z-index: -9;
+  background-image: url(/assets/img/murimrun-bg4.jpg);
 }
 
 .overlay {
@@ -18,87 +13,220 @@
   position: absolute;
 }
 
-.order-section {
-  display: flex;
-  max-width: 1200px;
-  width: 100%;
-  flex-direction: column;
-  box-sizing: border-box;
-  gap: 40px;
-}
-
-.content {
-  display: flex;
+.page {
   z-index: 1;
-  padding: 20px;
-  margin: 0;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-}
-
-.start {
+  width: 100vw;
   height: 100vh;
+  text-align: center;
+  position: relative;
 }
 
-.clr h1,
-.clr p {
+.hero-head {
+  font-size: var(--font-lg);
   color: white;
 }
 
-.start h1 {
-  font-size: var(--font-lg);
+.hero-desc {
+  font-size: var(--font-md);
+  color: white;
+  margin-bottom: 50px;
+}
+
+.sect-feature {
+  min-height: 80vh;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .select-sect {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* 2 rows */
+  min-width: 0px;
+  justify-items: center;
   gap: 20px;
-}
-
-.content p,
-.wh p {
-  width: 70%;
-}
-
-.sc {
-  margin-top: 100px 0px;
+  margin: 20px 0px;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  width: 200;
-  height: auto;
+  align-items: center;
+  width: 220px;
+  height: 300px;
   background-color: var(--box-transparent);
   border-radius: var(--box-radius);
   backdrop-filter: var(--bg-blur);
   border: var(--box-highlight);
-  padding: 12px;
-  margin: 10px;
+  padding: 18px 12px;
+  margin: 0;
+  box-shadow: var(--shadow-def);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.container:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .sect-photo {
-  border-radius: 10px;
-  width: 200px;
-  height: 200px;
-  background-color: rgb(0, 0, 0);
+  width: 220px;
+  height: 220px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.sect-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 2px solid #eee;
 }
 
 .sect-deets {
   color: var(--color-text);
+  text-align: center;
+  margin-top: 8px;
 }
 
-.promises {
-  color: black;
+.sect-deets h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.sect-desc {
+  color: white;
+  font-size: var(--font-md);
+  text-align: center;
+}
+
+.pageContainer {
+  background-color: rgb(237, 237, 237);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 50px;
+  padding-top: 20px;
+  margin: 20px;
+}
+
+.divider {
+  border: none;
+  height: 5px;
+  width: 100px;
+  background-color: #cbaf87; /* your accent color */
+  margin: 40px 0;
+}
+
+.murim-way {
+  max-width: 1600px;
+  padding-left: auto;
+  padding-right: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.promises-left,
+.promises-right {
+  padding-top: 20px;
+  padding-bottom: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: 0px 10px;
-  padding: 50px;
-  background-image: url(/assets/img/grunge-paper-background.jpg);
+  height: 450px;
+  flex: 1;
+  overflow: hidden;
+  margin: 20px;
+}
+
+.murim-way h1,
+.murim-way p {
+  color: var(--color-text);
+}
+
+.murimHead {
+  font-size: var(--font-lg);
+}
+
+.murimDesc {
+  font-size: var(--font-md);
+}
+
+.mrp img {
+  align-items: baseline;
+  object-fit: cover;
+}
+
+/* 4K and above (Ultra HD) */
+@media (min-width: 2560px) {
+  /* Styles for very large screens */
+  .sect-feature,
+  .murim-way {
+    max-width: 1600px;
+  }
+}
+
+/* Full HD - 1080p and large desktops */
+@media (min-width: 1920px) and (max-width: 2559px) {
+  /* Styles for desktops */
+}
+
+/* Laptops and smaller desktops (HD ready) */
+@media (min-width: 1366px) and (max-width: 1919px) {
+  /* Styles for laptops */
+
+  .sect-feature,
+  .murim-way {
+    max-width: 1200px;
+  }
+}
+
+/* Tablets landscape / small laptops */
+@media (min-width: 1024px) and (max-width: 1365px) {
+  /* Styles for tablets in landscape */
+  .sect-feature,
+  .murim-way {
+    max-width: 1000px;
+  }
+
+  .murimHead {
+    font-size: var(--font-md);
+  }
+  .murimDesc {
+    font-size: var(--font-sm);
+  }
+}
+
+/* Tablets portrait / large phones landscape */
+@media (max-width: 1023px) {
+  /* Styles for tablets portrait and landscape phones */
+  .sect-feature,
+  .murim-way {
+    margin: 30px;
+  }
+}
+
+/* Phones (portrait) */
+@media (min-width: 480px) and (max-width: 767px) {
+  /* Styles for medium phones */
+}
+
+/* Small phones */
+@media (max-width: 479px) {
+  /* Styles for small phones */
 }
