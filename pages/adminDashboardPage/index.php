@@ -169,6 +169,52 @@ renderMainLayout(function () use ($users, $deliveries, $couriers) { ?>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                <!-- Edit Modal -->
+
+                <div id="editModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:9999; align-items:center; justify-content:center;">
+                    <div style="background:white; padding:24px; border-radius:8px; min-width:300px; max-width:90vw;">
+                        <h2 id="editModalTitle">Edit</h2>
+                        <form id="editForm">
+                            <!-- User fields -->
+                            <div class="edit-user-fields">
+                                <input type="hidden" name="user_id" id="edit_user_id">
+                                <label>Username: <input type="text" name="username" id="edit_username"></label><br>
+                                <label>First Name: <input type="text" name="first_name" id="edit_first_name"></label><br>
+                                <label>Last Name: <input type="text" name="last_name" id="edit_last_name"></label><br>
+                                <label>Email: <input type="email" name="email" id="edit_email"></label><br>
+                                <label>Role: <input type="text" name="role" id="edit_role"></label><br>
+                            </div>
+                            <!-- Sect Courier fields -->
+                            <div class="edit-sectcourier-fields" style="display:none;">
+                                <input type="hidden" name="courier_id" id="edit_courier_id">
+                                <label>Name: <input type="text" name="name" id="edit_name"></label><br>
+                                <label>Sect Name: <input type="text" name="sectname" id="edit_sectname"></label><br>
+                                <label>Rank: <input type="text" name="rank" id="edit_rank"></label><br>
+                                <label>Speed Rating: <input type="number" name="speedrating" id="edit_speedrating"></label><br>
+                                <label>Status: 
+                                    <select name="status" id="edit_status">
+                                        <option value="true">Available</option>
+                                        <option value="false">Unavailable</option>
+                                    </select>
+                                </label><br>
+                            </div>
+                            <!-- Delivery fields -->
+                            <div class="edit-delivery-fields" style="display:none;">
+                                <input type="hidden" name="delivery_id" id="edit_delivery_id">
+                                <label>User ID: <input type="text" name="user_id" id="edit_delivery_user_id"></label><br>
+                                <label>Courier ID: <input type="text" name="courier_id" id="edit_delivery_courier_id"></label><br>
+                                <label>Origin: <input type="text" name="origin" id="edit_origin"></label><br>
+                                <label>Destination: <input type="text" name="destination" id="edit_destination"></label><br>
+                                <label>Description: <input type="text" name="package_description" id="edit_package_description"></label><br>
+                                <label>Status: <input type="text" name="status" id="edit_delivery_status"></label><br>
+                                <label>ETA: <input type="text" name="delivery_time_estimate" id="edit_delivery_time_estimate"></label><br>
+                                <label>Weight (kg): <input type="number" name="weight_kg" id="edit_weight_kg"></label><br>
+                            </div>
+                            <button type="submit" class="btn-5">Save</button>
+                            <button type="button" class="btn-5" id="editCancelBtn">Cancel</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
