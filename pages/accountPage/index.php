@@ -41,7 +41,10 @@ $editMode = isset($_GET['edit']) && $_GET['edit'] == '1';
 renderMainLayout(function () use ($user, $editMode) { ?>
     <div class="page">
         <div class="account-section">
-            <h1>My Account</h1>
+            <div class="title-section">
+                <img src="/assets/img/murimrun-icons/murimrun-account.png" alt="">
+                <h1>My Account</h1>
+            </div>
             <section class="window">
 
                 <div class="sidebar">
