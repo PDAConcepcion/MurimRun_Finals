@@ -2,6 +2,10 @@ h1 {
   text-shadow: var(--shadow-def);
 }
 
+.head-text {
+  color: white;
+}
+
 .order {
   background-image: url(/pages/adminDashboardPage/assets/img/dash-img.png);
 }
@@ -24,20 +28,13 @@ h1 {
 }
 
 .user-dash {
+  position: relative;
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 100%;
   gap: 25px;
-}
-
-.stat {
-  flex: 4;
-  height: 600px;
-  flex-shrink: 0;
-  background-color: rgb(255, 255, 255);
-  border-radius: 20px;
-  padding: 20px;
+  margin: 20px 0px;
 }
 
 label {
@@ -63,16 +60,28 @@ input:placeholder-shown {
   padding: 6px;
 }
 
+.stat {
+  flex: 1;
+  height: 600px;
+  flex-shrink: 0;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  padding: 20px;
+}
+
 .stat form {
   padding-top: 10px;
 }
 
 .courier-pick {
+  position: relative;
   display: flex;
   flex-direction: column;
-  flex: 6;
+  flex: 2;
   min-width: 0;
   gap: 10px;
+  height: 800px;
+  overflow-y: auto;
 }
 
 .courier-container {
@@ -90,6 +99,7 @@ input:placeholder-shown {
 
   background-color: var(--box-transparent);
   box-shadow: var(--shadow-def);
+  transition: all 0.07s ease-out;
 }
 
 .sh {
@@ -138,6 +148,7 @@ input:placeholder-shown {
   opacity: 0.4;
   pointer-events: none;
   filter: grayscale(1);
+  transform: scale(0.95) translateX(-16px);
 }
 
 .deselect-btn {
@@ -149,7 +160,22 @@ input:placeholder-shown {
   cursor: pointer;
 }
 
+.btn-3 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 #deliveryResult {
   margin-top: 10px;
   font-weight: bold;
+}
+
+.description {
+  font-size: var(--font-sm);
+  color: white;
+}
+
+.description p {
+  margin: 5px;
 }

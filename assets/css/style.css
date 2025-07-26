@@ -66,11 +66,11 @@ input:required + label::after {
   display: flex;
   width: 100%;
   align-items: center;
+  gap: 20px;
 }
 
 .title-section img {
-  height: 80px;
-  padding: 20px;
+  height: 60px;
 }
 
 .title-box {
@@ -92,6 +92,7 @@ input:required + label::after {
   margin-right: auto;
   background-position: center;
   top: 60px;
+  padding: 40px;
 }
 
 .background {
