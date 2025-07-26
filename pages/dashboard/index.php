@@ -38,11 +38,18 @@ renderMainLayout(function () use ($sectCouriers, $user) { ?>
         <div class="overlay"></div>
     </div>
     <div class="page">
-        <div class="head-title">
-            <h1 class="head-text">Dashboard</h1>
-            <p class="time-text"><?php echo date("D, M j Y") ?></p>
+
+        <div class="title-section">
+            <img src="/assets/img/murimrun-icons/murimrun-orders.png" alt="">
+            <h1 class="head-text">Place Your Order</h1>
+        </div>
+        <div class="description">
+            <p><strong>Step 1:</strong> Select a courier from the list below.</p>
+            <p><strong>Step 2:</strong> Fill in your delivery details on the right side of the page.</p>
+            <p><strong>Step 3:</strong> Review all information and confirm your order.</p>
         </div>
         <div class="user-dash">
+
             <div class="courier-pick">
                 <?php foreach ($sectCouriers as $courier): ?>
                     <div class="courier-container sh<?php echo !$courier['status'] ? ' grayed-out' : ''; ?>">
@@ -110,5 +117,5 @@ renderMainLayout(function () use ($sectCouriers, $user) { ?>
         </div>
     </div>
 
-<?php }, 'User dashboard', ['css' => $pageCss, 'js' => $pageJs]);
+<?php }, 'MurimRun - Make a delivery!', ['css' => $pageCss, 'js' => $pageJs]);
 
