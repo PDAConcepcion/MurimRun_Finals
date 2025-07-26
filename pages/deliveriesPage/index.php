@@ -4,6 +4,9 @@ require_once UTILS_PATH . '/deliveries.util.php';
 require_once UTILS_PATH . '/auth.utils.php';
 require_once UTILS_PATH . '/envSetter.util.php';
 
+$mongoCheckerResult = require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
+$postgresCheckerResult = require_once HANDLERS_PATH . '/postgreChecker.handler.php';
+
 Auth::init();
 $user = Auth::user();
 

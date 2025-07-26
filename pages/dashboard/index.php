@@ -5,6 +5,9 @@ require_once UTILS_PATH . '/sectCourier.util.php';
 require_once UTILS_PATH . '/deliveries.util.php';
 require_once UTILS_PATH . '/envSetter.util.php';
 
+$mongoCheckerResult = require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
+$postgresCheckerResult = require_once HANDLERS_PATH . '/postgreChecker.handler.php';
+
 // Setup DB connection using envSetter
 $host = $databases['pgHost'];
 $port = $databases['pgPort'];
@@ -117,5 +120,5 @@ renderMainLayout(function () use ($sectCouriers, $user) { ?>
         </div>
     </div>
 
-<?php }, 'MurimRun - Make a delivery!', ['css' => $pageCss, 'js' => $pageJs]);
+<?php }, 'Make a delivery!', ['css' => $pageCss, 'js' => $pageJs]);
 

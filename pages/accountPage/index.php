@@ -4,6 +4,9 @@ require_once UTILS_PATH . '/auth.utils.php';
 require_once UTILS_PATH . '/envSetter.util.php';
 require_once UTILS_PATH . '/user.utils.php';
 
+$mongoCheckerResult = require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
+$postgresCheckerResult = require_once HANDLERS_PATH . '/postgreChecker.handler.php';
+
 // Setup DB connection
 $host = $databases['pgHost'];
 $port = $databases['pgPort'];
@@ -127,5 +130,5 @@ renderMainLayout(function () use ($user, $editMode) { ?>
         </div>
     </div>
     <?php
-}, 'Account Page', ['css' => $pageCss, 'js' => $pageJs]);
+}, 'My Account', ['css' => $pageCss, 'js' => $pageJs]);
 ?>
