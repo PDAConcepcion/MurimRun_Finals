@@ -48,13 +48,10 @@ renderMainLayout(function () use ($sectNames, $sectImage) { ?>
 
     <section class="page">
 
-        <h1 class="hero-head">Hire A Courier</h1>
+        <h1 class="hero-head">Not Just Couriers, Disciples of Delivery.
+        </h1>
         <p class="hero-desc">
-            <!-- Introductory text about the service -->
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida ex non lectus ullamcorper
-            vestibulum. Suspendisse erat arcu, scelerisque aliquet dolor ac, pretium eleifend magna.
-            Pellentesque quis tortor sagittis tellus iaculis semper. Nam luctus, odio id tincidunt vulputate,
-            lectus velit commodo neque, non porttitor eros dui sit amet eros.
+            At MurimRun, your package isn’t just handled — it’s honored.
         </p>
         <div class="btn-group">
             <!-- Button to scroll to sect selection -->
@@ -66,7 +63,7 @@ renderMainLayout(function () use ($sectNames, $sectImage) { ?>
     <!-- Choose a sect section -->
     <section class="sect-feature" id="sect-pick">
 
-        <h1 class="hero-head">Choose a SECT</h1>
+        <h1 class="hero-head">Pick a SECT</h1>
         <div class="select-sect">
             <?php for ($i = 0; $i < count($sectNames); $i++): ?>
                 <a href="" class="container" style="color: white;">
@@ -81,10 +78,8 @@ renderMainLayout(function () use ($sectNames, $sectImage) { ?>
         </div>
         <p class="sect-desc">
             <!-- Additional info about sect selection -->
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida ex non lectus ullamcorper
-            vestibulum. Suspendisse erat arcu, scelerisque aliquet dolor ac, pretium eleifend magna.
-            Pellentesque quis tortor sagittis tellus iaculis semper. Nam luctus, odio id tincidunt vulputate,
-            lectus velit commodo neque, non porttitor eros dui sit amet eros.
+            Choose from our elite sects, each trained in their own unique delivery style. Whether you value speed, stealth,
+            or strength, there’s a sect ready to carry your mission with precision and pride.
         </p>
     </section>
 
@@ -93,6 +88,8 @@ renderMainLayout(function () use ($sectNames, $sectImage) { ?>
         <div class="murim-way">
 
             <div class="promises-left">
+                <h1>Our Pillars of Service</h1>
+                <hr class="divider">
                 <h1>⚔️ Disciplined Delivery, the Murim Way</h1>
                 <p class="murimHead">
                     Every MurimRunner moves with purpose. No delays, no detours.
@@ -124,7 +121,6 @@ renderMainLayout(function () use ($sectNames, $sectImage) { ?>
                 </p>
             </div>
         </div>
-
         <div class="murim-way">
             <div class="promises-left">
                 <h1>🌀 Swift as the Wind</h1>
