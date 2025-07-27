@@ -17,14 +17,14 @@ function navHeader(array $user = null): void
     // Nav links for guests
     $guestNavList = [
         ['label' => 'Services', 'link' => '/pages/sectcourierPage/index.php'],
-        ['label' => 'About Us', 'link' => '/pages/about-us/index.php'],
+        ['label' => 'About Us', 'link' => '/pages/aboutUs/index.php'],
     ];
 
     $userNavList = [
         ['label' => 'My Account', 'link' => '/pages/accountPage/index.php'],
         ['label' => 'Orders', 'link' => '/pages/deliveriesPage/index.php'],
         ['label' => 'Services', 'link' => '/pages/sectcourierPage/index.php'],
-        ['label' => 'About Us', 'link' => '/pages/about-us/index.php'],
+        ['label' => 'About Us', 'link' => '/pages/aboutUs/index.php'],
         ['label' => 'Dashboard', 'link' => '/pages/dashboard/index.php']
     ];
 
@@ -32,7 +32,7 @@ function navHeader(array $user = null): void
         ['label' => 'My Account', 'link' => '/pages/accountPage/index.php'],
         ['label' => 'Orders', 'link' => '/pages/deliveriesPage/index.php'],
         ['label' => 'Services', 'link' => '/pages/sectcourierPage/index.php'],
-        ['label' => 'About Us', 'link' => '/pages/about-us/index.php'],
+        ['label' => 'About Us', 'link' => '/pages/aboutUs/index.php'],
         ['label' => 'Dashboard', 'link' => '/pages/adminDashboardPage/index.php']
     ];
 
