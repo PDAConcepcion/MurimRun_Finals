@@ -114,17 +114,48 @@ class SectCouriers
             ':oldName' => $oldName,
         ]);
     }
-
+    
     /**
-     * Remove a sect courier by name.
+     * Remove a sect courier by courier_id.
      * @param PDO $pdo
-     * @param string $name
+     * @param string $courier_id
      * @return bool
      */
-    public static function removeByName(PDO $pdo, string $name): bool
+    public static function removeById(PDO $pdo, string $courier_id): bool
     {
-        $stmt = $pdo->prepare('DELETE FROM public."SectCouriers_table" WHERE name = :name');
-        return $stmt->execute([':name' => $name]);
+        $stmt = $pdo->prepare('DELETE FROM public."SectCouriers_table" WHERE courier_id = :courier_id');
+        return $stmt->execute([':courier_id' => $courier_id]);
+    }
+    /**
+     * Summary of updateById
+     * @param PDO $pdo
+     * @param string $courier_id
+     * @param array $data
+     * @return bool
+     */
+    public static function updateById(PDO $pdo, string $courier_id, array $data): bool
+    {
+        $stmt = $pdo->prepare('
+            UPDATE public."SectCouriers_table"
+            SET name = :name,
+                sectname = :sectname,
+                rank = :rank,
+                speedrating = :speedrating,
+                status = :status,
+                image = :image
+            WHERE courier_id = :courier_id
+        ');
+        return $stmt->execute([
+            ':name' => $data['name'],
+            ':sectname' => $data['sectname'],
+            ':rank' => $data['rank'],
+            ':speedrating' => $data['speedrating'],
+            ':status' => $data['status'],
+            ':image' => $data['image'],
+            ':courier_id' => $courier_id
+        ]);
     }
 }
+
+
 ?>
