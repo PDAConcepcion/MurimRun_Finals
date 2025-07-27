@@ -66,9 +66,9 @@ renderMainLayout(function () use ($users, $deliveries, $couriers) { ?>
                 </div>
                 <!-- Action Buttons -->
                 <div class="db-buttons">
-                    <button id="editBtn" class="btn-5" title="Edit selected row(s)" style="display:none;">Edit</button>
-                    <button id="deleteBtn" class="btn-5" title="Delete from database" style="display:none;">Delete</button>
-                </div>
+                <button id="editBtn" class="btn-5" title="Edit selected row(s)">Edit</button>
+                <button id="deleteBtn" class="btn-5" title="Delete from database">Delete</button>
+            </div>
             </div>
 
             <div class="db-table">

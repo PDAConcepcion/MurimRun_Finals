@@ -141,8 +141,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateActionButtonsVisibility() {
     const checkedBoxes = dbTable.querySelectorAll('input[type="checkbox"]:checked');
-    if (editBtn) editBtn.style.display = checkedBoxes.length === 1 ? "" : "none";
-    if (deleteBtn) deleteBtn.style.display = checkedBoxes.length > 0 ? "" : "none";
+    if (editBtn) editBtn.style.display = "";
+    if (deleteBtn) deleteBtn.style.display = "";
   }
 
   dbTable.addEventListener('change', function (e) {
