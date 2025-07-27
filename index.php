@@ -78,13 +78,13 @@ renderMainLayout(function () use ($services) { ?>
                 </div>
             <?php endforeach ?>
         </section>
-        <section class="carousel">
+        <!-- <section class="carousel">
             <div class="carousel-track">
                 <img src="image1.jpg" class="carousel-image" alt="">
             </div>
             <button class="prev">‹</button>
             <button class="next">›</button>
-        </section>
+        </section> -->
 
 
     </div>
