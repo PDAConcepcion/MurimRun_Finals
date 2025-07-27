@@ -1,6 +1,5 @@
 <?php
 require_once LAYOUTS_PATH . '/main.layout.php';
-
 require_once UTILS_PATH . '/auth.utils.php';
 
 
@@ -48,7 +47,15 @@ renderMainLayout(function () use ($services) { ?>
 
 
             <div class="actions">
-
+            <?php
+            $user = Auth::user();
+            if (Auth::check()):
+                if (isset($user['role']) && strtolower($user['role']) === 'admin'): ?>
+                    <a class="btn-2" href="/pages/adminDashboardPage/index.php">Get started (Admin)</a>
+                <?php else: ?>
+                    <a class="btn-2" href="/pages/dashboard/index.php">Get started</a>
+                <?php endif;
+            else: ?>
                 <div class="btn-group sh">
                     <a class="btn btn-left" href="/pages/signupPage/index.php">
                         Create Account
@@ -57,10 +64,8 @@ renderMainLayout(function () use ($services) { ?>
                         Log In
                     </a>
                 </div>
-
-                <a class="btn-2 " href="/pages/dashboard/index.php">Get started</a>
-
-            </div>
+            <?php endif; ?>
+        </div>
 
 
 

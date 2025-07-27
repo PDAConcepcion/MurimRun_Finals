@@ -11,7 +11,7 @@ Auth::init();
 $user = Auth::user();
 
 if (!$user || empty($user['id'])) {
-    header('Location: /pages/loginPage/index.php');
+    header('Location: /errors/forbidden.error.php');
     exit;
 }
 

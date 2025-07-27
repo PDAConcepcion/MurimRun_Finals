@@ -5,9 +5,6 @@ require_once UTILS_PATH . '/sectCourier.util.php';
 require_once UTILS_PATH . '/deliveries.util.php';
 require_once UTILS_PATH . '/envSetter.util.php';
 
-$mongoCheckerResult = require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
-$postgresCheckerResult = require_once HANDLERS_PATH . '/postgreChecker.handler.php';
-
 // Setup DB connection using envSetter
 $host = $databases['pgHost'];
 $port = $databases['pgPort'];
@@ -19,7 +16,14 @@ $pdo = new PDO($dsn, $username, $password, [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 ]);
 
-$user = Auth::user();
+Auth::init();
+$sessionUser = Auth::user();
+
+if (!$sessionUser) {
+    header('Location: /errors/forbidden.error.php');
+    exit;
+}
+
 $sectCouriers = SectCouriers::getAll($pdo);
 $deliveries = Deliveries::getAll($pdo);
 
@@ -35,7 +39,7 @@ $pageJs = [
     'assets/js/dashboard.js'
 ];
 
-renderMainLayout(function () use ($sectCouriers, $user) { ?>
+renderMainLayout(function () use ($sectCouriers, $sessionUser) { ?>
 
     <div class="background order">
         <div class="overlay"></div>
@@ -111,7 +115,7 @@ renderMainLayout(function () use ($sectCouriers, $user) { ?>
                     <label for="delivery_time_estimate">Time Estimate:</label>
                     <input type="text" name="delivery_time_estimate" id="delivery_time_estimate" required>
                     <input type="hidden" name="courier_id" id="courier_id" required>
-                    <input type="hidden" name="user_id" id="user_id" value="<?php echo htmlspecialchars($user['id']); ?>"
+                    <input type="hidden" name="user_id" id="user_id" value="<?php echo htmlspecialchars($sessionUser['id']); ?>"
                         required>
                     <button type="submit" class="btn-3 sc">Add Delivery</button>
                 </form>
