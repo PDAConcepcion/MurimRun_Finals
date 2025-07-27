@@ -12,7 +12,7 @@ $pageCss = [
     '../../assets/css/header.css',
     '../../assets/css/footer.css',
     '../../assets/css/style.css',
-    '/assets/css/about.css'
+    'assets/css/about.css'
 ];
 
 renderMainLayout(function () use ($teamMember) { ?>
