@@ -2,9 +2,18 @@
 
 require_once LAYOUTS_PATH . '/main.layout.php';
 require_once UTILS_PATH . '/envSetter.util.php';
+require_once UTILS_PATH . '/auth.utils.php';
 require_once UTILS_PATH . '/user.utils.php';
 require_once UTILS_PATH . '/deliveries.util.php';
 require_once UTILS_PATH . '/sectCourier.util.php';
+
+Auth::init();
+$sessionUser = Auth::user();
+
+if (!$sessionUser || strtolower($sessionUser['role'] ?? '') !== 'admin') {
+    header('Location: /errors/forbidden.error.php');
+    exit;
+}
 
 // Setup DB connection
 $host = $databases['pgHost'];
