@@ -38,6 +38,7 @@ renderMainLayout(function () use ($users, $deliveries, $couriers) { ?>
     <div class="container">
         <!-- Title Section -->
         <div class="title-section">
+            <img src="/assets/img/murimrun-icons/murimrun-signup.png" alt="">
             <h1>Admin Dashboard</h1>
             <p class="time-text"><?php echo date("D, M j Y") ?></p>
         </div>

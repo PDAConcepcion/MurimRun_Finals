@@ -1,6 +1,9 @@
 <?php
 require_once LAYOUTS_PATH . '/main.layout.php';
 
+$mongoCheckerResult = require_once HANDLERS_PATH . '/mongodbChecker.handler.php';
+$postgresCheckerResult = require_once HANDLERS_PATH . '/postgreChecker.handler.php';
+
 $pageCss = [
     '/assets/css/header.css',
     '/assets/css/footer.css',

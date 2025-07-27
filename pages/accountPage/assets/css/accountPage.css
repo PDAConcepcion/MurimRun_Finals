@@ -8,16 +8,13 @@ h1 {
 }
 
 .page {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  height: auto;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .account-section {
-  width: 1200px;
+  width: 100%;
   height: auto;
 }
 
@@ -107,4 +104,49 @@ input {
 
 input:placeholder-shown {
   padding: 6px;
+}
+
+/* 4K and above (Ultra HD) */
+@media (min-width: 2560px) {
+  /* Styles for very large screens */
+  /* .account-section {
+    max-width: 1600px;
+  } */
+}
+
+/* Full HD - 1080p and large desktops */
+@media (min-width: 1920px) and (max-width: 2559px) {
+  /* Styles for desktops */
+}
+
+/* Laptops and smaller desktops (HD ready) */
+@media (min-width: 1366px) and (max-width: 1919px) {
+  /* Styles for laptops */
+  /* .account-section {
+    max-width: 1200px;
+  } */
+}
+
+/* Tablets landscape / small laptops */
+@media (min-width: 1024px) and (max-width: 1365px) {
+  /* Styles for tablets in landscape */
+
+  /* .account-section {
+    max-width: 1000px;
+  } */
+}
+
+/* Tablets portrait / large phones landscape */
+@media (max-width: 1023px) {
+  /* Styles for tablets portrait and landscape phones */
+}
+
+/* Phones (portrait) */
+@media (min-width: 480px) and (max-width: 767px) {
+  /* Styles for medium phones */
+}
+
+/* Small phones */
+@media (max-width: 479px) {
+  /* Styles for small phones */
 }

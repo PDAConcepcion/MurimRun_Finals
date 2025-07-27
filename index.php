@@ -37,15 +37,15 @@ renderMainLayout(function () use ($services) { ?>
     <div class="page">
         <div class="intro">
             <div class="murimrun-logo"><img src="/assets/img/murimrun-wordmark-white.png" alt=""></div>
+
             <p class="intro-text">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
-                faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
-                pretium tellus duis convallis. Tempus leo eu aenean sed diam urna
-                tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
-                Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut
-                hendrerit semper vel class aptent taciti sociosqu. Ad litora
-                torquent per conubia nostra inceptos himenaeos.
+                MurimRun is a courier service where elite warriors from ancient sects deliver your packages with speed,
+                honor, and precision.
+                <strong>
+                    Choose your courier. Track your scroll. Earn rewards.
+                </strong>
             </p>
+
 
             <div class="actions">
 
