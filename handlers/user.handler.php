@@ -77,9 +77,22 @@ if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $ids = $_POST['user_ids'] ?? [];
         $success = true;
         foreach ($ids as $id) {
-            // First, delete all deliveries for this user
+            // Get all delivery_ids for this user
+            $stmt = $pdo->prepare('SELECT delivery_id FROM public."Deliveries_table" WHERE user_id = :user_id');
+            $stmt->execute([':user_id' => $id]);
+            $deliveryIds = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+            // Delete from courier_deliveries first (if such a table exists)
+            if (!empty($deliveryIds)) {
+                $in = implode(',', array_fill(0, count($deliveryIds), '?'));
+                $pdo->prepare("DELETE FROM public.\"courier_deliveries\" WHERE delivery_id IN ($in)")
+                    ->execute($deliveryIds);
+            }
+
+            // Delete all deliveries for this user
             $stmt = $pdo->prepare('DELETE FROM public."Deliveries_table" WHERE user_id = :user_id');
             $stmt->execute([':user_id' => $id]);
+
             // Then, delete the user
             $success = $success && userDatabase::removeById($pdo, $id);
         }
