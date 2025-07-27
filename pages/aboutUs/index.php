@@ -1,20 +1,21 @@
 <?php
+require_once LAYOUTS_PATH . '/main.layout.php';
 
 $teamMember = [
     ['lastName' => 'Camino', 'firstName' => 'Gabriel Rabi Noel', 'course' => 'BSITDA'],
     ['lastName' => 'Concepcion', 'firstName' => 'Patrick Dhale', 'course' => 'BSITAGD'],
     ['lastName' => 'Putian', 'firstName' => 'Rey Vincent', 'course' => 'BSITAGD'],
     ['lastName' => 'Andres', 'firstName' => 'William Karl', 'course' => 'BSITAGD']
-
-
 ];
 
-?>
+$pageCss = [
+    '../../assets/css/header.css',
+    '../../assets/css/footer.css',
+    '../../assets/css/style.css',
+    '/assets/css/about.css'
+];
 
-<link rel="stylesheet" href="/assets/css/style.css">
-<link rel="stylesheet" href="/pages/aboutUs/assets/css/about.css">
-
-
+renderMainLayout(function () use ($teamMember) { ?>
 <div class="overlay">
 </div>
 <section class="page">
@@ -42,3 +43,4 @@ $teamMember = [
         ?>
     </div>
 </section>
+<?php }, 'About Us', ['css' => $pageCss]);
