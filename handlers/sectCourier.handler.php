@@ -94,9 +94,22 @@ if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $ids = $_POST['courier_ids'] ?? [];
         $success = true;
         foreach ($ids as $id) {
-            // First, delete all deliveries for this courier
+            // Get all delivery_ids for this courier
+            $stmt = $pdo->prepare('SELECT delivery_id FROM public."Deliveries_table" WHERE courier_id = :courier_id');
+            $stmt->execute([':courier_id' => $id]);
+            $deliveryIds = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+            // Delete from courier_deliveries first
+            if (!empty($deliveryIds)) {
+                $in = implode(',', array_fill(0, count($deliveryIds), '?'));
+                $pdo->prepare("DELETE FROM public.\"courier_deliveries\" WHERE delivery_id IN ($in)")
+                    ->execute($deliveryIds);
+            }
+
+            // Delete all deliveries for this courier
             $stmt = $pdo->prepare('DELETE FROM public."Deliveries_table" WHERE courier_id = :courier_id');
             $stmt->execute([':courier_id' => $id]);
+
             // Then, delete the courier
             $success = $success && SectCouriers::removeById($pdo, $id);
         }
