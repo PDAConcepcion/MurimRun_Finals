@@ -65,6 +65,7 @@ renderMainLayout(function () use ($deliveries) { ?>
                             <th>Order ID</th>
                             <th>Courier Name</th>
                             <th>Sect Name</th>
+                            <th>Origin</th>
                             <th>Destination</th>
                             <th>ETA</th>
                             <th>Status</th>
@@ -77,6 +78,7 @@ renderMainLayout(function () use ($deliveries) { ?>
                                     <td>#<?= htmlspecialchars($delivery['delivery_id']) ?></td>
                                     <td><?= htmlspecialchars($delivery['courier_name']) ?></td>
                                     <td><?= htmlspecialchars($delivery['sect_name']) ?></td>
+                                    <td><?= htmlspecialchars($delivery['origin']) ?></td>
                                     <td><?= htmlspecialchars($delivery['destination']) ?></td>
                                     <td><?= htmlspecialchars($delivery['delivery_time_estimate']) ?></td>
                                     <td><?= htmlspecialchars($delivery['status']) ?></td>
