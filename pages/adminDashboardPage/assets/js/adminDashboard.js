@@ -19,7 +19,6 @@ function showCategory(category) {
 document.addEventListener("DOMContentLoaded", function () {
   const editBtn = document.getElementById("editBtn");
   const deleteBtn = document.getElementById("deleteBtn");
-  const selectAll = document.getElementById("selectAll");
   const userTable = document.getElementById("users");
   const dbTable = document.querySelector('.db-table');
 
@@ -204,13 +203,6 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch(err => {
         alert("Failed to delete: " + err);
       });
-    });
-  }
-
-  if (selectAll) {
-    selectAll.addEventListener("change", function () {
-      const checkboxes = userTable.querySelectorAll(".select-cell input:not(:disabled)");
-      checkboxes.forEach(cb => cb.checked = this.checked);
     });
   }
 
