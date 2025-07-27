@@ -121,4 +121,24 @@ if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     exit;
 }
+
+if ($action === 'updateById' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['courier_id'])) {
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'Missing courier_id parameter']);
+        exit;
+    }
+    $data = [
+        'name' => $_POST['name'] ?? '',
+        'sectname' => $_POST['sectname'] ?? '',
+        'rank' => $_POST['rank'] ?? '',
+        'speedrating' => $_POST['speedrating'] ?? 0,
+        'status' => $_POST['status'] ?? 'Available',
+        'image' => $_POST['image'] ?? ''
+    ];
+    $success = SectCouriers::updateById($pdo, $_POST['courier_id'], $data);
+    header('Content-Type: application/json');
+    echo json_encode(['success' => $success]);
+    exit;
+}
 ?>

@@ -22,6 +22,24 @@ $pdo = new PDO($dsn, $username, $password, [
 
 $action = $_REQUEST['action'] ?? null;
 
+if ($action === 'adminUpdate' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user_id = $_POST['user_id'] ?? '';
+    $data = [
+        'username'   => $_POST['username'] ?? '',
+        'first_name' => $_POST['first_name'] ?? '',
+        'last_name'  => $_POST['last_name'] ?? '',
+        'email'      => $_POST['email'] ?? '',
+        'role'       => $_POST['role'] ?? '',
+        'password'   => $_POST['password'] ?? '',
+    ];
+
+    $success = userDatabase::updateById($pdo, $user_id, $data);
+
+    header('Content-Type: application/json');
+    echo json_encode(['success' => $success]);
+    exit;
+}
+
 if ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $original_user = json_decode($_POST['original_user'] ?? '{}', true);
     $reference_user_id = $original_user['user_id'] ?? '';
@@ -53,6 +71,8 @@ if ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: /pages/accountPage/index.php?message=' . ($success ? 'updated' : 'update_failed'));
     exit;
 }
+
+
 
 if ($action === 'checkDelete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $ids = $_POST['user_ids'] ?? [];
