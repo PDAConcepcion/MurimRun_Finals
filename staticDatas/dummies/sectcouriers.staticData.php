@@ -7,7 +7,7 @@ return [
         'rank' => 'A',
         'speedrating' => 95,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-1.png'
     ],
     [
         'name' => 'Carl Cendana',
@@ -15,7 +15,7 @@ return [
         'rank' => 'F',
         'speedrating' => 1,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-2.png'
     ],
     [
         'name' => 'Sumo San',
@@ -23,7 +23,7 @@ return [
         'rank' => 'B',
         'speedrating' => 70,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-3.png'
     ],
     [
         'name' => 'Luo Yi',
@@ -31,7 +31,7 @@ return [
         'rank' => 'A',
         'speedrating' => 85,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-4.png'
     ],
     [
         'name' => 'Li Si',
@@ -39,7 +39,7 @@ return [
         'rank' => 'B',
         'speedrating' => 88,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-5.png'
     ],
     [
         'name' => 'Li San',
@@ -47,7 +47,7 @@ return [
         'rank' => 'A',
         'speedrating' => 98,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-6.png'
     ],
     [
         'name' => 'Ni San',
@@ -55,7 +55,7 @@ return [
         'rank' => 'C',
         'speedrating' => 66,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-7.png'
     ],
     [
         'name' => 'Bob',
@@ -63,7 +63,7 @@ return [
         'rank' => 'SS',
         'speedrating' => 999,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-8.png'
     ],
     [
         'name' => 'Wang Wu',
@@ -71,7 +71,7 @@ return [
         'rank' => 'B',
         'speedrating' => 80,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-9.png'
     ],
     [
         'name' => 'Big D Mark',
@@ -79,7 +79,7 @@ return [
         'rank' => 'S',
         'speedrating' => 100,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-10.png'
     ],
     [
         'name' => 'Wagyu Wan',
@@ -87,7 +87,7 @@ return [
         'rank' => 'B',
         'speedrating' => 85,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-11.png'
     ],
     [
         'name' => 'Lu Wu',
@@ -95,7 +95,7 @@ return [
         'rank' => 'C',
         'speedrating' => 70,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-12.png'
     ],
     [
         'name' => 'Michael Jackson',
@@ -103,7 +103,7 @@ return [
         'rank' => 'GOD',
         'speedrating' => 9999,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-13.png'
     ],
     [
         'name' => 'Bob Ross',
@@ -111,7 +111,7 @@ return [
         'rank' => 'GOD',
         'speedrating' => 9999,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-14.png'
     ],
     [
         'name' => 'D Rock',
@@ -119,7 +119,7 @@ return [
         'rank' => 'ROCK',
         'speedrating' => 9999,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-15.png'
     ],
     [
         'name' => 'Stan Lee',
@@ -127,6 +127,6 @@ return [
         'rank' => 'GOD',
         'speedrating' => 9999,
         'status' => true,
-        'image' => 'https://static.wikia.nocookie.net/return-of-the-mount-hua-sect/images/8/86/Cheongmyeong_Manhwa.png/revision/latest/scale-to-width/360?cb=20211205063925'
+        'image' => '/assets/img/murimrun-couriers/courier-16.png'
     ],
 ];
