@@ -23,21 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const userTable = document.getElementById("users");
   const dbTable = document.querySelector('.db-table');
 
-  function toggleCheckboxes(show) {
-    const headers = userTable.querySelectorAll(".select-header");
-    const cells = userTable.querySelectorAll(".select-cell");
-    const checkboxes = userTable.querySelectorAll(".select-cell input");
-
-    headers.forEach(header => header.style.display = show ? "" : "none");
-    cells.forEach(cell => cell.style.display = show ? "" : "none");
-    checkboxes.forEach(cb => cb.disabled = !show);
-
-    if (selectAll) {
-      selectAll.disabled = !show;
-      selectAll.checked = false;
-    }
-  }
-
   if (editBtn) {
   editBtn.addEventListener("click", function () {
     const tables = ["users", "deliveries", "sectcouriers"];
@@ -128,7 +113,7 @@ if (cancelEditBtn) {
   };
 }
 
-  if (deleteBtn) {
+if (deleteBtn) {
   deleteBtn.addEventListener("click", function () {
     const tables = ["users", "deliveries", "sectcouriers"];
     let activeTable = tables.find(t => {
