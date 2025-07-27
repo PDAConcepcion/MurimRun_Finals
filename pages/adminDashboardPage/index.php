@@ -171,6 +171,19 @@ renderMainLayout(function () use ($users, $deliveries, $couriers) { ?>
                 </table>
             </div>
         </section>
+        <!-- Edit Modal -->
+        <div id="editModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <form id="editForm">
+                <!-- Dynamic form fields will be injected here by JS -->
+                <div id="editFields"></div>
+                    <div style="margin-top: 16px;">
+                        <button type="submit" class="btn-5">Save Changes</button>
+                        <button type="button" class="btn-5" id="cancelEditBtn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 <?php }, 'Admin Dashboard', ['css' => $pageCss, 'js' => $pageJs]);

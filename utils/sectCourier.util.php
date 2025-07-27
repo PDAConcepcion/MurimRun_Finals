@@ -126,5 +126,36 @@ class SectCouriers
         $stmt = $pdo->prepare('DELETE FROM public."SectCouriers_table" WHERE courier_id = :courier_id');
         return $stmt->execute([':courier_id' => $courier_id]);
     }
+    /**
+     * Summary of updateById
+     * @param PDO $pdo
+     * @param string $courier_id
+     * @param array $data
+     * @return bool
+     */
+    public static function updateById(PDO $pdo, string $courier_id, array $data): bool
+    {
+        $stmt = $pdo->prepare('
+            UPDATE public."SectCouriers_table"
+            SET name = :name,
+                sectname = :sectname,
+                rank = :rank,
+                speedrating = :speedrating,
+                status = :status,
+                image = :image
+            WHERE courier_id = :courier_id
+        ');
+        return $stmt->execute([
+            ':name' => $data['name'],
+            ':sectname' => $data['sectname'],
+            ':rank' => $data['rank'],
+            ':speedrating' => $data['speedrating'],
+            ':status' => $data['status'],
+            ':image' => $data['image'],
+            ':courier_id' => $courier_id
+        ]);
+    }
 }
+
+
 ?>
