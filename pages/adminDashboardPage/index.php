@@ -169,6 +169,20 @@ renderMainLayout(function () use ($users, $deliveries, $couriers) { ?>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                <!-- Edit Modal -->
+                <div id="editModal" class="modal" style="display:none;">
+                    <div class="modal-content">
+                        <span class="close" onclick="document.getElementById('editModal').style.display='none'">&times;</span>
+                        <form id="editForm">
+                            <!-- Dynamic form fields will be injected here by JS -->
+                            <div id="editFields"></div>
+                        <div style="margin-top: 16px;">
+                            <button type="submit" class="btn-5">Save Changes</button>
+                            <button type="button" class="btn-5" id="cancelEditBtn">Cancel</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
