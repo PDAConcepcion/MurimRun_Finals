@@ -128,12 +128,15 @@ if ($action === 'updateById' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode(['error' => 'Missing courier_id parameter']);
         exit;
     }
+    // Accept only 'true' or 'false' as string
+    $statusRaw = $_POST['status'] ?? 'false';
+    $status = ($statusRaw === 'true') ? true : false;
     $data = [
         'name' => $_POST['name'] ?? '',
         'sectname' => $_POST['sectname'] ?? '',
         'rank' => $_POST['rank'] ?? '',
         'speedrating' => $_POST['speedrating'] ?? 0,
-        'status' => $_POST['status'] ?? 'Available',
+        'status' => $status,
         'image' => $_POST['image'] ?? ''
     ];
     $success = SectCouriers::updateById($pdo, $_POST['courier_id'], $data);

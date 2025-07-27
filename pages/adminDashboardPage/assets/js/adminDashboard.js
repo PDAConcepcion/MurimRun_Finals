@@ -71,7 +71,18 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (activeTable === "sectcouriers") {
       const labels = ["courier_id", "name", "sectname", "rank", "speedrating", "status"];
       labels.forEach((label, i) => {
-        fieldsHtml += `<label>${label}:<input name="${label}" value="${cells[i].textContent.trim()}" ${label === "courier_id" ? "readonly" : ""}></label><br>`;
+        if (label === "status") {
+          // Only allow true/false
+          const current = cells[i].textContent.trim().toLowerCase() === "available" ? "true" : "false";
+          fieldsHtml += `<label>${label}: 
+            <select name="status">
+              <option value="true" ${current === "true" ? "selected" : ""}>Available</option>
+              <option value="false" ${current === "false" ? "selected" : ""}>Unavailable</option>
+            </select>
+          </label><br>`;
+        } else {
+          fieldsHtml += `<label>${label}:<input name="${label}" value="${cells[i].textContent.trim()}" ${label === "courier_id" ? "readonly" : ""}></label><br>`;
+        }
       });
     }
 
