@@ -1,6 +1,5 @@
 <?php
 require_once LAYOUTS_PATH . '/main.layout.php';
-
 require_once UTILS_PATH . '/auth.utils.php';
 
 
@@ -48,18 +47,18 @@ renderMainLayout(function () use ($services) { ?>
 
 
             <div class="actions">
-
-                <div class="btn-group sh">
-                    <a class="btn btn-left" href="/pages/signupPage/index.php">
-                        Create Account
-                    </a>
-                    <a class="btn btn-right" href="/pages/loginPage/index.php">
-                        Log In
-                    </a>
-                </div>
-
-                <a class="btn-2 " href="/pages/dashboard/index.php">Get started</a>
-
+                <?php if (Auth::check()): ?>
+                    <a class="btn-2" href="/pages/dashboard/index.php">Get started</a>
+                <?php else: ?>
+                    <div class="btn-group sh">
+                        <a class="btn btn-left" href="/pages/signupPage/index.php">
+                            Create Account
+                        </a>
+                        <a class="btn btn-right" href="/pages/loginPage/index.php">
+                            Log In
+                        </a>
+                    </div>
+                <?php endif; ?>
             </div>
 
 
