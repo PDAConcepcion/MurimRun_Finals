@@ -1,4 +1,6 @@
 function showCategory(category) {
+  resetAllCheckboxes(); // <-- Add this line
+
   const userTable = document.getElementById("users");
   const deliveryTable = document.getElementById("deliveries");
   const sectCouriersTable = document.getElementById("sectcouriers");
@@ -14,6 +16,17 @@ function showCategory(category) {
   } else if (category === "sectcouriers" && sectCouriersTable) {
     sectCouriersTable.style.display = "table";
   }
+}
+
+function resetAllCheckboxes() {
+  const tables = ["users", "deliveries", "sectcouriers"];
+  tables.forEach(tableId => {
+    const table = document.getElementById(tableId);
+    if (table) {
+      const checkboxes = table.querySelectorAll('.select-cell input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+    }
+  });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
