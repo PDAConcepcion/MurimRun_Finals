@@ -159,4 +159,4 @@ renderMainLayout(function () use ($sectNames, $sectImage) { ?>
 
     </section>
 
-<?php }, 'About Us', ['css' => $pageCss, 'js' => $pageJs]); ?>
+<?php }, 'Services', ['css' => $pageCss, 'js' => $pageJs]); ?>
