@@ -9,11 +9,11 @@
     <img src="./assets/img/nyebe_white.png" alt="Nyebe" width="130" height="100">
   </a>
 <!-- TODO: Change Title to the name of the title of your Project -->
-  <h3 align="center">Title</h3>
+  <h3 align="center">MURIM RUN</h3>
 </div>
 <!-- TODO: Make a short description -->
 <div align="center">
-  Short Description. (Optional)
+  Murim Run is a web-based delivery management system inspired by martial arts sects. Users can register, log in, and place delivery orders by selecting couriers from various sects, tracking package status, and managing deliveries in real time. The platform features authentication, dynamic courier selection, and a PostgreSQL backend for robust data handling.
 </div>
 
 <br />
@@ -61,15 +61,20 @@
 <!-- TODO: To be changed -->
 <!-- The following are just sample -->
 
-Description of the project in details.
+Murim Run is a web-based delivery management system themed around martial arts sects. The platform allows users to register, log in, and place delivery orders by selecting couriers from different sects. Users can track the status of their packages and manage deliveries in real time. The system features secure authentication, dynamic courier selection, and a PostgreSQL backend for reliable data storage and management. Designed for both usability and scalability, Murim Run streamlines the delivery process with an engaging interface and robust backend logic.
 
 ### Key Components
 
 <!-- TODO: List of Key Components -->
 <!-- The following are just sample -->
 
-- Authentication & Authorization
-- CRUD Operations for Invetory System
+- **User Authentication & Authorization:** Secure registration and login system to protect user data and restrict access to authorized users.
+- **Courier Management:** Dynamic listing and selection of couriers from various martial arts sects, each with unique attributes and availability.
+- **Delivery Order Placement:** Users can create new delivery orders by filling out package details and selecting a courier.
+- **Real-Time Delivery Tracking:** Users can view and track the status of their deliveries and receive updates.
+- **Admin & Utility Handlers:** Backend scripts for database migration, seeding, and resetting to support development and maintenance.
+- **PostgreSQL Integration:** All data is stored and managed in a PostgreSQL database for reliability and scalability.
+- **Responsive UI:** Modern, user-friendly interface built with HTML, CSS, JavaScript, and PHP.
 
 ### Technology
 
@@ -81,17 +86,12 @@ Description of the project in details.
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
 
 #### Framework/Library
-![CodeIgniter](https://img.shields.io/badge/CodeIgniter-EF4223?style=for-the-badge&logo=codeigniter&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 
 #### Databases
 ![MySQL](https://img.shields.io/badge/MySQL-00758F?style=for-the-badge&logo=mysql&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
 
-#### Deployment
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
 ## Rules, Practices and Principles
 
