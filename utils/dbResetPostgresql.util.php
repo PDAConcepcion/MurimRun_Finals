@@ -1,14 +1,18 @@
 <?php
 declare(strict_types=1);
+if (!defined('BASE_PATH')) {
+    define('BASE_PATH', dirname(__DIR__));
+}
+
 
 // 1) Composer autoload
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once BASE_PATH . '/vendor/autoload.php';
 
 // 2) Composer bootstrap
-require_once __DIR__ . '/../bootstrap.php';
+require_once BASE_PATH . '/bootstrap.php';
 
 // 3) envSetter
-require_once __DIR__ . '/envSetter.util.php';
+require_once ENVSETTER_PATH;
 
 $host = $databases['pgHost'];
 $port = $databases['pgPort'];

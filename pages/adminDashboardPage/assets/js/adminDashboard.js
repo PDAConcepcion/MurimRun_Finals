@@ -66,22 +66,34 @@ document.addEventListener("DOMContentLoaded", function () {
       // Prepare form fields based on table
       let fieldsHtml = "";
       if (activeTable === "users") {
-        const labels = [
-          "user_id",
-          "username",
-          "first_name",
-          "last_name",
-          "email",
-          "role",
-        ];
-        labels.forEach((label, i) => {
-          fieldsHtml += `<label>${formatLabel(
-            label
-          )}:<input name="${label}" value="${cells[i].textContent.trim()}" ${
-            label === "user_id" ? "readonly" : ""
-          }></label><br>`;
-        });
-      } else if (activeTable === "deliveries") {
+      const labels = [
+        "user_id",
+        "username",
+        "first_name",
+        "last_name",
+        "email",
+        "role",
+      ];
+      labels.forEach((label, i) => {
+        if (label === "user_id") {
+          fieldsHtml += `<label>${formatLabel(label)}:
+            <input name="${label}" value="${cells[i].textContent.trim()}" readonly class="readonly-field"></label><br>`;
+        } else if (label === "role") {
+          const currentRole = cells[i].textContent.trim();
+          fieldsHtml += `<label>${formatLabel(label)}:
+            <select name="role">
+              <option value="admin" ${currentRole === "admin" ? "selected" : ""}>admin</option>
+              <option value="user" ${currentRole === "user" ? "selected" : ""}>user</option>
+              <option value="leader" ${currentRole === "leader" ? "selected" : ""}>leader</option>
+              <option value="warrior" ${currentRole === "member" ? "selected" : ""}>member</option>
+            </select>
+          </label><br>`;
+        } else {
+          fieldsHtml += `<label>${formatLabel(label)}:
+            <input name="${label}" value="${cells[i].textContent.trim()}"></label><br>`;
+        }
+      });
+    } else if (activeTable === "deliveries") {
         const labels = [
           "delivery_id",
           "user_id",
@@ -94,10 +106,12 @@ document.addEventListener("DOMContentLoaded", function () {
           "weight_kg",
         ];
         labels.forEach((label, i) => {
+          // Make all ID fields readonly and visually distinct
+          const isIdField = ["delivery_id", "user_id", "courier_id"].includes(label);
           fieldsHtml += `<label>${formatLabel(
             label
           )}:<input name="${label}" value="${cells[i].textContent.trim()}" ${
-            label === "delivery_id" ? "readonly" : ""
+            isIdField ? 'readonly class="readonly-field"' : ""
           }></label><br>`;
         });
       } else if (activeTable === "sectcouriers") {
@@ -116,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
               cells[i].textContent.trim().toLowerCase() === "available"
                 ? "true"
                 : "false";
-            fieldsHtml += `<label>${formatLabel(label)}: 
+            fieldsHtml += `<label>${formatLabel(label)}:
         <select name="status">
           <option value="true" ${
             current === "true" ? "selected" : ""
@@ -127,10 +141,11 @@ document.addEventListener("DOMContentLoaded", function () {
         </select>
       </label><br>`;
           } else {
+            // Make courier_id readonly and visually distinct
             fieldsHtml += `<label>${formatLabel(
               label
             )}:<input name="${label}" value="${cells[i].textContent.trim()}" ${
-              label === "courier_id" ? "readonly" : ""
+              label === "courier_id" ? 'readonly class="readonly-field"' : ""
             }></label><br>`;
           }
         });

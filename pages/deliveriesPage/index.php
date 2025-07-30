@@ -45,10 +45,7 @@ renderMainLayout(function () use ($deliveries) { ?>
             <div class="title-section">
                 <img src="/assets/img/murimrun-icons/murimrun-deliveries.png" alt="">
                 <h1>Orders</h1>
-                <!-- <div class="input-wrapper">
-                    <input type="text" class="input-with-button" placeholder="Search orders...">
-                    <button class="btn-3">Go</button>
-                </div> -->
+
 
             </div>
             <p>
@@ -65,6 +62,7 @@ renderMainLayout(function () use ($deliveries) { ?>
                             <th>Order ID</th>
                             <th>Courier Name</th>
                             <th>Sect Name</th>
+                            <th>Origin</th>
                             <th>Destination</th>
                             <th>ETA</th>
                             <th>Status</th>
@@ -77,6 +75,7 @@ renderMainLayout(function () use ($deliveries) { ?>
                                     <td>#<?= htmlspecialchars($delivery['delivery_id']) ?></td>
                                     <td><?= htmlspecialchars($delivery['courier_name']) ?></td>
                                     <td><?= htmlspecialchars($delivery['sect_name']) ?></td>
+                                    <td><?= htmlspecialchars($delivery['origin']) ?></td>
                                     <td><?= htmlspecialchars($delivery['destination']) ?></td>
                                     <td><?= htmlspecialchars($delivery['delivery_time_estimate']) ?></td>
                                     <td><?= htmlspecialchars($delivery['status']) ?></td>
