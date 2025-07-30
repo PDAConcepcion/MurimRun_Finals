@@ -66,6 +66,7 @@ renderMainLayout(function () use ($deliveries) { ?>
                             <th>Destination</th>
                             <th>ETA</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -79,6 +80,11 @@ renderMainLayout(function () use ($deliveries) { ?>
                                     <td><?= htmlspecialchars($delivery['destination']) ?></td>
                                     <td><?= htmlspecialchars($delivery['delivery_time_estimate']) ?></td>
                                     <td><?= htmlspecialchars($delivery['status']) ?></td>
+                                    <td>
+                                        <?php if (strtolower($delivery['status']) === 'pending' || strtolower($delivery['status']) === 'in transit'): ?>
+                                            <button class="cancel-btn" data-id="<?= htmlspecialchars($delivery['delivery_id']) ?>">Cancel</button>
+                                        <?php endif; ?>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>
