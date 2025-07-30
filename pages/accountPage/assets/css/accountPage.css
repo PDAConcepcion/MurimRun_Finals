@@ -103,6 +103,12 @@ input {
   border-radius: 5px;
 }
 
+.readonly-field {
+  background: #f0f0f0;
+  color: #888;
+  cursor: not-allowed;
+}
+
 input:placeholder-shown {
   padding: 6px;
 }

@@ -64,27 +64,29 @@ renderMainLayout(function () use ($user, $editMode) { ?>
                             <div class="user-top">
                                 <?php if ($editMode): ?>
                                     <h2>Edit Profile</h2>
-
-                                    <form method="POST" action="../../handlers/user.handler.php?action=update">
-                                        <input type="hidden" name="original_user"
-                                            value="<?php echo htmlspecialchars(json_encode($user), ENT_QUOTES, 'UTF-8'); ?>">
-                                        <?php foreach ($user as $key => $userInfo): ?>
-                                            <?php if ($key === 'password' || $key === 'user_id' || $key === 'role'|| $key === 'createdat')
-                                                continue; ?>
-                                            <div class="user-info">
-                                                <label>
-                                                    <?php echo ucfirst(str_replace('_', ' ', $key)); ?>:
-                                                    <input type="text" name="<?php echo htmlspecialchars($key); ?>"
-                                                        value="<?php echo htmlspecialchars($userInfo ?? ''); ?>">
-                                                </label>
+                                        <form method="POST" action="../../handlers/user.handler.php?action=update">
+                                            <input type="hidden" name="original_user"
+                                                value="<?php echo htmlspecialchars(json_encode($user), ENT_QUOTES, 'UTF-8'); ?>">
+                                                <?php foreach ($user as $key => $userInfo): ?>
+                                                    <?php if ($key === 'password' || $key === 'user_id' || $key === 'createdat')
+                                                        continue; ?>
+                                                    <div class="user-info">
+                                                        <label>
+                                                            <?php echo ucfirst(str_replace('_', ' ', $key)); ?>:
+                                                            <?php if ($key === 'role'): ?>
+                                                                <input type="text" name="role" value="<?php echo htmlspecialchars($userInfo ?? ''); ?>" readonly class="readonly-field">
+                                                            <?php else: ?>
+                                                                <input type="text" name="<?php echo htmlspecialchars($key); ?>"
+                                                                    value="<?php echo htmlspecialchars($userInfo ?? ''); ?>">
+                                                            <?php endif; ?>
+                                                        </label>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            <div class="btn-group">
+                                                <button type="submit" class="btn btn-left">Save</button>
+                                                <a href="index.php" class="btn btn-right">Cancel</a>
                                             </div>
-                                        <?php endforeach; ?>
-                                        <div class="btn-group">
-
-                                            <button type="submit" class="btn btn-left">Save</button>
-                                            <a href="index.php" class="btn btn-right">Cancel</a>
-                                        </div>
-                                    </form>
+                                        </form>
                                 <?php else: ?>
                                     <h2>User Profile</h2>
 
