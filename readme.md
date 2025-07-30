@@ -144,7 +144,7 @@ AD-ProjectName
 
 ## Resources
 
-<!-- TODO: Add References -->
+
 
 | Title               | Purpose                                     | Link            |
 | ------------------- | ------------------------------------------- | --------------- |
