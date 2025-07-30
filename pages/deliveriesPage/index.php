@@ -69,7 +69,7 @@ renderMainLayout(function () use ($deliveries) { ?>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="t-body">
                         <?php if (!empty($deliveries)): ?>
                             <?php foreach ($deliveries as $delivery): ?>
                                 <tr>
@@ -79,10 +79,11 @@ renderMainLayout(function () use ($deliveries) { ?>
                                     <td><?= htmlspecialchars($delivery['origin']) ?></td>
                                     <td><?= htmlspecialchars($delivery['destination']) ?></td>
                                     <td><?= htmlspecialchars($delivery['delivery_time_estimate']) ?></td>
-                                    <td><?= htmlspecialchars($delivery['status']) ?></td>
+                                    <td class="status"><?= htmlspecialchars($delivery['status']) ?></td>
                                     <td>
                                         <?php if (strtolower($delivery['status']) === 'pending' || strtolower($delivery['status']) === 'in transit'): ?>
-                                            <button class="cancel-btn" data-id="<?= htmlspecialchars($delivery['delivery_id']) ?>">Cancel</button>
+                                            <button class="btn-5 cancel"
+                                                data-id="<?= htmlspecialchars($delivery['delivery_id']) ?>">Cancel</button>
                                         <?php endif; ?>
                                     </td>
                                 </tr>
