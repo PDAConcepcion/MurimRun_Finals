@@ -92,3 +92,33 @@ if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     echo json_encode(['success' => $success]);
     exit;
 }
+
+if ($action === 'cancel' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['delivery_id'])) {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'error' => 'Missing delivery_id parameter']);
+        exit;
+    }
+
+    // Only update status to 'Cancelled'
+    $delivery_id = $_POST['delivery_id'];
+    $delivery = Deliveries::getById($pdo, $delivery_id);
+    if (!$delivery) {
+        echo json_encode(['success' => false, 'error' => 'Delivery not found']);
+        exit;
+    }
+    
+    // Only allow cancel if status is 'Pending'
+    $status = strtolower($delivery['status']);
+    if ($status !== 'pending' && $status !== 'in transit') {
+        echo json_encode(['success' => false, 'error' => 'Cannot cancel delivery unless it is Pending or In Transit']);
+        exit;
+    }
+    
+    $data = $delivery;
+    $data['status'] = 'Cancelled';
+    $success = Deliveries::updateById($pdo, $delivery_id, $data);
+    header('Content-Type: application/json');
+    echo json_encode(['success' => $success]);
+    exit;
+}
