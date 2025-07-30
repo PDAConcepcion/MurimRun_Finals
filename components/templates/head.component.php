@@ -17,6 +17,7 @@ function head($title, array $pageCss = [])
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?php echo $title; ?></title>
+        <link rel="shortcut icon" href="/assets/img/murim-icon.png" type="image/x-icon">
         <?php
         if (!empty($pageCss)) {
             foreach ($pageCss as $cssFile) {
