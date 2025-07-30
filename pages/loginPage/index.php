@@ -32,7 +32,8 @@ renderMainLayout(function () use ($error) { ?>
             <div class="login-section">
                 <div class="form-container">
                     <div class="logo">
-                        <h2>LOGO HERE</h2>
+                        <img src="/assets/img/murimrun-wordmark-green.png" alt="">
+                        <h2>Log In</h2>
                     </div>
                     <div class="login-field">
                         <?php if ($error === 'invalid_credential'): ?>
@@ -48,8 +49,8 @@ renderMainLayout(function () use ($error) { ?>
                             <label for="password">Password</label>
                             <input type="password" name="password" id="password" placeholder="Enter Password" required>
 
-                            <div>
-                                <button type="submit" class="btn-2 submitBtn">Submit</button>
+                            <div class="submitBtn">
+                                <button type="submit" class="btn-2">Submit</button>
                             </div>
                         </form>
 
