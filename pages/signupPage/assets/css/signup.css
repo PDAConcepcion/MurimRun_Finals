@@ -12,10 +12,6 @@ body {
   background-color: var(--color-bg);
 }
 
-h2 {
-  color: var(--color-action);
-}
-
 .overlay {
   position: fixed;
 }
@@ -39,6 +35,11 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+}
+
+.logo-section img {
+  height: 60px;
 }
 
 .form-container {

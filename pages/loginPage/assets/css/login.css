@@ -57,11 +57,19 @@ label {
   padding: 40px 30px;
   box-shadow: var(--shadow-def);
   border: var(--box-highlight);
-  gap: 10px;
 }
 
 .logo {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--btn-color);
+}
+
+.logo img {
+  height: 60px;
 }
 
 .login-field {
@@ -78,9 +86,14 @@ label {
 
 .submitBtn {
   display: flex;
+  width: 100%;
+  padding: 10px 0px;
+}
+
+.btn-2 {
+  justify-content: center;
   align-items: center;
   width: 100%;
-  justify-content: center;
 }
 
 .create {

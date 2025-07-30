@@ -25,9 +25,8 @@ renderMainLayout(function () use ($errors, $old) { ?>
     <div class="page">
         <div class="form-container">
             <div class="logo-section">
-                <h2 class="signup-title">Create Your Account</h2>
-                <p class="signup-subtitle">Join MurimRun!</p>
-
+                <img src="/assets/img/murimrun-wordmark-green.png" alt="">
+                <h2>Create your account</h2>
             </div>
 
             <?php if (!empty($errors)): ?>
