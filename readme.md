@@ -4,24 +4,18 @@
 
 <br />
 <div align="center">
-  <a href="https://github.com/zyx-0314/">
-  <!-- TODO: If you want to add logo or banner you can add it here -->
-    <img src="./assets/img/nyebe_white.png" alt="Nyebe" width="130" height="100">
+  <a href="https://github.com/PDAConcepcion/">
+    <img src="/assets/img/murimrun-wordmark-red.png" alt="Nyebe"  height="70">
   </a>
-<!-- TODO: Change Title to the name of the title of your Project -->
-  <h3 align="center">MURIM RUN</h3>
+  <h3 align="center">MURIM RUN - Swift As The Blade!</h3>
 </div>
-<!-- TODO: Make a short description -->
 <div align="center">
   Murim Run is a web-based delivery management system inspired by martial arts sects. Users can register, log in, and place delivery orders by selecting couriers from various sects, tracking package status, and managing deliveries in real time. The platform features authentication, dynamic courier selection, and a PostgreSQL backend for robust data handling.
 </div>
 
 <br />
 
-<!-- TODO: Change the zyx-0314 into your github username  -->
-<!-- TODO: Change the WD-Template-Project into the same name of your folder -->
-
-![](https://visit-counter.vercel.app/counter.png?page=zyx-0314/AD-CI4-Template-Project)
+![](https://visit-counter.vercel.app/counter.png?page=PDAConcepcion/MurimRun_Finals)
 
 [![wakatime](https://wakatime.com/badge/user/018dd99a-4985-4f98-8216-6ca6fe2ce0f8/project/63501637-9a31-42f0-960d-4d0ab47977f8.svg)](https://wakatime.com/badge/user/018dd99a-4985-4f98-8216-6ca6fe2ce0f8/project/63501637-9a31-42f0-960d-4d0ab47977f8)
 
@@ -30,7 +24,6 @@
 <br />
 <br />
 
-<!-- TODO: If you want to add more layers for your readme -->
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -58,15 +51,9 @@
 
 ## Overview
 
-<!-- TODO: To be changed -->
-<!-- The following are just sample -->
-
 Murim Run is a web-based delivery management system themed around martial arts sects. The platform allows users to register, log in, and place delivery orders by selecting couriers from different sects. Users can track the status of their packages and manage deliveries in real time. The system features secure authentication, dynamic courier selection, and a PostgreSQL backend for reliable data storage and management. Designed for both usability and scalability, Murim Run streamlines the delivery process with an engaging interface and robust backend logic.
 
 ### Key Components
-
-<!-- TODO: List of Key Components -->
-<!-- The following are just sample -->
 
 - **User Authentication & Authorization:** Secure registration and login system to protect user data and restrict access to authorized users.
 - **Courier Management:** Dynamic listing and selection of couriers from various martial arts sects, each with unique attributes and availability.
@@ -78,20 +65,21 @@ Murim Run is a web-based delivery management system themed around martial arts s
 
 ### Technology
 
-<!-- TODO: List of Technology Used -->
 #### Language
+
 ![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
 
 #### Framework/Library
+
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 
 #### Databases
+
 ![MySQL](https://img.shields.io/badge/MySQL-00758F?style=for-the-badge&logo=mysql&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
-
 
 ## Rules, Practices and Principles
 
@@ -103,13 +91,13 @@ Murim Run is a web-based delivery management system themed around martial arts s
 4. Add `.util` to the `.php` files if they are utility codes; example: `account.util.php`.
 5. Place Files in their respective folders.
 6. Different file naming Cases
-   | Naming Case | Type of code         | Example                           |
+   | Naming Case | Type of code | Example |
    | ----------- | -------------------- | --------------------------------- |
-   | Pascal      | Utility              | Accoun.util.php                   |
-   | Camel       | Components and Pages | index.php or footer.component.php |
-8. Renaming of Pages folder names are a must, and relates to what it is doing or data it holding.
-9. Use proper label in your github commits: `feat`, `fix`, `refactor` and `docs`
-10. File Structure to follow below.
+   | Pascal | Utility | Accoun.util.php |
+   | Camel | Components and Pages | index.php or footer.component.php |
+7. Renaming of Pages folder names are a must, and relates to what it is doing or data it holding.
+8. Use proper label in your github commits: `feat`, `fix`, `refactor` and `docs`
+9. File Structure to follow below.
 
 ```
 AD-ProjectName
@@ -151,15 +139,15 @@ AD-ProjectName
 └─ readme.md
 └─ router.php
 ```
+
 > The following should be renamed: name.css, name.js, name.jpeg/.jpg/.webp/.png, name.component.php(but not the part of the `component.php`), Name.utils.php(but not the part of the `utils.php`)
 
 ## Resources
 
 <!-- TODO: Add References -->
 
-| Title        | Purpose                                                                       | Link          |
-| ------------ | ----------------------------------------------------------------------------- | ------------- |
-| Sample Title | Sample purpose would be here like this and this is the example of what it is. | trykolang.com |
-| Sample Title | Sample purpose would be here like this and this is the example of what it is. | trykolang.com |
-| Sample Title | Sample purpose would be here like this and this is the example of what it is. | trykolang.com |
-| Sample Title | Sample purpose would be here like this and this is the example of what it is. | trykolang.com |
+| Title               | Purpose                                     | Link            |
+| ------------------- | ------------------------------------------- | --------------- |
+| Github Copilot Chat | Code structure and logic refinement         |                 |
+| ChatGPT             | Code structure and logic refinement         | www.chatgpt.com |
+| w3schools           | for JS and CSS design tips and improvements | w3schools.com   |
