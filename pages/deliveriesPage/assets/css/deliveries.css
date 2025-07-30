@@ -47,6 +47,10 @@
   background-color: #f6726d;
 }
 
+.btn-5 {
+  margin: 0;
+}
+
 .cancel {
   padding: 5px 10px;
 }
