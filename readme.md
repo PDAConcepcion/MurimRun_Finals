@@ -17,7 +17,7 @@
 
 ![](https://visit-counter.vercel.app/counter.png?page=PDAConcepcion/MurimRun_Finals)
 
-[![wakatime](https://wakatime.com/badge/user/018dd99a-4985-4f98-8216-6ca6fe2ce0f8/project/63501637-9a31-42f0-960d-4d0ab47977f8.svg)](https://wakatime.com/badge/user/018dd99a-4985-4f98-8216-6ca6fe2ce0f8/project/63501637-9a31-42f0-960d-4d0ab47977f8)
+[![wakatime](https://wakatime.com/badge/user/d4319e56-afb6-4209-8b83-a830d88d13cd/project/f2847942-f9a8-44f4-b222-ecc91f53b99c.svg)](https://wakatime.com/badge/user/d4319e56-afb6-4209-8b83-a830d88d13cd/project/f2847942-f9a8-44f4-b222-ecc91f53b99c)
 
 ---
 
@@ -151,3 +151,5 @@ AD-ProjectName
 | Github Copilot Chat | Code structure and logic refinement         |                 |
 | ChatGPT             | Code structure and logic refinement         | www.chatgpt.com |
 | w3schools           | for JS and CSS design tips and improvements | w3schools.com   |
+| Unsplash            | stock images                                | unsplash.com    |
+| pinterest           | stock images                                | pinterest.com   |
