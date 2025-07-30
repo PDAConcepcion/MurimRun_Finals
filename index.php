@@ -16,15 +16,18 @@ $pageCss = [
 $services = [
     [
         "service" => "Courier Services",
-        "description" => "Slice Through Waiting. Choose MurimRun."
+        "description" => "Slice Through Waiting. Choose MurimRun.",
+        "image" => "/assets/img/stock-images/murimrun-package.jpg",
     ],
     [
         "service" => "Realtime Tracking",
-        "description" => "Track your package realtime"
+        "description" => "Track your package realtime",
+        "image" => "/assets/img/stock-images/murimrun-tracking.jpg"
     ],
     [
         "service" => "24/7 Customer Support",
-        "description" => "Talk to one of our agents"
+        "description" => "Talk to one of our agents",
+        "image" => "/assets/img/stock-images/murimrun-cs.jpg"
     ]
 ];
 
@@ -33,7 +36,7 @@ renderMainLayout(function () use ($services) { ?>
     <div class="background ims">
         <div class="overlay"></div>
     </div>
-    <div class="page">
+    <div class="page landing">
         <div class="intro">
             <div class="murimrun-logo"><img src="/assets/img/murimrun-wordmark-white.png" alt=""></div>
 
@@ -47,25 +50,25 @@ renderMainLayout(function () use ($services) { ?>
 
 
             <div class="actions">
-            <?php
-            $user = Auth::user();
-            if (Auth::check()):
-                if (isset($user['role']) && strtolower($user['role']) === 'admin'): ?>
-                    <a class="btn-2" href="/pages/adminDashboardPage/index.php">Get started (Admin)</a>
-                <?php else: ?>
-                    <a class="btn-2" href="/pages/dashboard/index.php">Get started</a>
-                <?php endif;
-            else: ?>
-                <div class="btn-group sh">
-                    <a class="btn btn-left" href="/pages/signupPage/index.php">
-                        Create Account
-                    </a>
-                    <a class="btn btn-right" href="/pages/loginPage/index.php">
-                        Log In
-                    </a>
-                </div>
-            <?php endif; ?>
-        </div>
+                <?php
+                $user = Auth::user();
+                if (Auth::check()):
+                    if (isset($user['role']) && strtolower($user['role']) === 'admin'): ?>
+                        <a class="btn-2" href="/pages/adminDashboardPage/index.php">Get started (Admin)</a>
+                    <?php else: ?>
+                        <a class="btn-2" href="/pages/dashboard/index.php">Get started</a>
+                    <?php endif;
+                else: ?>
+                    <div class="btn-group sh">
+                        <a class="btn btn-left" href="/pages/signupPage/index.php">
+                            Create Account
+                        </a>
+                        <a class="btn btn-right" href="/pages/loginPage/index.php">
+                            Log In
+                        </a>
+                    </div>
+                <?php endif; ?>
+            </div>
 
 
 
@@ -74,7 +77,7 @@ renderMainLayout(function () use ($services) { ?>
             <?php foreach ($services as $info): ?>
                 <div class="card-container scale-1">
                     <div class="image-container">
-                        <img class="pic scale-2" src="/assets/img/Vermilion_Bird_Sect.png" alt="">
+                        <img class="pic scale-2" src="<?php echo $info['image'] ?>" alt="">
                     </div>
                     <div class="description-container">
                         <h2><?php echo $info['service'] ?></h2>
@@ -83,13 +86,7 @@ renderMainLayout(function () use ($services) { ?>
                 </div>
             <?php endforeach ?>
         </section>
-        <section class="carousel">
-            <div class="carousel-track">
-                <img src="image1.jpg" class="carousel-image" alt="">
-            </div>
-            <button class="prev">‹</button>
-            <button class="next">›</button>
-        </section>
+
 
 
     </div>

@@ -92,6 +92,9 @@ input:required + label::after {
   margin-right: auto;
   background-position: center;
   top: 60px;
+}
+
+.landing {
   padding-bottom: 60px;
 }
 
@@ -126,9 +129,8 @@ input:required + label::after {
 .container {
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
-  padding-top: 50px;
 }
 
 .wd {
@@ -201,12 +203,14 @@ input:required + label::after {
   justify-content: center;
   width: 100%;
   height: 220px;
-  background-color: black;
   overflow: hidden;
 }
 
 .pic {
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Change from 'contain' to 'cover' */
+  display: block; /* Ensure the image displays as a block element */
 }
 
 .scale-1,
@@ -237,11 +241,11 @@ input:required + label::after {
 
 .description-container h1 {
   font-size: 20px;
-  color: rgb(37, 37, 37);
+  color: var(--color-text);
 }
 
 .description-container p {
-  color: rgb(124, 124, 124);
+  color: var(--color-text);
 }
 
 /* buttons */

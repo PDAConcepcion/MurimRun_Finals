@@ -111,6 +111,7 @@ renderMainLayout(function () use ($sectNames, $sectImage) { ?>
 
         <div class="murim-way">
             <div class="promises-left">
+                <img src="/assets/img/stock-images/poster.png" alt="">
 
             </div>
             <div class="promises-right">
@@ -135,7 +136,8 @@ renderMainLayout(function () use ($sectNames, $sectImage) { ?>
                     making sure your delivery arrives exactly when it’s expected (or sooner).
                 </p>
             </div>
-            <div class="promises-right">
+            <div class="promises-right slice">
+                <img src="/assets/img/stock-images/slice.png" alt="">
 
             </div>
         </div>
@@ -159,4 +161,4 @@ renderMainLayout(function () use ($sectNames, $sectImage) { ?>
 
     </section>
 
-<?php }, 'About Us', ['css' => $pageCss, 'js' => $pageJs]); ?>
+<?php }, 'Services', ['css' => $pageCss, 'js' => $pageJs]); ?>
