@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
               cells[i].textContent.trim().toLowerCase() === "available"
                 ? "true"
                 : "false";
-            fieldsHtml += `<label>${formatLabel(label)}: 
+            fieldsHtml += `<label>${formatLabel(label)}:
         <select name="status">
           <option value="true" ${
             current === "true" ? "selected" : ""
