@@ -82,7 +82,7 @@ renderMainLayout(function () use ($deliveries) { ?>
                                     <td class="status"><?= htmlspecialchars($delivery['status']) ?></td>
                                     <td>
                                         <?php if (strtolower($delivery['status']) === 'pending' || strtolower($delivery['status']) === 'in transit'): ?>
-                                            <button class="btn-5 cancel"
+                                            <button class="cancel-btn btn-5"
                                                 data-id="<?= htmlspecialchars($delivery['delivery_id']) ?>">Cancel</button>
                                         <?php endif; ?>
                                     </td>
