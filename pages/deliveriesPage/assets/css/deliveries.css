@@ -47,6 +47,10 @@
   background-color: #f6726d;
 }
 
+.cancel {
+  padding: 5px 10px;
+}
+
 .dlv-sec table {
   width: 100%;
   border-collapse: separate;
@@ -54,21 +58,22 @@
   background: #fff;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   margin-top: 10px;
 }
 
-.dlv-sec th, .dlv-sec td {
+.dlv-sec th,
+.dlv-sec td {
   padding: 16px 18px;
   text-align: left;
   font-size: 1rem;
 }
 
 .dlv-sec th {
-  background: #f6726d;
+  background: var(--btn-color);
   color: #fff;
   font-weight: 700;
-  border-bottom: 2px solid #f6726d;
+  border-bottom: 2px solid var(--btn-color);
 }
 
 .dlv-sec tr {
