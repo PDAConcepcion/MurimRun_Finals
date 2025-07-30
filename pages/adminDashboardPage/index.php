@@ -10,7 +10,7 @@ require_once UTILS_PATH . '/sectCourier.util.php';
 Auth::init();
 $sessionUser = Auth::user();
 
-if (!$sessionUser || strtolower($sessionUser['role'] ?? '') !== 'user') {
+if (!$sessionUser || strtolower($sessionUser['role'] ?? '') !== 'admin') {
     header('Location: /errors/forbidden.error.php');
     exit;
 }
