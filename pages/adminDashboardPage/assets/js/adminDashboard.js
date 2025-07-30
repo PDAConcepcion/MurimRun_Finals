@@ -78,6 +78,16 @@ document.addEventListener("DOMContentLoaded", function () {
         if (label === "user_id") {
           fieldsHtml += `<label>${formatLabel(label)}:
             <input name="${label}" value="${cells[i].textContent.trim()}" readonly class="readonly-field"></label><br>`;
+        } else if (label === "role") {
+          const currentRole = cells[i].textContent.trim();
+          fieldsHtml += `<label>${formatLabel(label)}:
+            <select name="role">
+              <option value="admin" ${currentRole === "admin" ? "selected" : ""}>admin</option>
+              <option value="user" ${currentRole === "user" ? "selected" : ""}>user</option>
+              <option value="leader" ${currentRole === "leader" ? "selected" : ""}>leader</option>
+              <option value="warrior" ${currentRole === "member" ? "selected" : ""}>member</option>
+            </select>
+          </label><br>`;
         } else {
           fieldsHtml += `<label>${formatLabel(label)}:
             <input name="${label}" value="${cells[i].textContent.trim()}"></label><br>`;
