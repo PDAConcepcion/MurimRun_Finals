@@ -172,6 +172,10 @@
   object-fit: cover;
 }
 
+.slice img {
+  object-fit: cover;
+}
+
 /* 4K and above (Ultra HD) */
 @media (min-width: 2560px) {
   /* Styles for very large screens */
