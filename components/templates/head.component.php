@@ -1,12 +1,6 @@
 <?php
 require_once UTILS_PATH . "/htmlEscape.util.php";
 
-// $title = "MurimRun";
-// $cssFiles = [
-//     '/assets/css/style.css',
-//     '/assets/css/header.css'
-// ];
-
 function head($title, array $pageCss = [])
 {
     ?>

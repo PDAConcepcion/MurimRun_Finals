@@ -45,10 +45,7 @@ renderMainLayout(function () use ($deliveries) { ?>
             <div class="title-section">
                 <img src="/assets/img/murimrun-icons/murimrun-deliveries.png" alt="">
                 <h1>Orders</h1>
-                <!-- <div class="input-wrapper">
-                    <input type="text" class="input-with-button" placeholder="Search orders...">
-                    <button class="btn-3">Go</button>
-                </div> -->
+
 
             </div>
             <p>
