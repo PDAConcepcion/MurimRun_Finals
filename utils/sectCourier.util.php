@@ -135,6 +135,16 @@ class SectCouriers
      */
     public static function updateById(PDO $pdo, string $courier_id, array $data): bool
     {
+        // Normalize status to boolean or string 'true'/'false'
+        $status = $data['status'];
+        if ($status === '' || $status === null) {
+            $status = 'false';
+        } elseif ($status === true || $status === 'true' || $status === 1 || $status === '1') {
+            $status = 'true';
+        } else {
+            $status = 'false';
+        }
+
         $stmt = $pdo->prepare('
             UPDATE public."SectCouriers_table"
             SET name = :name,
@@ -150,7 +160,7 @@ class SectCouriers
             ':sectname' => $data['sectname'],
             ':rank' => $data['rank'],
             ':speedrating' => $data['speedrating'],
-            ':status' => $data['status'],
+            ':status' => $status,
             ':image' => $data['image'],
             ':courier_id' => $courier_id
         ]);
