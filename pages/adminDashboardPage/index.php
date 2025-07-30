@@ -97,20 +97,18 @@ renderMainLayout(function () use ($users, $deliveries, $couriers) { ?>
                         </thead>
                         <tbody>
                             <?php foreach ($users as $user): ?>
-                                <?php if (strtolower($user['role']) !== 'admin'): ?>
-                                    <tr>
-                                        <td class="select-cell">
-                                            <input type="checkbox" name="selected_users[]"
-                                                value="<?= htmlspecialchars($user['user_id']) ?>">
-                                        </td>
-                                        <td><?php echo htmlspecialchars($user['user_id']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['username']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['first_name']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['last_name']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['email']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['role']); ?></td>
-                                    </tr>
-                                <?php endif; ?>
+                                <tr>
+                                    <td class="select-cell">
+                                        <input type="checkbox" name="selected_users[]"
+                                            value="<?= htmlspecialchars($user['user_id']) ?>">
+                                    </td>
+                                    <td><?php echo htmlspecialchars($user['user_id']); ?></td>
+                                    <td><?php echo htmlspecialchars($user['username']); ?></td>
+                                    <td><?php echo htmlspecialchars($user['first_name']); ?></td>
+                                    <td><?php echo htmlspecialchars($user['last_name']); ?></td>
+                                    <td><?php echo htmlspecialchars($user['email']); ?></td>
+                                    <td><?php echo htmlspecialchars($user['role']); ?></td>
+                                </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
